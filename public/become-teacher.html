@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Become a Verified Teacher | ZYZU'S Platform</title>
+  <meta name="description" content="Join ZYZU'S as a verified home tutor. Teach students in your district, earn predictable income, and build your teaching reputation with district administration backing.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    .teacher-hero {
+      max-width: 1000px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .perk-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+    .perk-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(230, 92, 46, 0.4);
+    }
+    .calc-card {
+      background: linear-gradient(135deg, rgba(14, 21, 38, 0.95) 0%, rgba(26, 36, 64, 0.8) 100%);
+      border: 1px solid rgba(230, 92, 46, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
+    }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    .checklist-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: rgba(14, 21, 38, 0.6);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+    .checklist-icon {
+      color: #10b981;
+      font-size: 1.25rem;
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+      <span class="brand-tag">Platform</span>
+    </a>
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: var(--primary); font-weight: 700; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+    <section class="teacher-hero">
+      <div class="brand-tag" style="background: rgba(230,92,46,0.15); color: var(--primary); padding: 0.35rem 1rem; border-radius: 9999px; display: inline-block; font-weight: 700; margin-bottom: 1rem;">
+        JOIN THE PREMIER TEACHING ALLIANCE
+      </div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem;">
+        Teach with Dignity.<br>
+        <span style="color: var(--primary);">Earn up to ₹65,000+ per Month.</span>
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; max-width: 750px; margin: 0 auto 2.5rem;">
+        ZYZU'S connects verified subject specialists with verified student inquiries allotted by your District Administrator. Zero commission chasing, zero haggling, guaranteed on-time monthly payouts.
+      </p>
+      <div>
+        <a href="/register/teacher" class="btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 0.75rem;">
+          <i class="fas fa-user-plus"></i> Apply as a Home Tutor Now
+        </a>
+      </div>
+    </section>
+
+    <!-- Earnings Calculator Card -->
+    <div class="calc-card">
+      <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">
+        <i class="fas fa-calculator" style="color: var(--primary);"></i> Estimated Earnings Calculator
+      </h3>
+      <p style="color: var(--text-muted); text-align: center; font-size: 0.9rem; margin-bottom: 2rem;">
+        See what educators earn on the ZYZU'S platform based on student assignments.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        <div style="background: rgba(18,26,47,0.7); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--bg-card-border);">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Students Taught</label>
+          <div style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">3 - 4 Students</div>
+          <span style="font-size: 0.75rem; color: var(--text-dim);">1.5 hrs per session</span>
+        </div>
+
+        <div style="background: rgba(18,26,47,0.7); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--bg-card-border);">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Hourly Fee Range</label>
+          <div style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-top: 0.3rem;">₹450 - ₹750</div>
+          <span style="font-size: 0.75rem; color: var(--text-dim);">Based on subject & class</span>
+        </div>
+
+        <div style="background: rgba(230,92,46,0.12); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(230,92,46,0.4);">
+          <label style="display: block; font-size: 0.8rem; color: var(--primary); text-transform: uppercase; font-weight: 700;">Monthly Potential</label>
+          <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-top: 0.3rem;">₹45,000 - ₹65,000</div>
+          <span style="font-size: 0.75rem; color: #cbd5e1;">Credited directly via RTGS/UPI</span>
+        </div>
+      </div>
+      <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+        <i class="fas fa-check-circle" style="color: #10b981;"></i> All attendance recorded digitally through the ZYZU'S Teacher Portal.
+      </div>
+    </div>
+
+    <!-- Why Teach With ZYZU'S -->
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <h2 style="color: #fff; font-size: 2rem; font-weight: 800;">Why Top Educators Choose ZYZU'S</h2>
+    </div>
+
+    <div class="perks-grid">
+      <div class="perk-card">
+        <div style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-map-marked-alt"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Local Student Allotments</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Your District Admin pairs you with students residing within your designated travel radius. No wasted travel time.
+        </p>
+      </div>
+
+      <div class="perk-card">
+        <div style="font-size: 2rem; color: #3b82f6; margin-bottom: 1rem;"><i class="fas fa-calendar-check"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Complete Schedule Autonomy</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Specify which days and hours you are available. Teach early mornings, evenings, or weekends according to your routine.
+        </p>
+      </div>
+
+      <div class="perk-card">
+        <div style="font-size: 2rem; color: #10b981; margin-bottom: 1rem;"><i class="fas fa-wallet"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Guaranteed Fee Collection</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          ZYZU'S secures tuition escrow. Once you log your sessions, fees are transferred automatically. No awkward fee conversations with parents.
+        </p>
+      </div>
+
+      <div class="perk-card">
+        <div style="font-size: 2rem; color: #f59e0b; margin-bottom: 1rem;"><i class="fas fa-certificate"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Verified Educator Badge</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Earn official district endorsement. Teachers with high ratings receive priority allotments and can command premium hourly rates.
+        </p>
+      </div>
+    </div>
+
+    <!-- Onboarding Process -->
+    <div style="background: var(--bg-card); border: 1px solid var(--bg-card-border); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 3.5rem;">
+      <h3 style="color: #fff; font-size: 1.6rem; margin-bottom: 1.5rem; text-align: center;">4-Step Onboarding Workflow</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+        <div style="text-align: center;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">1</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Register Profile</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Input your qualifications, experience, subjects, and fee preferences.</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">2</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Upload Documents</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Submit degree certificates and government ID for district compliance.</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">3</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Admin Verification</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">District Admin reviews credentials and activates your verified status.</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">4</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Start Teaching</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Receive student allotments on your dashboard and commence sessions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verification Checklist -->
+    <div style="background: rgba(18,26,47,0.7); border: 1px solid var(--bg-card-border); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 4rem;">
+      <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 0.75rem;">Document Checklist for Verification</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Have the following ready to accelerate your application approval:</p>
+      <div class="checklist-grid">
+        <div class="checklist-item">
+          <i class="fas fa-check-circle checklist-icon"></i>
+          <div>
+            <strong style="color: #fff; display: block; font-size: 0.95rem;">Government Photo ID</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Aadhaar Card, Voter ID, or Passport</span>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <i class="fas fa-check-circle checklist-icon"></i>
+          <div>
+            <strong style="color: #fff; display: block; font-size: 0.95rem;">Highest Degree & Marksheets</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">B.Sc, M.Sc, B.Tech, B.Ed or equivalent</span>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <i class="fas fa-check-circle checklist-icon"></i>
+          <div>
+            <strong style="color: #fff; display: block; font-size: 0.95rem;">Proof of Current Address</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Utility bill or official address document</span>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <i class="fas fa-check-circle checklist-icon"></i>
+          <div>
+            <strong style="color: #fff; display: block; font-size: 0.95rem;">Bank Account for Payouts</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Account number & IFSC for automated deposits</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="/register/teacher" class="btn-primary" style="padding: 0.9rem 2.25rem;">
+          <i class="fas fa-arrow-right"></i> Proceed to Teacher Registration
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          ZYZU'S empowers passionate educators with verified students, transparent scheduling, and dignified earnings.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors">Find Home Tutors</a></li>
+          <li><a href="/libraries">Find Study Libraries</a></li>
+          <li><a href="/become-teacher">Become a Teacher</a></li>
+          <li><a href="/list-library">List Your Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About ZYZU'S</a></li>
+          <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing Plans</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student">Student Portal</a></li>
+          <li><a href="/dashboard/teacher">Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner">Library Owner</a></li>
+          <li><a href="/dashboard/district-admin">District Admin</a></li>
+          <li><a href="/dashboard/super-admin">Super Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S Platform. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <rect width="100" height="100" rx="24" fill="url(#navyGrad)" />
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#0a192f" />
+      <stop offset="50%" stopColor="#1e40af" />
+      <stop offset="100%" stopColor="#2563eb" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#fb923c" />
+      <stop offset="100%" stopColor="#ea580c" />
+    </linearGradient>
+  </defs>
+  <!-- Stylized Educational Z -->
+  <path d="M22 25 H78 C80.2 25 82 26.8 82 29 V34 C82 36.2 80.2 38 78 38 H40 L76 72 C77.5 73.5 78 75.5 78 77.5 V80 C78 82.2 76.2 84 74 84 H18 C15.8 84 14 82.2 14 80 V75 C14 72.8 15.8 71 18 71 H58 L22 37 C20.5 35.5 20 33.5 20 31.5 V29 C20 26.8 21.8 25 22 25 Z" fill="#ffffff" />
+  <!-- Vibrant Beacon Dot -->
+  <circle cx="75" cy="24" r="6" fill="url(#orangeGrad)" />
+</svg>

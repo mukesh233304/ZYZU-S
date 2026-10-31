@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pricing & Plans | ZYZU'S Platform</title>
+  <meta name="description" content="Transparent, standardized pricing for 1-on-1 home tuition and self-study library desk passes across Ghazipur, Saidpur, and Varanasi.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    .pricing-hero {
+      max-width: 950px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .pricing-toggle-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .pricing-toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-muted);
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .pricing-toggle-btn.active {
+      background: rgba(230, 92, 46, 0.18);
+      color: var(--primary);
+      border-color: rgba(230, 92, 46, 0.4);
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+    }
+    .plan-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 1.75rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    .plan-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 16px 36px -8px rgba(230, 92, 46, 0.25);
+    }
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .plan-name {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .plan-price {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .plan-price span {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .plan-features {
+      list-style: none;
+      margin: 1.5rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .plan-features li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .plan-features li i {
+      color: #10b981;
+      font-size: 0.9rem;
+    }
+    .guarantee-box {
+      background: rgba(14, 21, 38, 0.7);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+      <span class="brand-tag">Platform</span>
+    </a>
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: var(--primary); font-weight: 700; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+    <section class="pricing-hero">
+      <div class="brand-tag" style="background: rgba(230,92,46,0.15); color: var(--primary); padding: 0.35rem 1rem; border-radius: 9999px; display: inline-block; font-weight: 700; margin-bottom: 1rem;">
+        TRANSPARENT & NO HIDDEN COMMISSIONS
+      </div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem;">
+        Clear, Predictable Pricing
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; max-width: 700px; margin: 0 auto 2.5rem;">
+        All tuition sessions and study desk bookings are backed by district admin verification, automated attendance logs, and digital payment receipts.
+      </p>
+
+      <div class="pricing-toggle-wrap">
+        <button class="pricing-toggle-btn active" id="btn-show-tuition" onclick="togglePricing('tuition')">
+          <i class="fas fa-chalkboard-teacher"></i> Home Tuition Packages
+        </button>
+        <button class="pricing-toggle-btn" id="btn-show-library" onclick="togglePricing('library')">
+          <i class="fas fa-book-reader"></i> Study Library Desk Passes
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION A: Home Tuition Pricing -->
+    <div id="pricing-tuition" class="plans-grid">
+      <!-- Plan 1 -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-name">Primary & Middle School</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Class 1 to 8 Foundation</div>
+          <div class="plan-price">₹4,000 <span>/ month</span></div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Or ₹350 - ₹450 / hour</div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 1-on-1 personalized home tutoring</li>
+            <li><i class="fas fa-check"></i> 12 - 16 sessions per month (1 hr/day)</li>
+            <li><i class="fas fa-check"></i> Mathematics, Science, English, Hindi</li>
+            <li><i class="fas fa-check"></i> Daily digital attendance tracking</li>
+            <li><i class="fas fa-check"></i> District Admin quality assurance</li>
+          </ul>
+        </div>
+        <a href="/register/student" class="btn-primary" style="text-align: center;">Request Primary Tutor</a>
+      </div>
+
+      <!-- Plan 2: Featured -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Most Popular</div>
+        <div>
+          <div class="plan-name">Secondary Board Mastery</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Class 9 & 10 (CBSE / ICSE / UP)</div>
+          <div class="plan-price" style="color: var(--primary);">₹5,500 <span>/ month</span></div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Or ₹450 - ₹550 / hour</div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> Specialized subject experts (Maths / Science)</li>
+            <li><i class="fas fa-check"></i> 16 - 20 sessions per month (1.5 hrs/day)</li>
+            <li><i class="fas fa-check"></i> Board exam past paper revisions</li>
+            <li><i class="fas fa-check"></i> Chapter-wise mock evaluations</li>
+            <li><i class="fas fa-check"></i> Monthly parent progress review</li>
+          </ul>
+        </div>
+        <a href="/register/student" class="btn-primary" style="text-align: center;">Request Board Tutor</a>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-name">Senior & Competitive</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Class 11, 12, JEE & NEET</div>
+          <div class="plan-price">₹7,500 <span>/ month</span></div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Or ₹600 - ₹850 / hour</div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> Top rankers & M.Sc / B.Tech faculty</li>
+            <li><i class="fas fa-check"></i> Physics, Chemistry, Biology, Advanced Maths</li>
+            <li><i class="fas fa-check"></i> Concept depth & numerical problem solving</li>
+            <li><i class="fas fa-check"></i> Doubt clearance sessions</li>
+            <li><i class="fas fa-check"></i> Performance analytics report</li>
+          </ul>
+        </div>
+        <a href="/register/student" class="btn-primary" style="text-align: center;">Request Senior Faculty</a>
+      </div>
+    </div>
+
+    <!-- SECTION B: Study Library Pricing (Hidden by default) -->
+    <div id="pricing-library" class="plans-grid" style="display: none;">
+      <!-- Plan 1 -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-name">Single Shift Pass</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Morning OR Evening (8 Hours)</div>
+          <div class="plan-price">₹699 <span>/ month</span></div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Flexible slot choice</div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> Assigned desk during selected shift</li>
+            <li><i class="fas fa-check"></i> High-speed 300 Mbps fiber Wi-Fi</li>
+            <li><i class="fas fa-check"></i> 100% Air conditioned silent zone</li>
+            <li><i class="fas fa-check"></i> Purified RO cold drinking water</li>
+            <li><i class="fas fa-check"></i> Inverter & DG power backup</li>
+          </ul>
+        </div>
+        <a href="/libraries" class="btn-primary" style="text-align: center;">Reserve Single Shift</a>
+      </div>
+
+      <!-- Plan 2: Featured -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Best For Aspirants</div>
+        <div>
+          <div class="plan-name">Dual Shift Pass</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Morning + Evening (16 Hours)</div>
+          <div class="plan-price" style="color: var(--primary);">₹1,199 <span>/ month</span></div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Ideal for NEET / JEE / UPSC</div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 16 Hours access (6:00 AM - 10:00 PM)</li>
+            <li><i class="fas fa-check"></i> Fixed reserved desk (No shift changes)</li>
+            <li><i class="fas fa-check"></i> Personal book storage locker</li>
+            <li><i class="fas fa-check"></i> Charging socket at every desk</li>
+            <li><i class="fas fa-check"></i> Silent reading & discussion room access</li>
+          </ul>
+        </div>
+        <a href="/libraries" class="btn-primary" style="text-align: center;">Reserve Dual Shift</a>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-name">24/7 Dedicated Desk</div>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Round-the-clock Personal Workspace</div>
+          <div class="plan-price">₹1,699 <span>/ month</span></div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Unrestricted 24-hour access</div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 24-hour non-stop biometric/QR entry</li>
+            <li><i class="fas fa-check"></i> Permanently reserved orthopedic chair</li>
+            <li><i class="fas fa-check"></i> Large private locker with lock</li>
+            <li><i class="fas fa-check"></i> Dual ISP redundant fiber failover</li>
+            <li><i class="fas fa-check"></i> Priority seat renewal guarantee</li>
+          </ul>
+        </div>
+        <a href="/libraries" class="btn-primary" style="text-align: center;">Reserve 24/7 Desk</a>
+      </div>
+    </div>
+
+    <!-- Assurance Banner -->
+    <div class="guarantee-box">
+      <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 0.75rem;">
+        <i class="fas fa-shield-alt" style="color: #10b981;"></i> ZYZU'S 100% Assurance Guarantee
+      </h3>
+      <p style="color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.7; font-size: 0.95rem;">
+        If you are unsatisfied with your allotted tutor after the initial introductory session, your District Administrator will reassign another verified educator at zero additional fee or issue a prompt refund of unspent tuition escrow.
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          ZYZU'S maintains honest, regulated pricing with zero exploitation of teachers or students.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors">Find Home Tutors</a></li>
+          <li><a href="/libraries">Find Study Libraries</a></li>
+          <li><a href="/become-teacher">Become a Teacher</a></li>
+          <li><a href="/list-library">List Your Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About ZYZU'S</a></li>
+          <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing Plans</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student">Student Portal</a></li>
+          <li><a href="/dashboard/teacher">Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner">Library Owner</a></li>
+          <li><a href="/dashboard/district-admin">District Admin</a></li>
+          <li><a href="/dashboard/super-admin">Super Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    function togglePricing(type) {
+      const btnTuition = document.getElementById('btn-show-tuition');
+      const btnLibrary = document.getElementById('btn-show-library');
+      const secTuition = document.getElementById('pricing-tuition');
+      const secLibrary = document.getElementById('pricing-library');
+
+      if (type === 'tuition') {
+        btnTuition.classList.add('active');
+        btnLibrary.classList.remove('active');
+        secTuition.style.display = 'grid';
+        secLibrary.style.display = 'none';
+      } else {
+        btnLibrary.classList.add('active');
+        btnTuition.classList.remove('active');
+        secLibrary.style.display = 'grid';
+        secTuition.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

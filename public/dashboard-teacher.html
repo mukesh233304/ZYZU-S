@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Portal | ZYZU'S — Tutors & Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="/" class="brand-logo" style="margin-bottom: 0;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+      </div>
+
+      <div class="dash-sidebar-role">
+        <div class="role-avatar-chip" id="teacher-avatar-chip">TC</div>
+        <div>
+          <div class="role-info-title" id="teacher-header-name">Educator Portal</div>
+          <div class="role-info-sub">Home Tutor</div>
+        </div>
+      </div>
+
+      <nav class="dash-sidebar-nav">
+        <div class="nav-section-label">Teaching Workspace</div>
+        <a class="sidebar-nav-item active" data-tab="overview">
+          <i class="fas fa-th-large"></i> Overview
+        </a>
+        <a class="sidebar-nav-item" data-tab="profile">
+          <i class="fas fa-user-edit"></i> Profile
+        </a>
+        <a class="sidebar-nav-item" data-tab="students">
+          <i class="fas fa-user-graduate"></i> My Students
+        </a>
+        <a class="sidebar-nav-item" data-tab="attendance">
+          <i class="fas fa-calendar-check"></i> Attendance
+        </a>
+        <a class="sidebar-nav-item" data-tab="revenue">
+          <i class="fas fa-chart-line"></i> Revenue & Earnings
+        </a>
+        <a class="sidebar-nav-item" data-tab="schedule">
+          <i class="fas fa-clock"></i> Schedule & Batches
+        </a>
+        <a class="sidebar-nav-item" data-tab="bookings">
+          <i class="fas fa-inbox"></i> Inquiries & Bookings
+          <span class="sidebar-nav-badge" id="badge-bookings-count" style="display:none; background: var(--primary); color: #fff; padding: 0.15rem 0.45rem; border-radius: 10px; font-size: 0.7rem; font-weight: 700;">0</span>
+        </a>
+
+        <div class="nav-section-label">Account & Compliance</div>
+        <a class="sidebar-nav-item" data-tab="verification">
+          <i class="fas fa-certificate"></i> Verification Status
+        </a>
+        <a class="sidebar-nav-item" data-tab="notifications">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-snippet-avatar"><i class="fas fa-chalkboard-teacher"></i></div>
+          <div class="user-snippet-info">
+            <div class="user-snippet-name" id="footer-user-name">Educator</div>
+            <div class="user-snippet-email" id="footer-user-email">...</div>
+          </div>
+        </div>
+        <button class="btn-icon-logout" title="Sign Out">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="drawer-backdrop"></div>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle-btn" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="topbar-title">Educator Dashboard</h1>
+            <div class="topbar-subtitle">Manage tuition batches, track student progress, and monitor earnings</div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="status-badge" id="topbar-status-badge">ACTIVE</span>
+          <div class="topbar-district-chip">
+            <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+            <span>District: <strong class="user-district-display">-</strong></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Area -->
+      <div class="dash-body">
+        
+        <!-- Verification Banner (If pending) -->
+        <div id="pending-banner" class="alert-box alert-warning" style="display:none; margin-bottom: 1.5rem;">
+          <i class="fas fa-hourglass-half"></i>
+          <div>
+            <strong>Account Awaiting District Verification:</strong>
+            Your profile has been submitted to the District Administrator for document and credential verification. You will be made publicly searchable once approved.
+          </div>
+        </div>
+
+        <!-- 1. TAB: OVERVIEW -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="stat-grid">
+            <div class="metric-card" style="--card-accent: #e65c2e;">
+              <div class="metric-icon-box"><i class="fas fa-user-graduate"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-total-students">-</span>
+                <span class="metric-label">Total Assigned Students</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #10b981;">
+              <div class="metric-icon-box"><i class="fas fa-user-check"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-active-students">-</span>
+                <span class="metric-label">Active Learners</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #3b82f6;">
+              <div class="metric-icon-box"><i class="fas fa-rupee-sign"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-monthly-revenue">-</span>
+                <span class="metric-label">Monthly Projected Revenue</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #f59e0b;">
+              <div class="metric-icon-box"><i class="fas fa-check-double"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-attendance-rate">-</span>
+                <span class="metric-label">Class Attendance Rate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action & Next Class -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem;">
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-bolt"></i> Quick Actions</h2>
+              </div>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="DashCommon.openModal('modal-mark-attendance')">
+                  <i class="fas fa-clipboard-check"></i> Mark Attendance
+                </button>
+                <button class="btn-secondary" onclick="DashCommon.openModal('modal-add-slot')">
+                  <i class="fas fa-calendar-plus"></i> Add Class Slot
+                </button>
+                <button class="btn-secondary" onclick="DashCommon.switchTab('profile')">
+                  <i class="fas fa-user-cog"></i> Update Rates/Bio
+                </button>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-clock"></i> Next Scheduled Session</h2>
+              </div>
+              <div id="next-class-box">
+                <div class="skeleton skeleton-text"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. TAB: PROFILE -->
+        <section class="tab-pane" id="tab-profile">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-user-edit"></i> Edit Educator Profile</h2>
+            </div>
+            <form id="teacher-profile-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="tprof-name" required>
+                </div>
+                <div class="form-group">
+                  <label>Highest Qualification</label>
+                  <input type="text" id="tprof-qual" required>
+                </div>
+                <div class="form-group">
+                  <label>Years of Experience</label>
+                  <input type="number" id="tprof-exp" min="0" required>
+                </div>
+                <div class="form-group">
+                  <label>Expected Monthly Fee (₹)</label>
+                  <input type="number" id="tprof-fee" min="0" required>
+                </div>
+                <div class="form-group">
+                  <label>Teaching Mode</label>
+                  <select id="tprof-mode">
+                    <option value="BOTH">Both Home & Online</option>
+                    <option value="OFFLINE">Offline Home Tuition Only</option>
+                    <option value="ONLINE">Online Only</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Profile Photo URL</label>
+                  <input type="url" id="tprof-photo">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Subjects Taught (comma separated)</label>
+                  <input type="text" id="tprof-subjects" required placeholder="e.g. Physics, Mathematics, Mechanics">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Target Classes & Standards (comma separated)</label>
+                  <input type="text" id="tprof-classes" required placeholder="e.g. Class 10, Class 11, Class 12, JEE Foundation">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Specialization / Core Domain</label>
+                  <input type="text" id="tprof-spec" placeholder="e.g. IIT-JEE Physics & Board Examination Mastery">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Areas & Localities Served</label>
+                  <input type="text" id="tprof-areas" required placeholder="e.g. Saidpur Town, Sadar Bazar, Khanpur">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Availability & Hours</label>
+                  <input type="text" id="tprof-avail" required placeholder="e.g. 4:30 PM - 8:30 PM (Mon-Sat)">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Detailed Bio / Teaching Methodology</label>
+                  <textarea id="tprof-bio" rows="3" placeholder="Share your experience, achievements of past students, and teaching philosophy..."></textarea>
+                </div>
+              </div>
+              <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button type="submit" class="btn-primary" id="btn-save-tprofile">
+                  <i class="fas fa-save"></i> Save Educator Profile
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 3. TAB: STUDENTS -->
+        <section class="tab-pane" id="tab-students">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-user-graduate"></i> Assigned Students Roster</h2>
+            </div>
+            <div id="students-roster-container">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TAB: ATTENDANCE -->
+        <section class="tab-pane" id="tab-attendance">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-calendar-check"></i> Attendance Tracking</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="DashCommon.openModal('modal-mark-attendance')">
+                <i class="fas fa-plus"></i> Mark Attendance
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Student Name</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>Topic / Session Summary</th>
+                  </tr>
+                </thead>
+                <tbody id="teacher-att-table">
+                  <tr><td colspan="5" style="text-align:center; padding: 2rem;">Loading attendance...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. TAB: REVENUE -->
+        <section class="tab-pane" id="tab-revenue">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-chart-line"></i> Monthly Revenue & Fee Collections</h2>
+              <div id="revenue-total-badge" style="font-size: 1.1rem; font-weight: 800; color: var(--primary);">₹0 / month</div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+              <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 1rem;">Active Subscriptions by Student</h3>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Subject</th>
+                      <th>Mode</th>
+                      <th>Monthly Fee</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="revenue-students-table"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 1rem;">Fee Receipts & Ledger</h3>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Student</th>
+                      <th>Amount</th>
+                      <th>Due Date</th>
+                      <th>Status</th>
+                      <th>Receipt No</th>
+                    </tr>
+                  </thead>
+                  <tbody id="revenue-fees-table"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. TAB: SCHEDULE -->
+        <section class="tab-pane" id="tab-schedule">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-clock"></i> Weekly Class Schedule</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="DashCommon.openModal('modal-add-slot')">
+                <i class="fas fa-plus"></i> Add Time Slot
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Batch / Topic Title</th>
+                    <th>Teaching Mode</th>
+                    <th>Student / Group</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="schedule-table-body">
+                  <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading schedule...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. TAB: INQUIRIES & BOOKINGS -->
+        <section class="tab-pane" id="tab-bookings">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-inbox"></i> Student Tutoring Inquiries</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Class / Level</th>
+                    <th>Subject Requested</th>
+                    <th>Mode</th>
+                    <th>Notes / Message</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="teacher-bookings-tbody">
+                  <tr><td colspan="9" style="text-align: center; color: var(--text-dim); padding: 2rem;">Loading inquiries...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. TAB: VERIFICATION -->
+        <section class="tab-pane" id="tab-verification">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-certificate"></i> Teacher Credential & Verification Status</h2>
+            </div>
+            <div id="verification-content-box">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. TAB: NOTIFICATIONS -->
+        <section class="tab-pane" id="tab-notifications">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-bell"></i> Notifications</h2>
+            </div>
+            <div id="teacher-notif-list">
+              <div class="skeleton skeleton-text"></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Mark Attendance Modal -->
+  <div class="modal-overlay" id="modal-mark-attendance">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-clipboard-check" style="color: var(--primary);"></i> Mark Student Attendance</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-mark-attendance')">&times;</button>
+      </div>
+      <form id="mark-attendance-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Select Student</label>
+            <select id="att-student-id" required>
+              <option value="">Choose student...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="att-date" required>
+          </div>
+          <div class="form-group">
+            <label>Attendance Status</label>
+            <select id="att-status" required>
+              <option value="PRESENT">Present</option>
+              <option value="LATE">Late</option>
+              <option value="ABSENT">Absent</option>
+              <option value="LEAVE">Leave Approved</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Notes / Topics Covered</label>
+            <input type="text" id="att-notes" placeholder="e.g. Wave Optics Chapter 3 numericals">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-mark-attendance')">Cancel</button>
+          <button type="submit" class="btn-primary">Record Attendance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Schedule Slot Modal -->
+  <div class="modal-overlay" id="modal-add-slot">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-calendar-plus" style="color: var(--primary);"></i> Add Class Schedule Slot</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-add-slot')">&times;</button>
+      </div>
+      <form id="add-slot-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Day of Week</label>
+            <select id="slot-day" required>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Start Time</label>
+              <input type="time" id="slot-start" required>
+            </div>
+            <div class="form-group">
+              <label>End Time</label>
+              <input type="time" id="slot-end" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Session / Batch Title</label>
+            <input type="text" id="slot-title" required placeholder="e.g. Class 12 Physics - Batch Alpha">
+          </div>
+          <div class="form-group">
+            <label>Mode</label>
+            <select id="slot-mode">
+              <option value="OFFLINE">Offline / In-Person</option>
+              <option value="ONLINE">Online</option>
+              <option value="BOTH">Hybrid</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Student / Group Name (Optional)</label>
+            <input type="text" id="slot-student" placeholder="e.g. Aryan Singh">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-add-slot')">Cancel</button>
+          <button type="submit" class="btn-primary">Add Time Slot</button>
+        </div>
+      </form>
+  <!-- Respond to Booking Modal -->
+  <div class="modal-overlay" id="modal-respond-booking">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="respond-modal-title"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Respond to Inquiring Student</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-respond-booking')">&times;</button>
+      </div>
+      <form id="respond-booking-form" onsubmit="submitBookingResponse(event)">
+        <input type="hidden" id="resp-booking-id">
+        <input type="hidden" id="resp-action">
+        <div class="modal-body">
+          <div id="resp-accept-fields">
+            <div class="form-group">
+              <label>Agreed Monthly Tuition Fee (₹) *</label>
+              <input type="number" id="resp-fee" min="500" max="50000" placeholder="e.g. 5000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label id="resp-note-label">Response Note / Welcome Instructions for Learner</label>
+            <textarea id="resp-note" rows="3" class="filter-select" placeholder="e.g. Batch starts next Monday. Please bring your syllabus."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-respond-booking')">Cancel</button>
+          <button type="submit" class="btn-primary" id="btn-submit-respond">Confirm Decision</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/js/dashboard-common.js"></script>
+  <script>
+    let assignedStudentsCache = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = DashCommon.requireAuth(['TEACHER']);
+      if (!session) return;
+
+      DashCommon.initUI(session.user, 'Teacher');
+      document.getElementById('att-date').value = new Date().toISOString().split('T')[0];
+
+      loadOverview();
+      loadProfile();
+      loadStudents();
+      loadAttendance();
+      loadRevenue();
+      loadSchedule();
+      loadBookings();
+      loadVerification();
+      loadNotifications();
+
+      // Hook profile edit form
+      document.getElementById('teacher-profile-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-save-tprofile');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+        const payload = {
+          full_name: document.getElementById('tprof-name').value,
+          qualification: document.getElementById('tprof-qual').value,
+          experience_years: document.getElementById('tprof-exp').value,
+          expected_fee: document.getElementById('tprof-fee').value,
+          teaching_mode: document.getElementById('tprof-mode').value,
+          profile_photo_url: document.getElementById('tprof-photo').value,
+          subjects: document.getElementById('tprof-subjects').value,
+          classes: document.getElementById('tprof-classes').value,
+          specialization: document.getElementById('tprof-spec').value,
+          areas_served: document.getElementById('tprof-areas').value,
+          availability: document.getElementById('tprof-avail').value,
+          bio: document.getElementById('tprof-bio').value
+        };
+
+        const res = await DashCommon.api('/api/teacher/profile', {
+          method: 'PUT',
+          body: JSON.stringify(payload)
+        });
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> Save Educator Profile';
+
+        if (res.success) {
+          DashCommon.showToast('Profile updated successfully!', 'success');
+          loadProfile();
+          loadOverview();
+        } else {
+          DashCommon.showToast(res.message || 'Update failed', 'error');
+        }
+      });
+
+      // Hook mark attendance form
+      document.getElementById('mark-attendance-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          student_id: document.getElementById('att-student-id').value,
+          date: document.getElementById('att-date').value,
+          status: document.getElementById('att-status').value,
+          notes: document.getElementById('att-notes').value
+        };
+
+        const res = await DashCommon.api('/api/teacher/attendance', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+        if (res.success) {
+          DashCommon.showToast('Attendance recorded!', 'success');
+          DashCommon.closeModal('modal-mark-attendance');
+          loadAttendance();
+          loadOverview();
+        } else {
+          DashCommon.showToast(res.message || 'Failed to mark attendance', 'error');
+        }
+      });
+
+      // Hook schedule slot form
+      document.getElementById('add-slot-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          day_of_week: document.getElementById('slot-day').value,
+          start_time: document.getElementById('slot-start').value,
+          end_time: document.getElementById('slot-end').value,
+          title: document.getElementById('slot-title').value,
+          teaching_mode: document.getElementById('slot-mode').value,
+          student_name: document.getElementById('slot-student').value
+        };
+
+        const res = await DashCommon.api('/api/teacher/schedule', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+        if (res.success) {
+          DashCommon.showToast('Schedule slot created!', 'success');
+          DashCommon.closeModal('modal-add-slot');
+          document.getElementById('add-slot-form').reset();
+          loadSchedule();
+        } else {
+          DashCommon.showToast(res.message || 'Failed to add slot', 'error');
+        }
+      });
+    });
+
+    async function loadOverview() {
+      const res = await DashCommon.api('/api/teacher/dashboard');
+      if (!res.success) return;
+
+      const ov = res.overview;
+      document.getElementById('stat-total-students').textContent = ov.totalStudents;
+      document.getElementById('stat-active-students').textContent = ov.activeStudents;
+      document.getElementById('stat-monthly-revenue').textContent = `₹${ov.monthlyRevenue}`;
+      document.getElementById('stat-attendance-rate').textContent = `${ov.attendanceRate}%`;
+
+      const badge = document.getElementById('topbar-status-badge');
+      badge.textContent = ov.approvalStatus;
+      badge.className = `status-badge ${ov.approvalStatus}`;
+
+      if (ov.approvalStatus === 'PENDING_APPROVAL') {
+        document.getElementById('pending-banner').style.display = 'flex';
+      } else {
+        document.getElementById('pending-banner').style.display = 'none';
+      }
+
+      const nextBox = document.getElementById('next-class-box');
+      if (ov.nextClass) {
+        nextBox.innerHTML = `
+          <div style="background: rgba(13,20,36,0.6); padding: 1.25rem; border-radius: var(--radius-sm); border-left: 4px solid var(--primary);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 1.05rem; color: var(--text-main);">${ov.nextClass.title}</strong>
+              <span class="status-badge ACTIVE">${ov.nextClass.day_of_week}</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+              <i class="fas fa-clock"></i> ${ov.nextClass.start_time} - ${ov.nextClass.end_time} &bull; 
+              <i class="fas fa-laptop-house"></i> ${ov.nextClass.teaching_mode}
+            </div>
+            <div style="font-size: 0.8rem; color: var(--primary); margin-top: 0.25rem;">
+              Student: ${ov.nextClass.student_name || 'Enrolled Batch'}
+            </div>
+          </div>
+        `;
+      } else {
+        nextBox.innerHTML = '<div class="empty-state"><div class="empty-state-title">No scheduled classes</div></div>';
+      }
+    }
+
+    async function loadProfile() {
+      const res = await DashCommon.api('/api/teacher/profile');
+      if (!res.success) return;
+
+      const p = res.profile;
+      document.getElementById('tprof-name').value = p.full_name || '';
+      document.getElementById('tprof-qual').value = p.qualification || '';
+      document.getElementById('tprof-exp').value = p.experience_years || 0;
+      document.getElementById('tprof-fee').value = p.expected_fee || 0;
+      document.getElementById('tprof-mode').value = p.teaching_mode || 'BOTH';
+      document.getElementById('tprof-photo').value = p.profile_photo_url || '';
+      document.getElementById('tprof-subjects').value = Array.isArray(p.subjects) ? p.subjects.join(', ') : (p.subjects || '');
+      document.getElementById('tprof-classes').value = Array.isArray(p.classes) ? p.classes.join(', ') : (p.classes || '');
+      document.getElementById('tprof-spec').value = p.specialization || '';
+      document.getElementById('tprof-areas').value = p.areas_served || '';
+      document.getElementById('tprof-avail').value = p.availability || '';
+      document.getElementById('tprof-bio').value = p.bio || '';
+    }
+
+    async function loadStudents() {
+      const res = await DashCommon.api('/api/teacher/students');
+      const container = document.getElementById('students-roster-container');
+      const select = document.getElementById('att-student-id');
+      select.innerHTML = '<option value="">Choose student...</option>';
+
+      if (!res.success || !res.students || res.students.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon"><i class="fas fa-user-graduate"></i></div>
+            <div class="empty-state-title">No Students Assigned Yet</div>
+            <div class="empty-state-desc">Once your account is verified, students matched in your district will appear in your roster.</div>
+          </div>
+        `;
+        return;
+      }
+
+      assignedStudentsCache = res.students;
+      res.students.forEach(s => {
+        select.innerHTML += `<option value="${s.student_id}">${s.student_name} (${s.subject})</option>`;
+      });
+
+      container.innerHTML = res.students.map(s => `
+        <div style="background: rgba(13,20,36,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">${s.student_name}</h3>
+              <span class="status-badge ${s.assignment_status}">${s.assignment_status}</span>
+            </div>
+            <div style="color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-top: 0.2rem;">${s.subject} &bull; Mode: ${s.teaching_mode}</div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.35rem;">
+              <i class="fas fa-school"></i> ${s.school_college || 'School on file'} &bull; ${s.grade_class || 'Standard'}
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">
+              <i class="fas fa-map-marker-alt"></i> ${s.address}, ${s.city_area} &bull; 
+              <i class="fas fa-phone"></i> ${s.student_mobile}
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);">₹${s.monthly_fee} <span style="font-size: 0.75rem; color: var(--text-muted);">/mo</span></div>
+            <button class="btn-secondary" style="margin-top: 0.5rem; padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="openAttendanceForStudent('${s.student_id}')">
+              Mark Attendance
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openAttendanceForStudent(id) {
+      document.getElementById('att-student-id').value = id;
+      DashCommon.openModal('modal-mark-attendance');
+    }
+
+    async function loadAttendance() {
+      const res = await DashCommon.api('/api/teacher/attendance');
+      const tbody = document.getElementById('teacher-att-table');
+      if (!res.success || !res.records || res.records.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 2rem; color: var(--text-muted);">No attendance records submitted yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.records.map(r => `
+        <tr>
+          <td><strong>${r.date}</strong></td>
+          <td>${r.student_name}</td>
+          <td style="color: var(--text-muted);">${r.student_mobile}</td>
+          <td><span class="status-badge ${r.status}">${r.status}</span></td>
+          <td style="color: var(--text-muted);">${r.notes || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadRevenue() {
+      const res = await DashCommon.api('/api/teacher/revenue');
+      if (!res.success) return;
+
+      const rev = res.revenue;
+      document.getElementById('revenue-total-badge').textContent = `₹${rev.monthlyTotal} / month`;
+
+      const stdTable = document.getElementById('revenue-students-table');
+      stdTable.innerHTML = rev.studentEarnings.map(s => `
+        <tr>
+          <td><strong>${s.student_name}</strong></td>
+          <td>${s.subject}</td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${s.teaching_mode}</span></td>
+          <td style="font-weight: 700;">₹${s.monthly_fee}</td>
+          <td><span class="status-badge ${s.status}">${s.status}</span></td>
+        </tr>
+      `).join('');
+
+      const feesTable = document.getElementById('revenue-fees-table');
+      if (!rev.feeCollections || rev.feeCollections.length === 0) {
+        feesTable.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 1.5rem;">No collections found</td></tr>';
+      } else {
+        feesTable.innerHTML = rev.feeCollections.map(f => `
+          <tr>
+            <td><strong>${f.title}</strong></td>
+            <td>${f.student_name}</td>
+            <td style="font-weight: 700;">₹${f.amount}</td>
+            <td>${f.due_date}</td>
+            <td><span class="status-badge ${f.status}">${f.status}</span></td>
+            <td style="font-family: monospace; color: var(--text-muted);">${f.receipt_no || '-'}</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    async function loadSchedule() {
+      const res = await DashCommon.api('/api/teacher/schedule');
+      const tbody = document.getElementById('schedule-table-body');
+      if (!res.success || !res.schedule || res.schedule.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--text-muted);">No schedule time slots created yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.schedule.map(s => `
+        <tr>
+          <td><strong>${s.day_of_week}</strong></td>
+          <td>${s.start_time} - ${s.end_time}</td>
+          <td style="font-weight: 600;">${s.title}</td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${s.teaching_mode}</span></td>
+          <td>${s.student_name || 'Open Batch'}</td>
+          <td>
+            <button onclick="deleteSlot(${s.id})" class="btn-icon-logout" title="Remove Slot">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function deleteSlot(id) {
+      if (!confirm('Are you sure you want to delete this schedule slot?')) return;
+      const res = await DashCommon.api(`/api/teacher/schedule/${id}`, { method: 'DELETE' });
+      if (res.success) {
+        DashCommon.showToast('Schedule slot deleted', 'info');
+        loadSchedule();
+      }
+    }
+
+    async function loadVerification() {
+      const res = await DashCommon.api('/api/teacher/verification-status');
+      const box = document.getElementById('verification-content-box');
+      if (!res.success) return;
+
+      const v = res.verification;
+      box.innerHTML = `
+        <div style="background: rgba(13,20,36,0.6); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.08);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">ADMINISTRATIVE VERIFICATION STATUS</div>
+              <div style="margin-top: 0.25rem;">
+                <span class="status-badge ${v.accountStatus}" style="font-size: 1rem; padding: 0.35rem 0.85rem;">
+                  <i class="fas ${v.accountStatus === 'ACTIVE' ? 'fa-check-circle' : 'fa-clock'}"></i> ${v.accountStatus}
+                </span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">PUBLIC DIRECTORY VISIBILITY</div>
+              <div style="margin-top: 0.25rem;">
+                <span class="status-badge ${v.isPubliclyVisible ? 'ACTIVE' : 'PENDING_APPROVAL'}">
+                  ${v.isPubliclyVisible ? '<i class="fas fa-eye"></i> Publicly Visible to Students' : '<i class="fas fa-eye-slash"></i> Unlisted / Hidden'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);">
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">DOCUMENTS ON FILE:</strong><div style="font-weight: 600;">${v.documentsSubmitted} Document(s) Uploaded</div></div>
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">RECORDED QUALIFICATION:</strong><div style="font-weight: 600;">${v.qualification || 'Not provided'}</div></div>
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">DECLARED EXPERIENCE:</strong><div style="font-weight: 600;">${v.experience} Years</div></div>
+          </div>
+
+          ${v.adminNotes ? `
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(59,130,246,0.08); border-left: 3px solid var(--info); border-radius: 4px;">
+              <strong style="color: var(--info); font-size: 0.85rem;">District Admin Notes:</strong>
+              <p style="font-size: 0.9rem; color: var(--text-main); margin-top: 0.25rem;">${v.adminNotes}</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    async function loadNotifications() {
+      const res = await DashCommon.api('/api/teacher/notifications');
+      const container = document.getElementById('teacher-notif-list');
+      if (!res.success || !res.notifications || res.notifications.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-title">No notifications</div></div>';
+        return;
+      }
+
+      container.innerHTML = res.notifications.map(n => `
+        <div style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <div style="display: flex; justify-content: space-between;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">${n.title}</h4>
+            <span style="font-size: 0.75rem; color: var(--text-dim);">${new Date(n.created_at).toLocaleDateString()}</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${n.message}</p>
+        </div>
+      `).join('');
+    }
+
+    async function loadBookings() {
+      const res = await DashCommon.api('/api/teacher/bookings');
+      const tbody = document.getElementById('teacher-bookings-tbody');
+      if (!res.success || !res.bookings || res.bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding: 2rem; color: var(--text-muted);">No student tutoring inquiries yet. Verified educators will receive matching inquiries here.</td></tr>';
+        return;
+      }
+
+      // Update badge count
+      const pendingCount = res.bookings.filter(b => b.status === 'PENDING').length;
+      const badge = document.getElementById('badge-bookings-count');
+      if (pendingCount > 0) {
+        badge.textContent = pendingCount;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+
+      tbody.innerHTML = res.bookings.map(b => {
+        let actionButtons = '-';
+        if (b.status === 'PENDING') {
+          actionButtons = `
+            <div style="display: flex; gap: 0.35rem;">
+              <button class="btn-sm-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;" onclick="openRespondModal(${b.id}, 'ACCEPT', '${b.student_name}', '${b.subject_or_shift}')">
+                <i class="fas fa-check"></i> Accept
+              </button>
+              <button class="btn-sm-outline" style="padding: 0.3rem 0.65rem; font-size: 0.75rem; color: #ef4444; border-color: rgba(239,68,68,0.4);" onclick="openRespondModal(${b.id}, 'REJECT', '${b.student_name}', '${b.subject_or_shift}')">
+                <i class="fas fa-times"></i> Decline
+              </button>
+            </div>
+          `;
+        } else if (b.status === 'ACCEPTED') {
+          actionButtons = '<span style="color: #34d399; font-size: 0.8rem; font-weight: 700;"><i class="fas fa-user-check"></i> Enrolled</span>';
+        } else if (b.status === 'REJECTED') {
+          actionButtons = '<span style="color: #ef4444; font-size: 0.8rem;"><i class="fas fa-ban"></i> Declined</span>';
+        }
+
+        return `
+          <tr>
+            <td>#${b.id}</td>
+            <td><strong>${b.student_name}</strong></td>
+            <td><span class="topbar-district-chip" style="font-size: 0.725rem;">${b.student_grade || 'Standard'}</span></td>
+            <td><strong>${b.subject_or_shift}</strong></td>
+            <td><span class="status-badge" style="font-size: 0.7rem;">${b.preferred_mode || 'OFFLINE'}</span></td>
+            <td style="max-width: 200px; font-size: 0.8rem; color: var(--text-muted);">${b.message || '-'}</td>
+            <td style="font-size: 0.75rem; color: var(--text-dim);">${new Date(b.created_at).toLocaleDateString()}</td>
+            <td><span class="status-badge ${b.status}">${b.status}</span></td>
+            <td>${actionButtons}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openRespondModal(bookingId, action, studentName, subject) {
+      document.getElementById('resp-booking-id').value = bookingId;
+      document.getElementById('resp-action').value = action;
+
+      const acceptFields = document.getElementById('resp-accept-fields');
+      const noteLabel = document.getElementById('resp-note-label');
+      const title = document.getElementById('respond-modal-title');
+      const submitBtn = document.getElementById('btn-submit-respond');
+
+      if (action === 'ACCEPT') {
+        title.innerHTML = `<i class="fas fa-check-circle" style="color: #10b981;"></i> Accept Tuition Request for ${studentName}`;
+        acceptFields.style.display = 'block';
+        document.getElementById('resp-fee').required = true;
+        document.getElementById('resp-fee').value = '4000';
+        noteLabel.textContent = 'Welcome Note & Batch Details for Student';
+        submitBtn.textContent = 'Confirm & Enroll Student';
+        submitBtn.className = 'btn-primary';
+      } else {
+        title.innerHTML = `<i class="fas fa-times-circle" style="color: #ef4444;"></i> Decline Tutoring Inquiry`;
+        acceptFields.style.display = 'none';
+        document.getElementById('resp-fee').required = false;
+        noteLabel.textContent = 'Reason for Declining (Optional)';
+        submitBtn.textContent = 'Decline Request';
+        submitBtn.className = 'btn-secondary';
+      }
+
+      DashCommon.openModal('modal-respond-booking');
+    }
+
+    async function submitBookingResponse(e) {
+      e.preventDefault();
+      const bookingId = document.getElementById('resp-booking-id').value;
+      const action = document.getElementById('resp-action').value;
+      const monthlyFee = document.getElementById('resp-fee').value;
+      const note = document.getElementById('resp-note').value.trim();
+
+      const btn = document.getElementById('btn-submit-respond');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+      const res = await DashCommon.api(`/api/teacher/bookings/${bookingId}/respond`, {
+        method: 'POST',
+        body: JSON.stringify({
+          action,
+          monthly_fee: action === 'ACCEPT' ? Number(monthlyFee) : undefined,
+          response_note: note
+        })
+      });
+
+      btn.disabled = false;
+      btn.innerHTML = 'Confirm Decision';
+
+      if (res.success) {
+        DashCommon.closeModal('modal-respond-booking');
+        DashCommon.showToast(action === 'ACCEPT' ? '🎉 Student tuition accepted & enrolled!' : 'Inquiry declined', 'success');
+        loadBookings();
+        loadStudents();
+        loadOverview();
+      } else {
+        DashCommon.showToast(res.message || 'Failed to update booking', 'error');
+      }
+    }
+  </script>
+</body>
+</html>

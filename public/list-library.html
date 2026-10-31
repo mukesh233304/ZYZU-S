@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>List Your Study Library | ZYZU'S Platform</title>
+  <meta name="description" content="List your self-study library or reading room on ZYZU'S. Maximize shift occupancy, manage walk-in students, and digitize fee collection with district administration support.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    .owner-hero {
+      max-width: 1000px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .benefit-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(230, 92, 46, 0.4);
+    }
+    .dual-feature-banner {
+      background: linear-gradient(135deg, rgba(14, 21, 38, 0.95) 0%, rgba(26, 36, 64, 0.8) 100%);
+      border: 1px solid rgba(230, 92, 46, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+      <span class="brand-tag">Platform</span>
+    </a>
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: var(--primary); font-weight: 700; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+    <section class="owner-hero">
+      <div class="brand-tag" style="background: rgba(230,92,46,0.15); color: var(--primary); padding: 0.35rem 1rem; border-radius: 9999px; display: inline-block; font-weight: 700; margin-bottom: 1rem;">
+        FOR STUDY SPACE PROPRIETORS
+      </div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem;">
+        Fill Every Desk.<br>
+        <span style="color: var(--primary);">Digitize Your Study Library.</span>
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; max-width: 750px; margin: 0 auto 2.5rem;">
+        Join the ZYZU'S library network. Attract hundreds of serious aspirants in your area, eliminate paper fee registers, manage multiple shifts, and keep your desks at 100% capacity.
+      </p>
+      <div>
+        <a href="/register/library-owner" class="btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 0.75rem;">
+          <i class="fas fa-building"></i> Register Your Library on ZYZU'S
+        </a>
+      </div>
+    </section>
+
+    <!-- Key Unique Capability: App + Manual Students -->
+    <div class="dual-feature-banner">
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+          <span style="color: var(--primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Hybrid Student Management</span>
+          <h3 style="color: #fff; font-size: 1.8rem; margin: 0.5rem 0 1rem;">One Unified Console for All Your Students</h3>
+          <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+            Whether a student books online through the ZYZU'S app or walks in directly from the street, you can manage both from a single dashboard.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; color: #cbd5e1; font-size: 0.9rem;">
+            <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> Inbound online reservations from students in your district</li>
+            <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> <strong>Add walk-in students manually</strong> with zero app requirement</li>
+            <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> Visual interactive seat matrix showing occupied vs vacant desks</li>
+            <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i> Automated overdue fee alerts and digital receipts</li>
+          </ul>
+        </div>
+        <div style="flex: 1; min-width: 280px; background: rgba(14,21,38,0.8); border: 1px solid var(--bg-card-border); border-radius: var(--radius-md); padding: 1.5rem;">
+          <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-chart-line" style="color: var(--primary);"></i> Revenue Impact
+          </h4>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--bg-card-border); padding: 0.75rem 0; font-size: 0.9rem;">
+            <span style="color: var(--text-muted);">Capacity</span>
+            <strong style="color: #fff;">50 Desks</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--bg-card-border); padding: 0.75rem 0; font-size: 0.9rem;">
+            <span style="color: var(--text-muted);">Shifts Configured</span>
+            <strong style="color: #fff;">Morning + Evening + Night</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--bg-card-border); padding: 0.75rem 0; font-size: 0.9rem;">
+            <span style="color: var(--text-muted);">Avg. Fee per Shift</span>
+            <strong style="color: #fff;">₹800 / month</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 1rem 0 0; font-size: 1.1rem;">
+            <strong style="color: var(--primary);">Monthly Potential</strong>
+            <strong style="color: #10b981; font-size: 1.3rem;">₹90,000 - ₹1,20,000</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Benefits Grid -->
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-th"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Live Visual Desk Matrix</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Configure your floor plan. See in real time which desks are vacant, occupied, or reserved across all active shifts.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <div style="font-size: 2rem; color: #3b82f6; margin-bottom: 1rem;"><i class="fas fa-clock"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Multi-Shift Optimization</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Maximize revenue per square foot by allocating the same desk to different learners across morning, afternoon, and night shifts.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <div style="font-size: 2rem; color: #10b981; margin-bottom: 1rem;"><i class="fas fa-bell"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">Automated Fee Reminders</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Never chase students for unpaid monthly fees. The system automatically tracks due dates and sends automated notifications.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <div style="font-size: 2rem; color: #f59e0b; margin-bottom: 1rem;"><i class="fas fa-certificate"></i></div>
+        <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">District Verified Badge</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Gain trust with official District Admin accreditation, guaranteeing priority ranking on student search results.
+        </p>
+      </div>
+    </div>
+
+    <!-- Onboarding Flow -->
+    <div style="background: var(--bg-card); border: 1px solid var(--bg-card-border); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 4rem;">
+      <h3 style="color: #fff; font-size: 1.6rem; margin-bottom: 1.5rem; text-align: center;">How to Get Your Library Listed</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: center;">
+        <div>
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">1</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Register Your Library</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Enter library name, district, address, total seats, and amenities.</p>
+        </div>
+        <div>
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">2</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Set Shifts & Pricing</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Define timings, fees per shift, rules, and upload high-res photos.</p>
+        </div>
+        <div>
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">3</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">District Approval</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">District Admin verifies your facility standards and approves listing.</p>
+        </div>
+        <div>
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">4</div>
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">Receive Bookings</h5>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Start accepting student reservations and manage all walk-in records.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="/register/library-owner" class="btn-primary" style="padding: 0.9rem 2.25rem;">
+          <i class="fas fa-arrow-right"></i> List Your Library Today
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          ZYZU'S helps study library owners modernize operations and achieve full seat occupancy.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors">Find Home Tutors</a></li>
+          <li><a href="/libraries">Find Study Libraries</a></li>
+          <li><a href="/become-teacher">Become a Teacher</a></li>
+          <li><a href="/list-library">List Your Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About ZYZU'S</a></li>
+          <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing Plans</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student">Student Portal</a></li>
+          <li><a href="/dashboard/teacher">Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner">Library Owner</a></li>
+          <li><a href="/dashboard/district-admin">District Admin</a></li>
+          <li><a href="/dashboard/super-admin">Super Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S Platform. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact & Support | ZYZU'S Platform</title>
+  <meta name="description" content="Reach the ZYZU'S team, contact your local District Administrator, or submit a grievance regarding home tutoring or study libraries.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    .contact-hero {
+      max-width: 900px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+    .contact-form-box {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
+    }
+    .office-card {
+      background: rgba(18, 26, 47, 0.7);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    .office-card:hover {
+      border-color: var(--primary);
+    }
+    .office-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: rgba(230, 92, 46, 0.15);
+      border: 1px solid rgba(230, 92, 46, 0.3);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+      <span class="brand-tag">Platform</span>
+    </a>
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: var(--primary); font-weight: 700; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+    <section class="contact-hero">
+      <div class="brand-tag" style="background: rgba(230,92,46,0.15); color: var(--primary); padding: 0.35rem 1rem; border-radius: 9999px; display: inline-block; font-weight: 700; margin-bottom: 1rem;">
+        DISTRICT HELPLINE & ESCALATIONS
+      </div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem;">
+        We're Here to Help
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; max-width: 700px; margin: 0 auto 2.5rem;">
+        Have a question about a home tutor assignment, library pass issue, or district administrative escalation? Reach out to our team.
+      </p>
+    </section>
+
+    <div class="contact-grid">
+      <!-- Contact Form -->
+      <div class="contact-form-box">
+        <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-paper-plane" style="color: var(--primary);"></i> Send Us a Message
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.75rem;">
+          We typically respond to inquiries within 2 business hours.
+        </p>
+
+        <form id="contact-form" onsubmit="handleContactSubmit(event)">
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label">Your Full Name</label>
+            <input type="text" class="form-control" required placeholder="e.g. Ramesh Chandra">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" required placeholder="e.g. 9876543210">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" required placeholder="e.g. ramesh@example.com">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label">I am a...</label>
+              <select class="form-control">
+                <option value="student">Student / Aspirant</option>
+                <option value="parent">Parent</option>
+                <option value="teacher">Teacher / Tutor</option>
+                <option value="library_owner">Library Owner</option>
+                <option value="other">Other Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">District</label>
+              <select class="form-control">
+                <option value="Ghazipur">Ghazipur</option>
+                <option value="Saidpur">Saidpur</option>
+                <option value="Varanasi">Varanasi</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Other">Other District</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label class="form-label">Message / Details</label>
+            <textarea class="form-control" rows="4" required placeholder="Describe your inquiry, request, or issue in detail..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 0.9rem;">
+            <i class="fas fa-paper-plane"></i> Submit Inquiry
+          </button>
+        </form>
+        <div id="contact-success" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #10b981; padding: 1rem; border-radius: var(--radius-md); margin-top: 1.25rem; font-size: 0.9rem; text-align: center;">
+          <i class="fas fa-check-circle"></i> Thank you! Your inquiry has been routed to your District Administration Team.
+        </div>
+      </div>
+
+      <!-- District Offices & Helplines -->
+      <div>
+        <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-building" style="color: var(--primary);"></i> Regional Help Desks
+        </h3>
+
+        <div class="office-card">
+          <div class="office-icon"><i class="fas fa-landmark"></i></div>
+          <div>
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 0.25rem;">ZYZU'S Central Headquarters</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Saidpur, Ghazipur 233304, Uttar Pradesh, India</p>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              <div><i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 0.4rem;"></i> +91 91964 34387 / +91 95696 44387</div>
+              <div><i class="fas fa-envelope" style="color: var(--primary); margin-right: 0.4rem;"></i> focuspoint011@gmail.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="office-card">
+          <div class="office-icon"><i class="fas fa-map-pin"></i></div>
+          <div>
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 0.25rem;">Saidpur Operational Desk</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Saidpur Central Zone, Ghazipur, UP - 233304</p>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              <div><i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 0.4rem;"></i> +91 91964 34387</div>
+              <div><i class="fas fa-envelope" style="color: var(--primary); margin-right: 0.4rem;"></i> focuspoint011@gmail.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="office-card">
+          <div class="office-icon"><i class="fas fa-university"></i></div>
+          <div>
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 0.25rem;">Ghazipur & Varanasi Regional Desk</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">District Operations & Academic Telemetry Division</p>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              <div><i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 0.4rem;"></i> +91 95696 44387</div>
+              <div><i class="fas fa-envelope" style="color: var(--primary); margin-right: 0.4rem;"></i> support@zyzus.com</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Escalation Cell -->
+        <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: var(--radius-md); padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+          <i class="fab fa-whatsapp" style="font-size: 2.2rem; color: #10b981;"></i>
+          <div>
+            <strong style="color: #fff; display: block; font-size: 1rem;">Instant WhatsApp Help Desk</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Available 8:00 AM - 10:00 PM for rapid support.</span>
+            <div style="margin-top: 0.4rem; display: flex; gap: 1rem;">
+              <a href="https://wa.me/919196434387?text=Hello%20ZYZU'S%20Support" target="_blank" style="color: #10b981; font-weight: 700; text-decoration: none; font-size: 0.85rem;">
+                +91 91964 34387 <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="https://wa.me/919569644387?text=Hello%20ZYZU'S%20Support" target="_blank" style="color: #10b981; font-weight: 700; text-decoration: none; font-size: 0.85rem;">
+                +91 95696 44387 <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          ZYZU'S is dedicated to high-touch support and rapid grievance redressal.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors">Find Home Tutors</a></li>
+          <li><a href="/libraries">Find Study Libraries</a></li>
+          <li><a href="/become-teacher">Become a Teacher</a></li>
+          <li><a href="/list-library">List Your Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About ZYZU'S</a></li>
+          <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing Plans</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student">Student Portal</a></li>
+          <li><a href="/dashboard/teacher">Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner">Library Owner</a></li>
+          <li><a href="/dashboard/district-admin">District Admin</a></li>
+          <li><a href="/dashboard/super-admin">Super Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

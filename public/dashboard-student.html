@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal | ZYZU'S — Tutors & Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="/" class="brand-logo" style="margin-bottom: 0;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+      </div>
+
+      <div class="dash-sidebar-role">
+        <div class="role-avatar-chip" id="student-avatar-chip">ST</div>
+        <div>
+          <div class="role-info-title" id="student-header-name">Aryan Singh</div>
+          <div class="role-info-sub">Student Portal</div>
+        </div>
+      </div>
+
+      <nav class="dash-sidebar-nav">
+        <div class="nav-section-label">Main Menu</div>
+        <a class="sidebar-nav-item active" data-tab="overview">
+          <i class="fas fa-th-large"></i> Overview
+        </a>
+        <a class="sidebar-nav-item" data-tab="profile">
+          <i class="fas fa-user-circle"></i> My Profile
+        </a>
+        <a class="sidebar-nav-item" data-tab="teachers">
+          <i class="fas fa-chalkboard-teacher"></i> My Teacher
+        </a>
+        <a class="sidebar-nav-item" data-tab="attendance">
+          <i class="fas fa-calendar-check"></i> Attendance
+        </a>
+        <a class="sidebar-nav-item" data-tab="fees">
+          <i class="fas fa-receipt"></i> Fees & Dues
+        </a>
+        <a class="sidebar-nav-item" data-tab="library">
+          <i class="fas fa-book-reader"></i> Study Library
+        </a>
+
+        <div class="nav-section-label">Explore & Book</div>
+        <a href="/tutors" class="sidebar-nav-item" style="text-decoration: none;">
+          <i class="fas fa-search" style="color: var(--primary);"></i> Find Home Tutors
+        </a>
+        <a href="/libraries" class="sidebar-nav-item" style="text-decoration: none;">
+          <i class="fas fa-chair" style="color: var(--primary);"></i> Find Study Library
+        </a>
+
+        <div class="nav-section-label">Engagement</div>
+        <a class="sidebar-nav-item" data-tab="bookings">
+          <i class="fas fa-calendar-alt"></i> Bookings & Requests
+        </a>
+        <a class="sidebar-nav-item" data-tab="notifications">
+          <i class="fas fa-bell"></i> Notifications
+          <span class="sidebar-nav-badge" id="badge-notif-count" style="display:none;">0</span>
+        </a>
+        <a class="sidebar-nav-item" data-tab="support">
+          <i class="fas fa-headset"></i> Help & Support
+        </a>
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-snippet-avatar"><i class="fas fa-user"></i></div>
+          <div class="user-snippet-info">
+            <div class="user-snippet-name" id="footer-user-name">Loading...</div>
+            <div class="user-snippet-email" id="footer-user-email">...</div>
+          </div>
+        </div>
+        <button class="btn-icon-logout" title="Sign Out">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="drawer-backdrop"></div>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle-btn" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="topbar-title" id="page-heading">Learner Dashboard</h1>
+            <div class="topbar-subtitle">Welcome back to ZYZU'S Home Tutoring & Library Portal</div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-district-chip">
+            <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+            <span>District: <strong class="user-district-display">-</strong></span>
+          </div>
+          <button class="btn-notif" onclick="DashCommon.switchTab('notifications')" title="View Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notif-badge-bubble" id="topbar-notif-bubble" style="display:none;">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Content Body -->
+      <div class="dash-body">
+        
+        <!-- 1. TAB: OVERVIEW -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="stat-grid">
+            <div class="metric-card" style="--card-accent: #e65c2e;">
+              <div class="metric-icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-teachers">-</span>
+                <span class="metric-label">Assigned Teachers</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #10b981;">
+              <div class="metric-icon-box"><i class="fas fa-calendar-check"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-attendance">-</span>
+                <span class="metric-label">Attendance Rate</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #3b82f6;">
+              <div class="metric-icon-box"><i class="fas fa-book-reader"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-library">-</span>
+                <span class="metric-label">Library Seat Status</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #f59e0b;">
+              <div class="metric-icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-fees">-</span>
+                <span class="metric-label">Pending Dues</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Overview Split Panels -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem;">
+            <!-- Recent Attendance -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-history"></i> Recent Attendance</h2>
+                <a href="#" onclick="DashCommon.switchTab('attendance')" style="font-size: 0.8rem; color: var(--primary);">View All</a>
+              </div>
+              <div id="overview-attendance-list">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+              </div>
+            </div>
+
+            <!-- Recent Fees -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-receipt"></i> Recent Fee Invoices</h2>
+                <a href="#" onclick="DashCommon.switchTab('fees')" style="font-size: 0.8rem; color: var(--primary);">View All</a>
+              </div>
+              <div id="overview-fees-list">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. TAB: MY PROFILE -->
+        <section class="tab-pane" id="tab-profile">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-user-edit"></i> Edit Student Profile</h2>
+              <span class="status-badge ACTIVE"><i class="fas fa-check-circle"></i> ACTIVE</span>
+            </div>
+
+            <form id="student-profile-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="prof-name" required>
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="prof-email" required>
+                </div>
+                <div class="form-group">
+                  <label>Mobile Number (10 digits)</label>
+                  <input type="tel" id="prof-mobile" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                  <label>Profile Photo URL</label>
+                  <input type="url" id="prof-photo" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                  <label>City / Area</label>
+                  <input type="text" id="prof-area" required>
+                </div>
+                <div class="form-group">
+                  <label>Pincode</label>
+                  <input type="text" id="prof-pincode" maxlength="6" required>
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Residential Address</label>
+                  <input type="text" id="prof-address" required>
+                </div>
+
+                <div class="form-group col-span-2" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1rem; margin-top: 0.5rem;">
+                  <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;">
+                    <i class="fas fa-graduation-cap"></i> Academic Information
+                  </h3>
+                </div>
+
+                <div class="form-group">
+                  <label>School / College Name</label>
+                  <input type="text" id="prof-school" placeholder="e.g. St. John Inter College">
+                </div>
+                <div class="form-group">
+                  <label>Current Grade / Class</label>
+                  <input type="text" id="prof-grade" placeholder="e.g. Class 12 CBSE / UP Board">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Stream & Subjects</label>
+                  <input type="text" id="prof-subjects" placeholder="e.g. Physics, Chemistry, Math">
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Target Exam & Academic Goals</label>
+                  <textarea id="prof-goals" rows="3" placeholder="Describe your target boards percentage or competitive exams (JEE, NEET, CUET, NDA)..."></textarea>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button type="submit" class="btn-primary" id="btn-save-profile">
+                  <i class="fas fa-save"></i> Save Profile Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 3. TAB: MY TEACHER -->
+        <section class="tab-pane" id="tab-teachers">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-chalkboard-teacher"></i> Enrolled Tutors & Mentors</h2>
+            </div>
+            <div id="teachers-container">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TAB: ATTENDANCE -->
+        <section class="tab-pane" id="tab-attendance">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-calendar-check"></i> Attendance Record</h2>
+              <span id="attendance-summary-badge" class="topbar-district-chip">Total Sessions: -</span>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Teacher / Source</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Topic / Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="attendance-table-body">
+                  <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">Loading attendance...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. TAB: FEES -->
+        <section class="tab-pane" id="tab-fees">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-file-invoice-dollar"></i> Tuition & Library Fee Ledger</h2>
+              <div id="fees-balance-summary" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Invoice / Title</th>
+                    <th>Type</th>
+                    <th>Provider</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Receipt No</th>
+                  </tr>
+                </thead>
+                <tbody id="fees-table-body">
+                  <tr><td colspan="7" style="text-align: center; color: var(--text-dim);">Loading fees...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. TAB: STUDY LIBRARY -->
+        <section class="tab-pane" id="tab-library">
+          <div class="dash-card" id="library-detail-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-book-reader"></i> Active Study Library Enrollment</h2>
+            </div>
+            <div id="library-info-content">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. TAB: BOOKINGS -->
+        <section class="tab-pane" id="tab-bookings">
+          <div class="dash-card">
+            <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <h2 class="dash-card-title" style="margin: 0;"><i class="fas fa-calendar-alt"></i> Booking & Matching Requests</h2>
+              <div style="display: flex; gap: 0.5rem;">
+                <a href="/tutors" class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none; width: auto;">
+                  <i class="fas fa-search"></i> Find Tutors
+                </a>
+                <a href="/libraries" class="btn-secondary" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none; width: auto;">
+                  <i class="fas fa-chair"></i> Find Libraries
+                </a>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Subject / Shift</th>
+                    <th>Target Educator / Hall</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions & Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-table-body">
+                  <tr><td colspan="7" style="text-align: center; color: var(--text-dim);">Loading bookings...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. TAB: NOTIFICATIONS -->
+        <section class="tab-pane" id="tab-notifications">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-bell"></i> Notification Center</h2>
+            </div>
+            <div id="notifications-list">
+              <div class="skeleton skeleton-text"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. TAB: SUPPORT -->
+        <section class="tab-pane" id="tab-support">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-headset"></i> Academic & District Helpdesk</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="DashCommon.openModal('modal-ticket')">
+                <i class="fas fa-plus"></i> New Ticket
+              </button>
+            </div>
+            <div id="support-tickets-list">
+              <div class="skeleton skeleton-text"></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- New Support Ticket Modal -->
+  <div class="modal-overlay" id="modal-ticket">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-ticket-alt" style="color: var(--primary);"></i> Submit Support Query</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-ticket')">&times;</button>
+      </div>
+      <form id="support-ticket-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" id="ticket-subject" required placeholder="e.g. Question regarding physics syllabus completion">
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <select id="ticket-priority">
+              <option value="NORMAL">Normal</option>
+              <option value="HIGH">High Priority</option>
+              <option value="URGENT">Urgent Concern</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Detailed Message</label>
+            <textarea id="ticket-message" rows="4" required placeholder="Provide full context for your inquiry..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-ticket')">Cancel</button>
+          <button type="submit" class="btn-primary">Submit Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/js/dashboard-common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = DashCommon.requireAuth(['STUDENT']);
+      if (!session) return;
+
+      DashCommon.initUI(session.user, 'Student');
+      loadOverview();
+      loadProfile();
+      loadTeachers();
+      loadAttendance();
+      loadFees();
+      loadLibrary();
+      loadBookings();
+      loadNotifications();
+      loadSupport();
+
+      // Hook profile form submission
+      document.getElementById('student-profile-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-save-profile');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+        const payload = {
+          full_name: document.getElementById('prof-name').value,
+          email: document.getElementById('prof-email').value,
+          mobile: document.getElementById('prof-mobile').value,
+          profile_photo_url: document.getElementById('prof-photo').value,
+          city_area: document.getElementById('prof-area').value,
+          pincode: document.getElementById('prof-pincode').value,
+          address: document.getElementById('prof-address').value,
+          school_college: document.getElementById('prof-school').value,
+          grade_class: document.getElementById('prof-grade').value,
+          stream_subjects: document.getElementById('prof-subjects').value,
+          target_goals: document.getElementById('prof-goals').value
+        };
+
+        const res = await DashCommon.api('/api/student/profile', {
+          method: 'PUT',
+          body: JSON.stringify(payload)
+        });
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> Save Profile Changes';
+
+        if (res.success) {
+          DashCommon.showToast('Profile updated successfully!', 'success');
+          // Update local session
+          session.user.fullName = payload.full_name;
+          session.user.email = payload.email;
+          session.user.mobile = payload.mobile;
+          localStorage.setItem('fp_user', JSON.stringify(session.user));
+          DashCommon.initUI(session.user, 'Student');
+        } else {
+          DashCommon.showToast(res.message || 'Failed to update profile', 'error');
+        }
+      });
+
+      // Hook support form
+      document.getElementById('support-ticket-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const subject = document.getElementById('ticket-subject').value;
+        const priority = document.getElementById('ticket-priority').value;
+        const message = document.getElementById('ticket-message').value;
+
+        const res = await DashCommon.api('/api/student/support', {
+          method: 'POST',
+          body: JSON.stringify({ subject, priority, message })
+        });
+
+        if (res.success) {
+          DashCommon.showToast('Support ticket submitted!', 'success');
+          DashCommon.closeModal('modal-ticket');
+          document.getElementById('support-ticket-form').reset();
+          loadSupport();
+        } else {
+          DashCommon.showToast(res.message || 'Submission failed', 'error');
+        }
+      });
+    });
+
+    async function loadOverview() {
+      const res = await DashCommon.api('/api/student/dashboard');
+      if (!res.success) return;
+
+      const ov = res.overview;
+      document.getElementById('stat-teachers').textContent = ov.teachersCount;
+      document.getElementById('stat-attendance').textContent = `${ov.attendancePercentage}%`;
+      document.getElementById('stat-library').textContent = ov.hasLibrary ? (ov.libraryEnrollment.seat_number || 'Enrolled') : 'Not Enrolled';
+      document.getElementById('stat-fees').textContent = ov.pendingFeesCount > 0 ? `₹${ov.pendingFeesAmount}` : 'Nil';
+
+      if (ov.unreadNotifications > 0) {
+        const badge = document.getElementById('badge-notif-count');
+        const bubble = document.getElementById('topbar-notif-bubble');
+        badge.textContent = ov.unreadNotifications;
+        badge.style.display = 'inline-block';
+        bubble.textContent = ov.unreadNotifications;
+        bubble.style.display = 'flex';
+      }
+
+      // Recent attendance render
+      const attList = document.getElementById('overview-attendance-list');
+      if (!ov.recentAttendance || ov.recentAttendance.length === 0) {
+        attList.innerHTML = '<div class="empty-state"><div class="empty-state-title">No attendance records yet</div></div>';
+      } else {
+        attList.innerHTML = ov.recentAttendance.map(a => `
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">${a.teacher_name || 'Class Session'}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">${a.date} &bull; ${a.notes || 'Routine class'}</div>
+            </div>
+            <span class="status-badge ${a.status}">${a.status}</span>
+          </div>
+        `).join('');
+      }
+
+      // Recent fees render
+      const feeList = document.getElementById('overview-fees-list');
+      if (!ov.recentFees || ov.recentFees.length === 0) {
+        feeList.innerHTML = '<div class="empty-state"><div class="empty-state-title">No fee entries</div></div>';
+      } else {
+        feeList.innerHTML = ov.recentFees.map(f => `
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">${f.title}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Due: ${f.due_date} &bull; ${f.receipt_no ? 'Receipt: ' + f.receipt_no : 'Pending'}</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 700; color: var(--text-main);">₹${f.amount}</div>
+              <span class="status-badge ${f.status}" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">${f.status}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    async function loadProfile() {
+      const res = await DashCommon.api('/api/student/profile');
+      if (!res.success) return;
+
+      const p = res.profile;
+      document.getElementById('prof-name').value = p.full_name || '';
+      document.getElementById('prof-email').value = p.email || '';
+      document.getElementById('prof-mobile').value = p.mobile || '';
+      document.getElementById('prof-photo').value = p.profile_photo_url || '';
+      document.getElementById('prof-area').value = p.city_area || '';
+      document.getElementById('prof-pincode').value = p.pincode || '';
+      document.getElementById('prof-address').value = p.address || '';
+      document.getElementById('prof-school').value = p.school_college || '';
+      document.getElementById('prof-grade').value = p.grade_class || '';
+      document.getElementById('prof-subjects').value = p.stream_subjects || '';
+      document.getElementById('prof-goals').value = p.target_goals || '';
+    }
+
+    async function loadTeachers() {
+      const res = await DashCommon.api('/api/student/teachers');
+      const container = document.getElementById('teachers-container');
+      if (!res.success || !res.teachers || res.teachers.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="empty-state-title">No Tutors Assigned Yet</div>
+            <div class="empty-state-desc">You are currently not paired with a home tutor. Search verified tutors in your district to submit a matching request.</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = res.teachers.map(t => `
+        <div style="background: rgba(13,20,36,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <div class="role-avatar-chip" style="width: 56px; height: 56px; font-size: 1.4rem;">
+            ${t.teacher_name.charAt(0)}
+          </div>
+          <div style="flex: 1; min-width: 250px;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">${t.teacher_name}</h3>
+              <span class="status-badge ACTIVE">${t.status}</span>
+            </div>
+            <div style="color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-top: 0.2rem;">${t.subject}</div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.35rem;">
+              <i class="fas fa-user-graduate"></i> ${t.qualification || 'Educator'} &bull; 
+              <i class="fas fa-clock"></i> ${t.availability || 'Schedule on file'}
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">
+              <i class="fas fa-envelope"></i> ${t.teacher_email} &bull; <i class="fas fa-phone"></i> ${t.teacher_mobile}
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);">₹${t.monthly_fee} <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">/mo</span></div>
+            <span class="topbar-district-chip" style="margin-top: 0.4rem; display: inline-flex;">Mode: ${t.teaching_mode}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function loadAttendance() {
+      const res = await DashCommon.api('/api/student/attendance');
+      const tbody = document.getElementById('attendance-table-body');
+      if (!res.success || !res.records || res.records.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 2rem; color: var(--text-muted);">No attendance recorded yet.</td></tr>';
+        return;
+      }
+
+      document.getElementById('attendance-summary-badge').textContent = `Total Marked: ${res.stats.total} (Present: ${res.stats.present + (res.stats.late || 0)})`;
+
+      tbody.innerHTML = res.records.map(r => `
+        <tr>
+          <td><strong>${r.date}</strong></td>
+          <td>${r.teacher_name || r.library_name || 'Academic Mentor'}</td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${r.type}</span></td>
+          <td><span class="status-badge ${r.status}">${r.status}</span></td>
+          <td style="color: var(--text-muted);">${r.notes || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadFees() {
+      const res = await DashCommon.api('/api/student/fees');
+      const tbody = document.getElementById('fees-table-body');
+      if (!res.success || !res.fees || res.fees.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem; color: var(--text-muted);">No invoices found.</td></tr>';
+        return;
+      }
+
+      document.getElementById('fees-balance-summary').innerHTML = `
+        Paid: <strong style="color: var(--success);">₹${res.summary.total_paid}</strong> | 
+        Pending: <strong style="color: var(--warning);">₹${res.summary.total_pending}</strong>
+      `;
+
+      tbody.innerHTML = res.fees.map(f => `
+        <tr>
+          <td><strong>${f.title}</strong></td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${f.type}</span></td>
+          <td>${f.teacher_name || f.library_name || 'ZYZU'S'}</td>
+          <td style="font-weight: 700;">₹${f.amount}</td>
+          <td>${f.due_date}</td>
+          <td><span class="status-badge ${f.status}">${f.status}</span></td>
+          <td style="font-family: monospace; color: var(--text-muted);">${f.receipt_no || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadLibrary() {
+      const res = await DashCommon.api('/api/student/library');
+      const content = document.getElementById('library-info-content');
+      if (!res.success || !res.enrollment) {
+        content.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon"><i class="fas fa-book-reader"></i></div>
+            <div class="empty-state-title">No Active Library Enrollment</div>
+            <div class="empty-state-desc">You are not enrolled in any study library. ZYZU'S affiliated libraries offer AC, high speed WiFi, and reserved quiet study seats.</div>
+          </div>
+        `;
+        return;
+      }
+
+      const e = res.enrollment;
+      content.innerHTML = `
+        <div style="background: rgba(13,20,36,0.6); border-radius: var(--radius-md); padding: 1.75rem; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="status-badge ACTIVE">${e.status}</span>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-top: 0.5rem;">${e.library_name}</h3>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;"><i class="fas fa-map-marker-alt"></i> ${e.library_address}</p>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">RESERVED SEAT</div>
+              <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">${e.seat_number || 'General'}</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);">
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">ASSIGNED SHIFT:</strong><div style="font-weight: 600;">${e.shift_name || 'Standard'} (${e.start_time || ''} - ${e.end_time || ''})</div></div>
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">OPERATING HOURS:</strong><div style="font-weight: 600;">${e.operating_hours}</div></div>
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">MONTHLY SUBSCRIPTION:</strong><div style="font-weight: 600;">₹${e.monthly_fee} / month</div></div>
+            <div><strong style="color: var(--text-dim); font-size: 0.75rem;">VALIDITY:</strong><div style="font-weight: 600;">${e.start_date} to ${e.end_date}</div></div>
+          </div>
+
+          ${e.amenities && e.amenities.length ? `
+            <div style="margin-top: 1.25rem;">
+              <strong style="color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase;">AMENITIES & PRIVILEGES:</strong>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                ${e.amenities.map(a => `<span class="topbar-district-chip" style="font-size: 0.75rem;"><i class="fas fa-check" style="color: var(--success);"></i> ${a}</span>`).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    async function loadBookings() {
+      const res = await DashCommon.api('/api/student/bookings');
+      const tbody = document.getElementById('bookings-table-body');
+      if (!res.success || !res.bookings || res.bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem; color: var(--text-muted);">No booking requests found. Click Find Tutors or Find Libraries above to start exploring!</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.bookings.map(b => {
+        let actionCol = '-';
+        if (b.status === 'PENDING') {
+          actionCol = `<button class="btn-sm-outline" style="padding: 0.25rem 0.6rem; font-size: 0.75rem; color: #ef4444; border-color: rgba(239,68,68,0.4);" onclick="cancelBooking(${b.id})"><i class="fas fa-ban"></i> Cancel</button>`;
+        } else if (b.status === 'ACCEPTED') {
+          actionCol = `
+            <div style="font-size: 0.8rem; color: #34d399; font-weight: 600;"><i class="fas fa-check-circle"></i> Confirmed</div>
+            ${b.teacher_mobile ? `<div style="font-size: 0.75rem; color: #94a3b8;"><i class="fas fa-phone"></i> ${b.teacher_mobile}</div>` : ''}
+            ${b.seat_number ? `<div style="font-size: 0.75rem; color: #93c5fd;"><i class="fas fa-chair"></i> Desk ${b.seat_number}</div>` : ''}
+          `;
+        } else if (b.status === 'REJECTED') {
+          actionCol = `<div style="font-size: 0.75rem; color: #f87171;" title="${b.response_note || 'Declined'}">${b.response_note ? b.response_note.slice(0, 30) + '...' : 'Declined'}</div>`;
+        } else if (b.status === 'CANCELLED') {
+          actionCol = '<span style="font-size: 0.75rem; color: var(--text-dim);">Cancelled by you</span>';
+        }
+
+        return `
+          <tr>
+            <td>#${b.id}</td>
+            <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${b.target_type}</span></td>
+            <td>
+              <strong>${b.subject_or_shift}</strong>
+              ${b.preferred_mode ? `<div style="font-size: 0.7rem; color: var(--text-muted);">${b.preferred_mode}</div>` : ''}
+            </td>
+            <td>${b.teacher_name || b.library_name || '-'}</td>
+            <td><span class="status-badge ${b.status}">${b.status}</span></td>
+            <td style="color: var(--text-muted); font-size: 0.8rem;">${new Date(b.created_at).toLocaleDateString()}</td>
+            <td>${actionCol}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function cancelBooking(id) {
+      if (!confirm('Are you sure you want to cancel this booking request?')) return;
+      const res = await DashCommon.api(`/api/student/bookings/${id}/cancel`, { method: 'POST' });
+      if (res.success) {
+        DashCommon.showToast('Booking request cancelled', 'success');
+        loadBookings();
+      } else {
+        DashCommon.showToast(res.message || 'Failed to cancel booking', 'error');
+      }
+    }
+
+    async function loadNotifications() {
+      const res = await DashCommon.api('/api/student/notifications');
+      const container = document.getElementById('notifications-list');
+      if (!res.success || !res.notifications || res.notifications.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-title">No notifications</div></div>';
+        return;
+      }
+
+      container.innerHTML = res.notifications.map(n => `
+        <div style="display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); background: ${n.is_read ? 'transparent' : 'rgba(230,92,46,0.06)'}; border-radius: var(--radius-sm); margin-bottom: 0.5rem;">
+          <div style="color: var(--primary); font-size: 1.25rem;"><i class="fas fa-bell"></i></div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">${n.title}</h4>
+              <span style="font-size: 0.75rem; color: var(--text-dim);">${new Date(n.created_at).toLocaleString()}</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${n.message}</p>
+          </div>
+          ${!n.is_read ? `<button onclick="markRead(${n.id})" class="btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">Mark Read</button>` : ''}
+        </div>
+      `).join('');
+    }
+
+    async function markRead(id) {
+      await DashCommon.api(`/api/student/notifications/${id}/read`, { method: 'PUT' });
+      loadNotifications();
+      loadOverview();
+    }
+
+    async function loadSupport() {
+      const res = await DashCommon.api('/api/student/support');
+      const container = document.getElementById('support-tickets-list');
+      if (!res.success || !res.tickets || res.tickets.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-title">No support tickets</div><div class="empty-state-desc">Need assistance? Click "New Ticket" to message district coordination.</div></div>';
+        return;
+      }
+
+      container.innerHTML = res.tickets.map(t => `
+        <div style="background: rgba(13,20,36,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h4 style="font-weight: 700; font-size: 1rem; color: var(--text-main);">${t.subject}</h4>
+            <span class="status-badge ${t.status}">${t.status}</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">${t.message}</p>
+          ${t.admin_response ? `
+            <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(16,185,129,0.08); border-left: 3px solid var(--success); border-radius: 4px;">
+              <strong style="color: var(--success); font-size: 0.8rem;">Admin Response:</strong>
+              <div style="font-size: 0.85rem; color: var(--text-main); margin-top: 0.25rem;">${t.admin_response}</div>
+            </div>
+          ` : '<div style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-dim);"><i class="fas fa-clock"></i> Awaiting administrator response</div>'}
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

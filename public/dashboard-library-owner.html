@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Owner Portal | ZYZU'S — Tutors & Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="/" class="brand-logo" style="margin-bottom: 0;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+      </div>
+
+      <div class="dash-sidebar-role">
+        <div class="role-avatar-chip" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">LO</div>
+        <div>
+          <div class="role-info-title" id="library-header-name">Study Library</div>
+          <div class="role-info-sub">Facility Owner</div>
+        </div>
+      </div>
+
+      <nav class="dash-sidebar-nav">
+        <div class="nav-section-label">Space Management</div>
+        <a class="sidebar-nav-item active" data-tab="overview">
+          <i class="fas fa-th-large"></i> Overview
+        </a>
+        <a class="sidebar-nav-item" data-tab="profile">
+          <i class="fas fa-store-alt"></i> Library Profile
+        </a>
+        <a class="sidebar-nav-item" data-tab="seats">
+          <i class="fas fa-chair"></i> Seat Matrix Grid
+        </a>
+        <a class="sidebar-nav-item" data-tab="shifts">
+          <i class="fas fa-business-time"></i> Shifts & Timings
+        </a>
+
+        <div class="nav-section-label">Members & Finances</div>
+        <a class="sidebar-nav-item" data-tab="students">
+          <i class="fas fa-users"></i> Enrolled Members
+        </a>
+        <a class="sidebar-nav-item" data-tab="attendance">
+          <i class="fas fa-user-clock"></i> Member Attendance
+        </a>
+        <a class="sidebar-nav-item" data-tab="fees">
+          <i class="fas fa-file-invoice-dollar"></i> Fees & Dues
+        </a>
+        <a class="sidebar-nav-item" data-tab="revenue">
+          <i class="fas fa-chart-pie"></i> Revenue Analytics
+        </a>
+
+        <div class="nav-section-label">Communications</div>
+        <a class="sidebar-nav-item" data-tab="bookings">
+          <i class="fas fa-calendar-check"></i> Seat Enquiries
+        </a>
+        <a class="sidebar-nav-item" data-tab="notifications">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-snippet-avatar"><i class="fas fa-book-reader"></i></div>
+          <div class="user-snippet-info">
+            <div class="user-snippet-name" id="footer-user-name">Library Owner</div>
+            <div class="user-snippet-email" id="footer-user-email">...</div>
+          </div>
+        </div>
+        <button class="btn-icon-logout" title="Sign Out">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="drawer-backdrop"></div>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle-btn" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="topbar-title">Library Space Operations</h1>
+            <div class="topbar-subtitle">Real-time seat occupancy, member shifts, and subscription fees</div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="status-badge" id="topbar-lib-status">ACTIVE</span>
+          <div class="topbar-district-chip">
+            <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+            <span>District: <strong class="user-district-display">-</strong></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Area -->
+      <div class="dash-body">
+        
+        <!-- 1. TAB: OVERVIEW -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="stat-grid">
+            <div class="metric-card" style="--card-accent: #3b82f6;">
+              <div class="metric-icon-box"><i class="fas fa-chair"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-total-seats">-</span>
+                <span class="metric-label">Total Study Desks</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #10b981;">
+              <div class="metric-icon-box"><i class="fas fa-door-open"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-available-seats">-</span>
+                <span class="metric-label">Available Desks</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #f59e0b;">
+              <div class="metric-icon-box"><i class="fas fa-user-friends"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-active-members">-</span>
+                <span class="metric-label">Active Subscriptions</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #e65c2e;">
+              <div class="metric-icon-box"><i class="fas fa-rupee-sign"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-lib-revenue">-</span>
+                <span class="metric-label">Monthly Subscription Volume</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Space Status -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem;">
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-bolt"></i> Fast Operations</h2>
+              </div>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="openAddWalkInModal()">
+                  <i class="fas fa-user-plus"></i> Add Walk-In Member
+                </button>
+                <button class="btn-secondary" onclick="DashCommon.switchTab('seats')">
+                  <i class="fas fa-border-all"></i> View Seat Matrix
+                </button>
+                <button class="btn-secondary" onclick="DashCommon.openModal('modal-add-shift')">
+                  <i class="fas fa-plus"></i> Add New Shift
+                </button>
+                <button class="btn-secondary" onclick="DashCommon.openModal('modal-lib-attendance')">
+                  <i class="fas fa-sign-in-alt"></i> Log Check-In
+                </button>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-info-circle"></i> Facility Summary</h2>
+              </div>
+              <div id="lib-overview-summary">
+                <div class="skeleton skeleton-text"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. TAB: LIBRARY PROFILE -->
+        <section class="tab-pane" id="tab-profile">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-store-alt"></i> Edit Study Library Details</h2>
+            </div>
+            <form id="library-profile-form">
+              <div class="form-grid">
+                <div class="form-group col-span-2">
+                  <label>Library / Reading Hall Name</label>
+                  <input type="text" id="lib-name" required>
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Complete Street Address & Landmark</label>
+                  <input type="text" id="lib-address" required>
+                </div>
+                <div class="form-group">
+                  <label>Total Seating Capacity</label>
+                  <input type="number" id="lib-total-seats" min="10" required>
+                </div>
+                <div class="form-group">
+                  <label>Operating Hours</label>
+                  <input type="text" id="lib-hours" required placeholder="e.g. 6:00 AM - 11:00 PM">
+                </div>
+                <div class="form-group">
+                  <label>Morning Shift Fee (₹ / mo)</label>
+                  <input type="number" id="lib-morning-fee" min="0" required>
+                </div>
+                <div class="form-group">
+                  <label>Evening Shift Fee (₹ / mo)</label>
+                  <input type="number" id="lib-evening-fee" min="0" required>
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Full Day Unlimited Fee (₹ / mo)</label>
+                  <input type="number" id="lib-fullday-fee" min="0" required>
+                </div>
+                <div class="form-group col-span-2">
+                  <label>Amenities & Facilities (comma separated)</label>
+                  <input type="text" id="lib-amenities" placeholder="e.g. Centrally AC, Optical Fiber WiFi, RO Water, Lockers, CCTV">
+                </div>
+              </div>
+              <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button type="submit" class="btn-primary" id="btn-save-lib">
+                  <i class="fas fa-save"></i> Save Library Details
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 3. TAB: SEATS MATRIX -->
+        <section class="tab-pane" id="tab-seats">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-chair"></i> Visual Seat Occupancy Grid</h2>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Real-time allocation status</div>
+            </div>
+
+            <div class="seat-legend">
+              <div class="legend-item">
+                <div class="legend-color" style="background: rgba(16,185,129,0.3); border: 1px solid #10b981;"></div>
+                <span>Available</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color" style="background: rgba(59,130,246,0.3); border: 1px solid #3b82f6;"></div>
+                <span>Occupied / Reserved</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color" style="background: rgba(245,158,11,0.3); border: 1px solid #f59e0b;"></div>
+                <span>Maintenance</span>
+              </div>
+            </div>
+
+            <div class="seat-matrix-container" id="seats-grid">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TAB: SHIFTS -->
+        <section class="tab-pane" id="tab-shifts">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-business-time"></i> Study Shifts & Timing Configurations</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="DashCommon.openModal('modal-add-shift')">
+                <i class="fas fa-plus"></i> Add New Shift
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Shift Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Monthly Subscription</th>
+                  </tr>
+                </thead>
+                <tbody id="shifts-table-body">
+                  <tr><td colspan="4" style="text-align:center; padding: 2rem;">Loading shifts...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. TAB: STUDENTS -->
+        <section class="tab-pane" id="tab-students">
+          <div class="dash-card">
+            <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <h2 class="dash-card-title"><i class="fas fa-users"></i> Subscribed Library Members</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="openAddWalkInModal()">
+                <i class="fas fa-user-plus"></i> Add Walk-In Member
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Member Name</th>
+                    <th>Desk No</th>
+                    <th>Shift</th>
+                    <th>Contact Phone</th>
+                    <th>Fee</th>
+                    <th>Valid Till</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="lib-students-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading members...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. TAB: ATTENDANCE -->
+        <section class="tab-pane" id="tab-attendance">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-user-clock"></i> Member Attendance & Access Log</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="DashCommon.openModal('modal-lib-attendance')">
+                <i class="fas fa-plus"></i> Log Check-In
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Member Name</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Access Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="lib-att-table">
+                  <tr><td colspan="5" style="text-align:center; padding: 2rem;">Loading attendance...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. TAB: FEES -->
+        <section class="tab-pane" id="tab-fees">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-file-invoice-dollar"></i> Member Subscription Fees</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Invoice / Title</th>
+                    <th>Member</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Receipt No</th>
+                  </tr>
+                </thead>
+                <tbody id="lib-fees-table">
+                  <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading fees...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. TAB: REVENUE -->
+        <section class="tab-pane" id="tab-revenue">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-chart-pie"></i> Revenue Analytics & Shift Performance</h2>
+              <div id="lib-total-revenue-pill" style="font-size: 1.1rem; font-weight: 800; color: var(--primary);">₹0 / month</div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Shift Category</th>
+                    <th>Enrolled Members</th>
+                    <th>Total Monthly Volume</th>
+                  </tr>
+                </thead>
+                <tbody id="lib-revenue-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. TAB: BOOKINGS -->
+        <section class="tab-pane" id="tab-bookings">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-calendar-check"></i> Seat Inquiries & Walk-In Requests</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Shift Enquired</th>
+                    <th>Learner Notes</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="lib-bookings-table">
+                  <tr><td colspan="7" style="text-align: center; color: var(--text-dim); padding: 2rem;">Loading seat inquiries...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. TAB: NOTIFICATIONS -->
+        <section class="tab-pane" id="tab-notifications">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-bell"></i> Notifications</h2>
+            </div>
+            <div id="lib-notif-list">
+              <div class="skeleton skeleton-text"></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Walk-in Member Modal (Offline Students Ledger) -->
+  <div class="modal-overlay" id="modal-add-walkin-member">
+    <div class="modal-content" style="max-width: 560px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-user-plus" style="color: var(--primary);"></i> Add Walk-In Student (Offline Ledger)</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-add-walkin-member')">&times;</button>
+      </div>
+      <form id="add-walkin-form" onsubmit="submitWalkInMember(event)">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Student Full Name *</label>
+              <input type="text" id="walkin-name" required placeholder="e.g. Vikas Kumar">
+            </div>
+            <div class="form-group">
+              <label>Mobile Number *</label>
+              <input type="tel" id="walkin-mobile" required placeholder="e.g. 9876543210" pattern="[0-9]{10}">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Email Address (Optional)</label>
+              <input type="email" id="walkin-email" placeholder="vikas@example.com">
+            </div>
+            <div class="form-group">
+              <label>City / Colony / Area</label>
+              <input type="text" id="walkin-area" placeholder="e.g. Ward 4, Station Road">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Allocate Desk</label>
+              <select id="walkin-seat">
+                <option value="">-- Select Desk --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Assign Shift</label>
+              <select id="walkin-shift" onchange="updateWalkInFeeFromShift()">
+                <option value="">-- Select Shift --</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Monthly Subscription Fee (₹) *</label>
+              <input type="number" id="walkin-fee" min="100" max="15000" required placeholder="600">
+            </div>
+            <div class="form-group">
+              <label>Initial Payment Status</label>
+              <select id="walkin-payment-status">
+                <option value="PAID">Paid (Cash / UPI Received)</option>
+                <option value="PENDING">Payment Pending (Due)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Start Date *</label>
+              <input type="date" id="walkin-start-date" required onchange="calculateWalkInEndDate()">
+            </div>
+            <div class="form-group">
+              <label>Duration Plan</label>
+              <select id="walkin-duration" onchange="calculateWalkInEndDate()">
+                <option value="1">1 Month</option>
+                <option value="2">2 Months</option>
+                <option value="3">3 Months (Quarterly)</option>
+                <option value="6">6 Months (Half-Yearly)</option>
+                <option value="12">12 Months (Annual)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>End / Expiry Date *</label>
+            <input type="date" id="walkin-end-date" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-add-walkin-member')">Cancel</button>
+          <button type="submit" class="btn-primary" id="btn-submit-walkin">
+            <i class="fas fa-check-circle"></i> Register Member
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Shift Modal -->
+  <div class="modal-overlay" id="modal-add-shift">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-business-time" style="color: var(--primary);"></i> Add Library Shift</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-add-shift')">&times;</button>
+      </div>
+      <form id="add-shift-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Shift Name</label>
+            <input type="text" id="shift-name" required placeholder="e.g. Afternoon Study Slot (1:00 PM - 5:00 PM)">
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Start Time</label>
+              <input type="time" id="shift-start" required>
+            </div>
+            <div class="form-group">
+              <label>End Time</label>
+              <input type="time" id="shift-end" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Monthly Subscription Fee (₹)</label>
+            <input type="number" id="shift-fee" min="0" required placeholder="600">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-add-shift')">Cancel</button>
+          <button type="submit" class="btn-primary">Create Shift</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Log Attendance Modal -->
+  <div class="modal-overlay" id="modal-lib-attendance">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-user-check" style="color: var(--primary);"></i> Member Check-In</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-lib-attendance')">&times;</button>
+      </div>
+      <form id="lib-attendance-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Select Member</label>
+            <select id="lib-att-student-id" required>
+              <option value="">Select member...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="lib-att-date" required>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="lib-att-status">
+              <option value="PRESENT">Checked In / Present</option>
+              <option value="ABSENT">Absent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Notes (Desk or Shift)</label>
+            <input type="text" id="lib-att-notes" placeholder="e.g. Normal morning shift study">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-lib-attendance')">Cancel</button>
+          <button type="submit" class="btn-primary">Log Check-In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Allocate Seat / Respond to Inquiry Modal -->
+  <div class="modal-overlay" id="modal-lib-respond-booking">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="lib-respond-modal-title"><i class="fas fa-chair" style="color: var(--primary);"></i> Seat Allocation Decision</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-lib-respond-booking')">&times;</button>
+      </div>
+      <form id="lib-respond-booking-form" onsubmit="submitLibBookingResponse(event)">
+        <input type="hidden" id="lib-resp-booking-id">
+        <input type="hidden" id="lib-resp-action">
+        <div class="modal-body">
+          <div id="lib-resp-accept-fields">
+            <div class="form-group">
+              <label>Select Available Desk to Allocate *</label>
+              <select id="lib-resp-seat-id">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Agreed Monthly Subscription (₹) *</label>
+              <input type="number" id="lib-resp-fee" min="100" max="10000" placeholder="600">
+            </div>
+          </div>
+          <div class="form-group">
+            <label id="lib-resp-note-label">Desk Instructions / Locker Details / Welcome Note</label>
+            <textarea id="lib-resp-note" rows="3" class="filter-select" placeholder="e.g. Desk assigned. Locker key available at reception."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-lib-respond-booking')">Cancel</button>
+          <button type="submit" class="btn-primary" id="btn-lib-submit-respond">Confirm Allocation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/js/dashboard-common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = DashCommon.requireAuth(['LIBRARY_OWNER']);
+      if (!session) return;
+
+      DashCommon.initUI(session.user, 'Library Owner');
+      document.getElementById('lib-att-date').value = new Date().toISOString().split('T')[0];
+
+      loadOverview();
+      loadProfile();
+      loadSeats();
+      loadShifts();
+      loadStudents();
+      loadAttendance();
+      loadFees();
+      loadRevenue();
+      loadBookings();
+      loadNotifications();
+
+      // Hook profile form
+      document.getElementById('library-profile-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-save-lib');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+        const payload = {
+          name: document.getElementById('lib-name').value,
+          address: document.getElementById('lib-address').value,
+          total_seats: document.getElementById('lib-total-seats').value,
+          operating_hours: document.getElementById('lib-hours').value,
+          morning_fee: document.getElementById('lib-morning-fee').value,
+          evening_fee: document.getElementById('lib-evening-fee').value,
+          fullday_fee: document.getElementById('lib-fullday-fee').value,
+          amenities: document.getElementById('lib-amenities').value
+        };
+
+        const res = await DashCommon.api('/api/library/profile', {
+          method: 'PUT',
+          body: JSON.stringify(payload)
+        });
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> Save Library Details';
+
+        if (res.success) {
+          DashCommon.showToast('Library details updated!', 'success');
+          loadProfile();
+          loadOverview();
+          loadSeats();
+        } else {
+          DashCommon.showToast(res.message || 'Failed to update', 'error');
+        }
+      });
+
+      // Hook shift form
+      document.getElementById('add-shift-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          name: document.getElementById('shift-name').value,
+          start_time: document.getElementById('shift-start').value,
+          end_time: document.getElementById('shift-end').value,
+          fee: document.getElementById('shift-fee').value
+        };
+
+        const res = await DashCommon.api('/api/library/shifts', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+        if (res.success) {
+          DashCommon.showToast('Shift added!', 'success');
+          DashCommon.closeModal('modal-add-shift');
+          document.getElementById('add-shift-form').reset();
+          loadShifts();
+        } else {
+          DashCommon.showToast(res.message || 'Failed to add shift', 'error');
+        }
+      });
+
+      // Hook attendance form
+      document.getElementById('lib-attendance-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          student_id: document.getElementById('lib-att-student-id').value,
+          date: document.getElementById('lib-att-date').value,
+          status: document.getElementById('lib-att-status').value,
+          notes: document.getElementById('lib-att-notes').value
+        };
+
+        const res = await DashCommon.api('/api/library/attendance', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+        if (res.success) {
+          DashCommon.showToast('Check-in recorded!', 'success');
+          DashCommon.closeModal('modal-lib-attendance');
+          loadAttendance();
+        } else {
+          DashCommon.showToast(res.message || 'Check-in failed', 'error');
+        }
+      });
+    });
+
+    async function loadOverview() {
+      const res = await DashCommon.api('/api/library/dashboard');
+      if (!res.success) return;
+
+      const ov = res.overview;
+      document.getElementById('stat-total-seats').textContent = ov.totalSeats;
+      document.getElementById('stat-available-seats').textContent = ov.availableSeats;
+      document.getElementById('stat-active-members').textContent = ov.activeMembers;
+      document.getElementById('stat-lib-revenue').textContent = `₹${ov.monthlyRevenue}`;
+
+      const statusBadge = document.getElementById('topbar-lib-status');
+      statusBadge.textContent = ov.libraryStatus;
+      statusBadge.className = `status-badge ${ov.libraryStatus}`;
+
+      document.getElementById('lib-overview-summary').innerHTML = `
+        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">${ov.libraryName}</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+          Occupancy: <strong>${Math.round((ov.occupiedSeats / (ov.totalSeats || 1)) * 100)}%</strong> &bull;
+          ${ov.shiftsCount} Active Study Shifts Configured
+        </div>
+        <div style="font-size: 0.85rem; color: var(--warning); margin-top: 0.35rem;">
+          <i class="fas fa-exclamation-triangle"></i> Pending dues: ₹${ov.pendingFeesAmount} across ${ov.pendingFeesCount} invoices
+        </div>
+      `;
+    }
+
+    async function loadProfile() {
+      const res = await DashCommon.api('/api/library/profile');
+      if (!res.success) return;
+
+      const l = res.library;
+      document.getElementById('lib-name').value = l.name || '';
+      document.getElementById('lib-address').value = l.address || '';
+      document.getElementById('lib-total-seats').value = l.total_seats || 40;
+      document.getElementById('lib-hours').value = l.operating_hours || '';
+      document.getElementById('lib-morning-fee').value = l.morning_fee || 600;
+      document.getElementById('lib-evening-fee').value = l.evening_fee || 600;
+      document.getElementById('lib-fullday-fee').value = l.fullday_fee || 1000;
+      document.getElementById('lib-amenities').value = Array.isArray(l.amenities) ? l.amenities.join(', ') : (l.amenities || '');
+    }
+
+    let cachedSeats = [];
+    let cachedShifts = [];
+
+    async function loadSeats() {
+      const res = await DashCommon.api('/api/library/seats');
+      const grid = document.getElementById('seats-grid');
+      if (!res.success || !res.seats) return;
+      cachedSeats = res.seats || [];
+
+      grid.innerHTML = res.seats.map(s => `
+        <div class="seat-box ${s.status}" title="${s.seat_number}: ${s.status}${s.occupied_by ? ' (Reserved: ' + s.occupied_by + ')' : ''}">
+          <i class="fas fa-chair"></i>
+          <span>${s.seat_number}</span>
+        </div>
+      `).join('');
+    }
+
+    async function loadShifts() {
+      const res = await DashCommon.api('/api/library/shifts');
+      const tbody = document.getElementById('shifts-table-body');
+      if (!res.success || !res.shifts || res.shifts.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 1.5rem;">No shifts registered</td></tr>';
+        return;
+      }
+      cachedShifts = res.shifts || [];
+
+      tbody.innerHTML = res.shifts.map(s => `
+        <tr>
+          <td><strong>${s.name}</strong></td>
+          <td>${s.start_time}</td>
+          <td>${s.end_time}</td>
+          <td style="font-weight: 700; color: var(--text-main);">₹${s.fee} / mo</td>
+        </tr>
+      `).join('');
+    }
+
+    async function openAddWalkInModal() {
+      if (cachedSeats.length === 0) await loadSeats();
+      if (cachedShifts.length === 0) await loadShifts();
+
+      const seatSelect = document.getElementById('walkin-seat');
+      seatSelect.innerHTML = '<option value="">-- Auto-assign or General Desk --</option>';
+      cachedSeats.forEach(s => {
+        if (s.status === 'AVAILABLE') {
+          seatSelect.innerHTML += `<option value="${s.id}">Desk ${s.seat_number} (Available)</option>`;
+        }
+      });
+
+      const shiftSelect = document.getElementById('walkin-shift');
+      shiftSelect.innerHTML = '<option value="">-- Select Shift --</option>';
+      cachedShifts.forEach(sh => {
+        shiftSelect.innerHTML += `<option value="${sh.id}" data-fee="${sh.fee}">${sh.name} (₹${sh.fee}/mo)</option>`;
+      });
+
+      const todayStr = new Date().toISOString().split('T')[0];
+      document.getElementById('walkin-start-date').value = todayStr;
+      calculateWalkInEndDate();
+
+      DashCommon.openModal('modal-add-walkin-member');
+    }
+
+    function calculateWalkInEndDate() {
+      const startVal = document.getElementById('walkin-start-date').value;
+      if (!startVal) return;
+      const months = parseInt(document.getElementById('walkin-duration').value || 1, 10);
+      const d = new Date(startVal);
+      d.setMonth(d.getMonth() + months);
+      document.getElementById('walkin-end-date').value = d.toISOString().split('T')[0];
+    }
+
+    function updateWalkInFeeFromShift() {
+      const shiftSelect = document.getElementById('walkin-shift');
+      const selectedOpt = shiftSelect.options[shiftSelect.selectedIndex];
+      if (selectedOpt && selectedOpt.dataset.fee) {
+        document.getElementById('walkin-fee').value = selectedOpt.dataset.fee;
+      }
+    }
+
+    async function submitWalkInMember(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit-walkin');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+
+      const payload = {
+        full_name: document.getElementById('walkin-name').value.trim(),
+        mobile: document.getElementById('walkin-mobile').value.trim(),
+        email: document.getElementById('walkin-email').value.trim() || undefined,
+        notes: document.getElementById('walkin-area').value.trim(),
+        seat_id: document.getElementById('walkin-seat').value ? Number(document.getElementById('walkin-seat').value) : undefined,
+        shift_id: document.getElementById('walkin-shift').value ? Number(document.getElementById('walkin-shift').value) : undefined,
+        monthly_fee: Number(document.getElementById('walkin-fee').value),
+        payment_status: document.getElementById('walkin-payment-status').value,
+        start_date: document.getElementById('walkin-start-date').value,
+        end_date: document.getElementById('walkin-end-date').value
+      };
+
+      const res = await DashCommon.api('/api/library/students/walk-in', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-check-circle"></i> Register Member';
+
+      if (res.success) {
+        DashCommon.closeModal('modal-add-walkin-member');
+        DashCommon.showToast('🎉 Walk-in member registered successfully!', 'success');
+        document.getElementById('add-walkin-form').reset();
+        loadStudents();
+        loadSeats();
+        loadFees();
+        loadOverview();
+        loadRevenue();
+      } else {
+        DashCommon.showToast(res.message || 'Failed to register walk-in member', 'error');
+      }
+    }
+
+    async function loadStudents() {
+      const res = await DashCommon.api('/api/library/students');
+      const tbody = document.getElementById('lib-students-table');
+      const select = document.getElementById('lib-att-student-id');
+      select.innerHTML = '<option value="">Select member...</option>';
+
+      if (!res.success || !res.students || res.students.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No active members enrolled.</td></tr>';
+        return;
+      }
+
+      res.students.forEach(s => {
+        select.innerHTML += `<option value="${s.enrollment_id}">${s.student_name} (${s.seat_number || 'Desk'})</option>`;
+      });
+
+      tbody.innerHTML = res.students.map(s => `
+        <tr>
+          <td><strong>${s.student_name}</strong></td>
+          <td><span class="status-badge ACTIVE">${s.seat_number || 'General'}</span></td>
+          <td>${s.shift_name || 'Standard'}</td>
+          <td style="color: var(--text-muted);">${s.student_mobile}</td>
+          <td style="font-weight: 700;">₹${s.monthly_fee}</td>
+          <td style="color: var(--text-muted);">${s.end_date}</td>
+          <td><span class="status-badge ${s.enrollment_status}">${s.enrollment_status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadAttendance() {
+      const res = await DashCommon.api('/api/library/attendance');
+      const tbody = document.getElementById('lib-att-table');
+      if (!res.success || !res.records || res.records.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 2rem;">No member check-in records.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.records.map(r => `
+        <tr>
+          <td><strong>${r.date}</strong></td>
+          <td>${r.student_name}</td>
+          <td style="color: var(--text-muted);">${r.student_mobile}</td>
+          <td><span class="status-badge ${r.status}">${r.status}</span></td>
+          <td style="color: var(--text-muted);">${r.notes || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadFees() {
+      const res = await DashCommon.api('/api/library/fees');
+      const tbody = document.getElementById('lib-fees-table');
+      if (!res.success || !res.fees || res.fees.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem;">No fee records recorded.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.fees.map(f => `
+        <tr>
+          <td><strong>${f.title}</strong></td>
+          <td>${f.student_name}</td>
+          <td style="font-weight: 700;">₹${f.amount}</td>
+          <td>${f.due_date}</td>
+          <td><span class="status-badge ${f.status}">${f.status}</span></td>
+          <td style="font-family: monospace; color: var(--text-muted);">${f.receipt_no || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadRevenue() {
+      const res = await DashCommon.api('/api/library/revenue');
+      if (!res.success) return;
+
+      document.getElementById('lib-total-revenue-pill').textContent = `₹${res.revenue.monthlyTotal} / month`;
+
+      const tbody = document.getElementById('lib-revenue-table');
+      tbody.innerHTML = res.revenue.shiftBreakdown.map(s => `
+        <tr>
+          <td><strong>${s.shift_name}</strong></td>
+          <td>${s.member_count} Member(s)</td>
+          <td style="font-weight: 700; color: var(--primary);">₹${s.shift_revenue}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadBookings() {
+      const res = await DashCommon.api('/api/library/bookings');
+      const tbody = document.getElementById('lib-bookings-table');
+      if (!res.success || !res.bookings || res.bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No seat enquiries yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.bookings.map(b => {
+        let actionCol = '-';
+        if (b.status === 'PENDING') {
+          actionCol = `
+            <div style="display: flex; gap: 0.35rem;">
+              <button class="btn-sm-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;" onclick="openLibRespondModal(${b.id}, 'ACCEPT', '${b.student_name}', '${b.subject_or_shift}', ${b.preferred_seat_id || 'null'})">
+                <i class="fas fa-chair"></i> Allocate
+              </button>
+              <button class="btn-sm-outline" style="padding: 0.3rem 0.65rem; font-size: 0.75rem; color: #ef4444; border-color: rgba(239,68,68,0.4);" onclick="openLibRespondModal(${b.id}, 'REJECT', '${b.student_name}')">
+                <i class="fas fa-times"></i> Decline
+              </button>
+            </div>
+          `;
+        } else if (b.status === 'ACCEPTED') {
+          actionCol = `<span style="color: #34d399; font-size: 0.8rem; font-weight: 700;"><i class="fas fa-check-circle"></i> Allocated ${b.seat_number ? '(Desk ' + b.seat_number + ')' : ''}</span>`;
+        } else if (b.status === 'REJECTED') {
+          actionCol = '<span style="color: #ef4444; font-size: 0.8rem;"><i class="fas fa-ban"></i> Declined</span>';
+        }
+
+        return `
+          <tr>
+            <td><strong>${b.student_name}</strong></td>
+            <td>${b.subject_or_shift}</td>
+            <td style="color: var(--text-muted); font-size: 0.85rem;">${b.message || '-'}</td>
+            <td>${b.student_mobile || '-'}</td>
+            <td><span class="status-badge ${b.status}">${b.status}</span></td>
+            <td style="color: var(--text-muted); font-size: 0.8rem;">${new Date(b.created_at).toLocaleDateString()}</td>
+            <td>${actionCol}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function openLibRespondModal(bookingId, action, studentName, shiftName, preferredSeatId) {
+      document.getElementById('lib-resp-booking-id').value = bookingId;
+      document.getElementById('lib-resp-action').value = action;
+
+      const acceptFields = document.getElementById('lib-resp-accept-fields');
+      const noteLabel = document.getElementById('lib-resp-note-label');
+      const title = document.getElementById('lib-respond-modal-title');
+      const submitBtn = document.getElementById('btn-lib-submit-respond');
+
+      if (action === 'ACCEPT') {
+        title.innerHTML = `<i class="fas fa-chair" style="color: #10b981;"></i> Allocate Study Desk for ${studentName}`;
+        acceptFields.style.display = 'block';
+        document.getElementById('lib-resp-fee').required = true;
+        document.getElementById('lib-resp-fee').value = '600';
+        noteLabel.textContent = 'Locker / Desk Access Instructions for Student';
+        submitBtn.textContent = 'Confirm Seat Allocation';
+        submitBtn.className = 'btn-primary';
+
+        // Load available seats into dropdown
+        const seatSelect = document.getElementById('lib-resp-seat-id');
+        seatSelect.innerHTML = '<option value="">Loading available desks...</option>';
+
+        const seatsRes = await DashCommon.api('/api/library/seats');
+        if (seatsRes.success && seatsRes.seats) {
+          seatSelect.innerHTML = '';
+          const avail = seatsRes.seats.filter(s => s.status === 'AVAILABLE');
+          if (avail.length === 0) {
+            seatSelect.innerHTML = '<option value="">No desks available currently</option>';
+          } else {
+            avail.forEach(s => {
+              const opt = document.createElement('option');
+              opt.value = s.id;
+              opt.textContent = `Desk ${s.seat_number} (Floor: ${s.floor_label || 'Ground'})`;
+              if (preferredSeatId && s.id === preferredSeatId) {
+                opt.selected = true;
+                opt.textContent += ' [Student Preferred]';
+              }
+              seatSelect.appendChild(opt);
+            });
+          }
+        }
+      } else {
+        title.innerHTML = `<i class="fas fa-times-circle" style="color: #ef4444;"></i> Decline Desk Request`;
+        acceptFields.style.display = 'none';
+        document.getElementById('lib-resp-fee').required = false;
+        noteLabel.textContent = 'Reason for Declining (Optional)';
+        submitBtn.textContent = 'Decline Request';
+        submitBtn.className = 'btn-secondary';
+      }
+
+      DashCommon.openModal('modal-lib-respond-booking');
+    }
+
+    async function submitLibBookingResponse(e) {
+      e.preventDefault();
+      const bookingId = document.getElementById('lib-resp-booking-id').value;
+      const action = document.getElementById('lib-resp-action').value;
+      const seatId = document.getElementById('lib-resp-seat-id').value;
+      const monthlyFee = document.getElementById('lib-resp-fee').value;
+      const note = document.getElementById('lib-resp-note').value.trim();
+
+      const btn = document.getElementById('btn-lib-submit-respond');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Allocating...';
+
+      const res = await DashCommon.api(`/api/library/bookings/${bookingId}/respond`, {
+        method: 'POST',
+        body: JSON.stringify({
+          action,
+          seat_id: action === 'ACCEPT' ? Number(seatId) : undefined,
+          monthly_fee: action === 'ACCEPT' ? Number(monthlyFee) : undefined,
+          response_note: note
+        })
+      });
+
+      btn.disabled = false;
+      btn.innerHTML = 'Confirm Decision';
+
+      if (res.success) {
+        DashCommon.closeModal('modal-lib-respond-booking');
+        DashCommon.showToast(action === 'ACCEPT' ? '🎉 Desk successfully allocated & member enrolled!' : 'Request declined', 'success');
+        loadBookings();
+        loadSeats();
+        loadStudents();
+        loadOverview();
+      } else {
+        DashCommon.showToast(res.message || 'Failed to update booking', 'error');
+      }
+    }
+
+    async function loadNotifications() {
+      const res = await DashCommon.api('/api/library/notifications');
+      const container = document.getElementById('lib-notif-list');
+      if (!res.success || !res.notifications || res.notifications.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-title">No notifications</div></div>';
+        return;
+      }
+
+      container.innerHTML = res.notifications.map(n => `
+        <div style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <div style="display: flex; justify-content: space-between;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">${n.title}</h4>
+            <span style="font-size: 0.75rem; color: var(--text-dim);">${new Date(n.created_at).toLocaleDateString()}</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${n.message}</p>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

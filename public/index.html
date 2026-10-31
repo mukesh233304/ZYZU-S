@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ZYZU'S | Tutors & Libraries</title>
+  <meta name="description" content="ZYZU'S connects students with verified 1-on-1 home tutors and air-conditioned self-study libraries with high-speed Wi-Fi across Ghazipur, Saidpur, Varanasi, and Uttar Pradesh.">
+  <link rel="canonical" href="https://zyzus.com/">
+
+  <!-- Favicon Suite for Google Search & Browsers -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1e40af">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ZYZU'S">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zyzus.com/">
+  <meta property="og:title" content="ZYZU'S | Tutors & Libraries">
+  <meta property="og:description" content="Find verified home tutors and premium self-study libraries with ZYZU'S — Tutors & Libraries.">
+  <meta property="og:image" content="https://zyzus.com/og-image.jpg">
+
+  <!-- Schema.org Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "ZYZU'S",
+    "alternateName": "ZYZU'S — Tutors & Libraries",
+    "url": "https://zyzus.com",
+    "logo": "https://zyzus.com/assets/branding/zyzus-official-logo.png",
+    "image": "https://zyzus.com/og-image.jpg",
+    "description": "India's premier verified education platform connecting students with expert home tutors and digital self-study libraries."
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    /* Home Page Design System Extensions */
+    .hero-container {
+      max-width: 1200px;
+      margin: 2rem auto 3.5rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(230, 92, 46, 0.12);
+      border: 1px solid rgba(230, 92, 46, 0.35);
+      color: var(--primary);
+      padding: 0.4rem 1.1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.825rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 20px rgba(230, 92, 46, 0.15);
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #e65c2e 0%, #ff8359 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #d04d20 100%);
+      color: #fff;
+      padding: 0.95rem 2.2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      box-shadow: 0 10px 25px -5px rgba(230, 92, 46, 0.4);
+      transition: var(--transition);
+    }
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -6px rgba(230, 92, 46, 0.5);
+    }
+    .btn-hero-secondary {
+      background: rgba(18, 26, 47, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 0.95rem 2.2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+    .btn-hero-secondary:hover {
+      background: rgba(26, 36, 64, 0.9);
+      border-color: rgba(230, 92, 46, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Dual Search Hub Container */
+    .search-hub {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      background: rgba(14, 21, 38, 0.9);
+      border: 1px solid rgba(230, 92, 46, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(230, 92, 46, 0.12);
+      backdrop-filter: blur(20px);
+      text-align: left;
+    }
+    .search-tabs {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 1px solid var(--bg-card-border);
+      padding-bottom: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .search-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+    .search-tab-btn.active {
+      background: rgba(230, 92, 46, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(230, 92, 46, 0.3);
+    }
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .filter-select, .filter-input {
+      background: var(--bg-input);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .filter-select:focus, .filter-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 12px var(--primary-glow);
+      background: var(--bg-input-focus);
+    }
+    .filter-select option {
+      background: #0d1527;
+      color: #fff;
+    }
+    .search-submit-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      align-items: center;
+      border-top: 1px solid var(--bg-card-border);
+      padding-top: 1.25rem;
+    }
+
+    /* Section Styling */
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-pill {
+      display: inline-block;
+      font-size: 0.775rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      background: rgba(230, 92, 46, 0.12);
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Why ZYZU'S Feature Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 1.75rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(230, 92, 46, 0.4);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(230, 92, 46, 0.15);
+    }
+    .feature-icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-md);
+      background: rgba(230, 92, 46, 0.14);
+      border: 1px solid rgba(230, 92, 46, 0.3);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.65rem;
+    }
+    .feature-desc {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Step Workflows */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .workflow-column {
+      background: rgba(14, 21, 38, 0.6);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .workflow-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--bg-card-border);
+    }
+    .step-item {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px var(--primary-glow);
+    }
+    .step-content h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .step-content p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Cards for Teachers & Libraries */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+    .teacher-preview-card, .library-preview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    .teacher-preview-card:hover, .library-preview-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(230, 92, 46, 0.4);
+      box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Facilities Strip */
+    .facilities-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+    }
+    .facility-pill-card {
+      background: rgba(18, 26, 47, 0.7);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .facility-pill-card:hover {
+      border-color: var(--primary);
+      background: rgba(230, 92, 46, 0.08);
+    }
+    .facility-pill-card i {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+    .facility-pill-card span {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Testimonials */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .testi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      position: relative;
+    }
+    .testi-rating {
+      color: #f59e0b;
+      margin-bottom: 0.85rem;
+      font-size: 0.9rem;
+    }
+    .testi-quote {
+      font-size: 0.925rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testi-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      background: rgba(230, 92, 46, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .testi-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .testi-role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(230, 92, 46, 0.2) 0%, rgba(18, 26, 47, 0.95) 100%);
+      border: 1px solid rgba(230, 92, 46, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Master Footer */
+    .master-footer {
+      background: #060a14;
+      border-top: 1px solid var(--bg-card-border);
+      padding: 4rem 2rem 2rem;
+      margin-top: 6rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 4px;
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-dim);
+      font-size: 0.825rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+      <img src="/assets/branding/zyzus-logo-64.png" alt="ZYZU'S" style="width: 2.25rem; height: 2.25rem; border-radius: 0.625rem; box-shadow: 0 4px 12px rgba(37,99,235,0.3); border: 1px solid rgba(96,165,250,0.3);">
+      <div style="display: flex; flex-direction: column; line-height: 1.1;">
+        <span style="font-size: 1.15rem; font-weight: 900; color: #ffffff; letter-spacing: -0.02em;">ZYZU'S</span>
+        <span style="font-size: 0.65rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em;">Tutors & Libraries</span>
+      </div>
+    </a>
+    
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="hero-container">
+      <div class="hero-tag">
+        <i class="fas fa-shield-alt"></i> District Administration Governed Education Network
+      </div>
+      <h1 class="hero-title">
+        Find the Right Tutor.<br>
+        <span class="gradient-text">Find the Right Study Space.</span>
+      </h1>
+      <p class="hero-desc">
+        ZYZU'S connects ambitious learners with identity-verified home tutors for personalized 1-on-1 guidance, and air-conditioned self-study libraries equipped with ergonomic desks, gigabit Wi-Fi, and 100% power backup.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#tutor-search-box" class="btn-hero-primary">
+          <i class="fas fa-chalkboard-teacher"></i> Find a Tutor
+        </a>
+        <a href="#library-search-box" class="btn-hero-secondary">
+          <i class="fas fa-book-reader"></i> Find a Library
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Dual Search Hub (8 Tutor Filters & 6 Library Filters) -->
+    <section class="search-hub" id="search-hub">
+      <div class="search-tabs">
+        <button class="search-tab-btn active" id="tab-btn-tutor" onclick="switchSearchTab('tutor')">
+          <i class="fas fa-chalkboard-teacher"></i> Find Home Tutor (8 Filters)
+        </button>
+        <button class="search-tab-btn" id="tab-btn-library" onclick="switchSearchTab('library')">
+          <i class="fas fa-chair"></i> Find Study Library (6 Filters)
+        </button>
+      </div>
+
+      <!-- Tab 1: Tutor Search Form (8 Exact Filters) -->
+      <form id="tutor-search-box" action="/tutors" method="GET">
+        <div class="filter-grid">
+          <!-- 1. District -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-map-marker-alt"></i> 1. District</label>
+            <select name="district" class="filter-select">
+              <option value="">All Districts</option>
+              <option value="Ghazipur" selected>Ghazipur</option>
+              <option value="Varanasi">Varanasi</option>
+              <option value="Saidpur">Saidpur</option>
+              <option value="Lucknow">Lucknow</option>
+              <option value="Gorakhpur">Gorakhpur</option>
+            </select>
+          </div>
+
+          <!-- 2. Area -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-location-arrow"></i> 2. Area / Locality</label>
+            <input type="text" name="area" class="filter-input" placeholder="e.g. Saidpur Town, Lanka, Ravindrapuri">
+          </div>
+
+          <!-- 3. Class -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-user-graduate"></i> 3. Class / Grade</label>
+            <select name="class" class="filter-select">
+              <option value="">Any Class</option>
+              <option value="Primary (1-5)">Class 1 - 5 (Primary)</option>
+              <option value="Middle (6-8)">Class 6 - 8 (Middle)</option>
+              <option value="Secondary (9-10)">Class 9 - 10 (Secondary)</option>
+              <option value="Senior Secondary (11-12)">Class 11 - 12 (Senior Secondary)</option>
+              <option value="Competitive (NEET/JEE)">NEET / JEE Foundation</option>
+            </select>
+          </div>
+
+          <!-- 4. Subject -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-book"></i> 4. Subject</label>
+            <select name="subject" class="filter-select">
+              <option value="">All Subjects</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Biology">Biology</option>
+              <option value="English">English Language & Lit</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Commerce">Accountancy & Commerce</option>
+            </select>
+          </div>
+
+          <!-- 5. Specialization -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-award"></i> 5. Specialization</label>
+            <select name="specialization" class="filter-select">
+              <option value="">Any Specialization</option>
+              <option value="Board Exam Prep">Board Exam Mastery</option>
+              <option value="Olympiad / NTSE">Olympiad & NTSE</option>
+              <option value="Concept Remedial">Conceptual Remedial</option>
+              <option value="Crash Course">Fast-Track Crash Course</option>
+            </select>
+          </div>
+
+          <!-- 6. Experience -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-briefcase"></i> 6. Experience</label>
+            <select name="experience" class="filter-select">
+              <option value="">Any Experience</option>
+              <option value="1-3">1 - 3 Years</option>
+              <option value="3-5">3 - 5 Years</option>
+              <option value="5-10">5 - 10 Years</option>
+              <option value="10+">10+ Years Expert</option>
+            </select>
+          </div>
+
+          <!-- 7. Fee -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-rupee-sign"></i> 7. Fee Range</label>
+            <select name="fee" class="filter-select">
+              <option value="">Any Budget</option>
+              <option value="500">Under ₹500 / hr</option>
+              <option value="1000">₹500 - ₹1,000 / hr</option>
+              <option value="2000">₹1,000 - ₹2,000 / hr</option>
+              <option value="monthly-5000">₹3,000 - ₹6,000 / month</option>
+            </select>
+          </div>
+
+          <!-- 8. Availability -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-clock"></i> 8. Availability</label>
+            <select name="availability" class="filter-select">
+              <option value="">Any Timing</option>
+              <option value="Morning">Morning (6:00 AM - 9:00 AM)</option>
+              <option value="Afternoon">Afternoon (2:00 PM - 5:00 PM)</option>
+              <option value="Evening">Evening (5:00 PM - 9:00 PM)</option>
+              <option value="Weekends">Weekends Only</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="search-submit-bar">
+          <span style="color: var(--text-dim); font-size: 0.85rem;"><i class="fas fa-info-circle"></i> Student requests are vetted and matched by District Administrators.</span>
+          <button type="submit" class="btn-primary" style="width: auto; padding: 0.85rem 2rem;">
+            <i class="fas fa-search"></i> Search Verified Tutors
+          </button>
+        </div>
+      </form>
+
+      <!-- Tab 2: Library Search Form (6 Exact Filters) -->
+      <form id="library-search-box" action="/libraries" method="GET" style="display: none;">
+        <div class="filter-grid">
+          <!-- 1. District -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-map-marker-alt"></i> 1. District</label>
+            <select name="district" class="filter-select">
+              <option value="">All Districts</option>
+              <option value="Ghazipur" selected>Ghazipur</option>
+              <option value="Varanasi">Varanasi</option>
+              <option value="Saidpur">Saidpur</option>
+              <option value="Lucknow">Lucknow</option>
+            </select>
+          </div>
+
+          <!-- 2. Area -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-location-arrow"></i> 2. Area / Landmark</label>
+            <input type="text" name="area" class="filter-input" placeholder="e.g. Railway Station Road, BHU Gate, Ward 4">
+          </div>
+
+          <!-- 3. Distance -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-route"></i> 3. Distance Radius</label>
+            <select name="distance" class="filter-select">
+              <option value="">Any Distance</option>
+              <option value="2">Within 2 km</option>
+              <option value="5">Within 5 km</option>
+              <option value="10">Within 10 km</option>
+            </select>
+          </div>
+
+          <!-- 4. Price -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-rupee-sign"></i> 4. Monthly Price</label>
+            <select name="price" class="filter-select">
+              <option value="">Any Price Tier</option>
+              <option value="500">Under ₹500 / month</option>
+              <option value="1000">₹500 - ₹1,000 / month</option>
+              <option value="1500">₹1,000 - ₹1,500 / month</option>
+              <option value="2000">₹1,500+ (24/7 Dedicated Desk)</option>
+            </select>
+          </div>
+
+          <!-- 5. Available Seats -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-chair"></i> 5. Available Seats</label>
+            <select name="seats" class="filter-select">
+              <option value="">Any Seat Status</option>
+              <option value="immediate">Immediate Seat Available</option>
+              <option value="10">More than 10 Desks</option>
+              <option value="25">More than 25 Desks</option>
+            </select>
+          </div>
+
+          <!-- 6. Facilities -->
+          <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-plug"></i> 6. Facilities</label>
+            <select name="facility" class="filter-select">
+              <option value="">All Amenities</option>
+              <option value="AC">100% Air Conditioned</option>
+              <option value="WIFI">High-Speed Fiber Wi-Fi</option>
+              <option value="POWER">Generator / Inverter Backup</option>
+              <option value="WATER">Purified RO Water</option>
+              <option value="LOCKER">Individual Lockers</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="search-submit-bar">
+          <span style="color: var(--text-dim); font-size: 0.85rem;"><i class="fas fa-check-circle"></i> Instant desk allocation & digital QR gate pass.</span>
+          <button type="submit" class="btn-primary" style="width: auto; padding: 0.85rem 2rem;">
+            <i class="fas fa-search"></i> Find Study Libraries
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3. Why ZYZU'S Section -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <span class="section-pill">The ZYZU'S Edge</span>
+        <h2 class="section-title">Why Students & Parents Choose ZYZU'S</h2>
+        <p class="section-subtitle">
+          Engineered to eradicate unverified tutors, chaotic study environments, and fraudulent intermediaries.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fas fa-landmark"></i></div>
+          <h3 class="feature-title">District Admin Governance</h3>
+          <p class="feature-desc">
+            Unlike open marketplaces, each district is overseen by an active District Administrator who reviews tutor qualifications, inspects libraries, and matches learners.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fas fa-id-card-alt"></i></div>
+          <h3 class="feature-title">100% Verified Educators</h3>
+          <p class="feature-desc">
+            Every tutor undergoes government ID verification, academic credential inspection, and background authentication before receiving student assignments.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fas fa-volume-mute"></i></div>
+          <h3 class="feature-title">Ergonomic & Silent Spaces</h3>
+          <p class="feature-desc">
+            Our study libraries provide sound-dampened reading halls, high-speed fiber internet, continuous power backup, and assigned seating for deep concentration.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box"><i class="fas fa-receipt"></i></div>
+          <h3 class="feature-title">Zero Hidden Commissions</h3>
+          <p class="feature-desc">
+            Transparent pricing, attendance-linked tuition billing, digital receipts, and no predatory agent commissions. What you see is what you pay.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. How It Works Section -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <span class="section-pill">Simple, Guided Process</span>
+        <h2 class="section-title">How ZYZU'S Works</h2>
+        <p class="section-subtitle">
+          Streamlined, transparent journeys designed for both Home Tutoring and Study Library booking.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <!-- Workflow 1: Home Tutoring -->
+        <div class="workflow-column">
+          <div class="workflow-head">
+            <div class="brand-badge"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">Home Tutor Booking</h3>
+              <span style="font-size: 0.8rem; color: var(--primary);">Student → District Admin → Verified Teacher</span>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Student Submits Request</h4>
+              <p>Specify class, subject, location, address, budget, and learning goals in our streamlined inquiry form.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>District Admin Assigns Teacher</h4>
+              <p>Your District Admin reviews your needs, identifies the best-suited verified educator in your area, and makes the formal allotment.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Personalized 1-on-1 Tuition</h4>
+              <p>Classes commence with real-time digital attendance tracking, session logs, and verified fee receipts.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow 2: Self-Study Library Booking -->
+        <div class="workflow-column">
+          <div class="workflow-head">
+            <div class="brand-badge"><i class="fas fa-book-reader"></i></div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">Study Library Booking</h3>
+              <span style="font-size: 0.8rem; color: var(--primary);">Instant Shift & Desk Reservation</span>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Explore Study Centers</h4>
+              <p>Filter by district, locality, pricing, and amenities like AC, Wi-Fi, and 24/7 power backup.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Select Shift & Desk Matrix</h4>
+              <p>Choose Morning, Evening, Full-Day, or 24/7 shifts and pick your exact preferred desk from the live seat grid.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Instant Pass & Check-In</h4>
+              <p>Receive your digital pass immediately. Library owners log daily attendance with zero friction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Verified Teachers Showcase -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <span class="section-pill">Top Faculty</span>
+        <h2 class="section-title">Meet Our Verified Teachers</h2>
+        <p class="section-subtitle">Exemplary subject specialists vetted by District Administration.</p>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="teacher-preview-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #e65c2e, #ff8359); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff;">RK</div>
+              <div>
+                <h4 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem;">Rakesh Kumar Sharma</h4>
+                <span class="badge-active" style="padding: 0.15rem 0.5rem; font-size: 0.725rem;"><i class="fas fa-check-circle"></i> Admin Verified</span>
+              </div>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">M.Sc. Physics (BHU) • 8+ Years Exp.<br>Specialized in Class 11-12 Board & NEET Prep.</p>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <span style="color: var(--text-dim);"><i class="fas fa-map-marker-alt"></i> Saidpur, Ghazipur</span>
+              <strong style="color: #fff;">₹600 / hr</strong>
+            </div>
+          </div>
+          <a href="/tutors" class="btn-primary" style="font-size: 0.85rem; padding: 0.65rem 1rem;">
+            <span>View Profile & Request</span> <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="teacher-preview-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #60a5fa); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff;">PT</div>
+              <div>
+                <h4 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem;">Pooja Tiwari</h4>
+                <span class="badge-active" style="padding: 0.15rem 0.5rem; font-size: 0.725rem;"><i class="fas fa-check-circle"></i> Admin Verified</span>
+              </div>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">M.Sc. Mathematics • 6+ Years Exp.<br>Specialist in Class 9-10 ICSE & CBSE Boards.</p>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <span style="color: var(--text-dim);"><i class="fas fa-map-marker-alt"></i> Lanka, Varanasi</span>
+              <strong style="color: #fff;">₹500 / hr</strong>
+            </div>
+          </div>
+          <a href="/tutors" class="btn-primary" style="font-size: 0.85rem; padding: 0.65rem 1rem;">
+            <span>View Profile & Request</span> <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="teacher-preview-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #34d399); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff;">AM</div>
+              <div>
+                <h4 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem;">Amit Mishra</h4>
+                <span class="badge-active" style="padding: 0.15rem 0.5rem; font-size: 0.725rem;"><i class="fas fa-check-circle"></i> Admin Verified</span>
+              </div>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">B.Tech CSE (AKTU) • 5+ Years Exp.<br>Computer Science, Python & Coding for Kids.</p>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <span style="color: var(--text-dim);"><i class="fas fa-map-marker-alt"></i> Ghazipur Sadar</span>
+              <strong style="color: #fff;">₹450 / hr</strong>
+            </div>
+          </div>
+          <a href="/tutors" class="btn-primary" style="font-size: 0.85rem; padding: 0.65rem 1rem;">
+            <span>View Profile & Request</span> <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="teacher-preview-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #fbbf24); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff;">SV</div>
+              <div>
+                <h4 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem;">Sunita Verma</h4>
+                <span class="badge-active" style="padding: 0.15rem 0.5rem; font-size: 0.725rem;"><i class="fas fa-check-circle"></i> Admin Verified</span>
+              </div>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">M.A. English (Gold Medalist) • 10+ Years.<br>Spoken English, Creative Writing & Literature.</p>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <span style="color: var(--text-dim);"><i class="fas fa-map-marker-alt"></i> Orderly Bazar, VNS</span>
+              <strong style="color: #fff;">₹550 / hr</strong>
+            </div>
+          </div>
+          <a href="/tutors" class="btn-primary" style="font-size: 0.85rem; padding: 0.65rem 1rem;">
+            <span>View Profile & Request</span> <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Featured Libraries Showcase -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <span class="section-pill">Quiet Zones</span>
+        <h2 class="section-title">Featured Self-Study Libraries</h2>
+        <p class="section-subtitle">Comfortable, temperature-controlled spaces built for serious aspirants.</p>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="library-preview-card">
+          <div>
+            <div style="position: relative; border-radius: var(--radius-md); overflow: hidden; height: 160px; background: #1a2238; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-book-reader" style="font-size: 3rem; color: var(--primary); opacity: 0.6;"></i>
+              <span class="badge-active" style="position: absolute; top: 10px; right: 10px;">12 Seats Available</span>
+            </div>
+            <h4 style="color: #fff; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem;">Sankalp Self-Study Center</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Main Market, Saidpur, Ghazipur</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-snowflake"></i> AC</span>
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-wifi"></i> 300 Mbps</span>
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-bolt"></i> 100% DG</span>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--bg-card-border); padding-top: 1rem;">
+            <div><span style="font-size: 0.75rem; color: var(--text-dim);">Starts from</span><div style="font-weight: 700; color: #fff;">₹699 / mo</div></div>
+            <a href="/libraries" class="btn-primary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem;">Reserve Desk</a>
+          </div>
+        </div>
+
+        <div class="library-preview-card">
+          <div>
+            <div style="position: relative; border-radius: var(--radius-md); overflow: hidden; height: 160px; background: #1a2238; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-laptop-code" style="font-size: 3rem; color: #3b82f6; opacity: 0.6;"></i>
+              <span class="badge-active" style="position: absolute; top: 10px; right: 10px;">8 Seats Available</span>
+            </div>
+            <h4 style="color: #fff; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem;">Kashi Digital Reading Lounge</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Near BHU Gate, Lanka, Varanasi</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-snowflake"></i> Central AC</span>
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-wifi"></i> Dual ISP</span>
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-lock"></i> Lockers</span>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--bg-card-border); padding-top: 1rem;">
+            <div><span style="font-size: 0.75rem; color: var(--text-dim);">Starts from</span><div style="font-weight: 700; color: #fff;">₹899 / mo</div></div>
+            <a href="/libraries" class="btn-primary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem;">Reserve Desk</a>
+          </div>
+        </div>
+
+        <div class="library-preview-card">
+          <div>
+            <div style="position: relative; border-radius: var(--radius-md); overflow: hidden; height: 160px; background: #1a2238; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-university" style="font-size: 3rem; color: #10b981; opacity: 0.6;"></i>
+              <span class="badge-active" style="position: absolute; top: 10px; right: 10px;">19 Seats Available</span>
+            </div>
+            <h4 style="color: #fff; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem;">Adarsh Study Point</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> College Road, Ghazipur Sadar</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-snowflake"></i> AC</span>
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-tint"></i> RO Water</span>
+              <span style="background: rgba(255,255,255,0.06); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;"><i class="fas fa-chair"></i> Ergonomic</span>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--bg-card-border); padding-top: 1rem;">
+            <div><span style="font-size: 0.75rem; color: var(--text-dim);">Starts from</span><div style="font-weight: 700; color: #fff;">₹599 / mo</div></div>
+            <a href="/libraries" class="btn-primary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem;">Reserve Desk</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Facilities Showcase -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <span class="section-pill">Amenities Benchmark</span>
+        <h2 class="section-title">Standardized Facilities in Every Library</h2>
+        <p class="section-subtitle">Every ZYZU'S affiliated library must pass our physical audit checklist.</p>
+      </div>
+
+      <div class="facilities-strip">
+        <div class="facility-pill-card">
+          <i class="fas fa-snowflake"></i>
+          <span>Air Conditioned Silent Halls</span>
+        </div>
+        <div class="facility-pill-card">
+          <i class="fas fa-wifi"></i>
+          <span>High-Speed Gigabit Wi-Fi</span>
+        </div>
+        <div class="facility-pill-card">
+          <i class="fas fa-bolt"></i>
+          <span>100% Inverter & DG Backup</span>
+        </div>
+        <div class="facility-pill-card">
+          <i class="fas fa-tint"></i>
+          <span>Mineral RO Drinking Water</span>
+        </div>
+        <div class="facility-pill-card">
+          <i class="fas fa-chair"></i>
+          <span>Ergonomic Orthopedic Chairs</span>
+        </div>
+        <div class="facility-pill-card">
+          <i class="fas fa-video"></i>
+          <span>24/7 CCTV Surveillance</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Testimonials Section -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <span class="section-pill">Verified Reviews</span>
+        <h2 class="section-title">Loved by Students, Parents & Educators</h2>
+        <p class="section-subtitle">Hear directly from the ZYZU'S community in Uttar Pradesh.</p>
+      </div>
+
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testi-quote">"The Ghazipur District Admin matched me with Mr. Sharma for Class 12 Physics. He cleared all my doubts, and my board marks jumped from 70% to 94%!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">AS</div>
+            <div>
+              <div class="testi-name">Aarav Singh</div>
+              <div class="testi-role">Student, Saidpur</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testi-quote">"Finding a quiet place to prepare for NEET was impossible at home. Sankalp Study Library gave me an assigned air-conditioned desk with zero distractions."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SP</div>
+            <div>
+              <div class="testi-name">Shreya Patel</div>
+              <div class="testi-role">NEET Aspirant, Varanasi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testi-quote">"ZYZU'S gives verified teachers real respect. The District Admin handles matching, attendance is logged digitally, and fees are credited on time every month."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">VK</div>
+            <div>
+              <div class="testi-name">Vikram Kushwaha</div>
+              <div class="testi-role">Senior Mathematics Teacher</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. High-Impact CTA Banner -->
+    <section class="section-wrap">
+      <div class="cta-banner">
+        <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: #fff; margin-bottom: 1rem;">
+          Ready to Elevate Your Academic Journey?
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto 2.5rem;">
+          Join thousands of learners, teachers, and study space owners across Ghazipur, Saidpur, Varanasi and Uttar Pradesh.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="/register/student" class="btn-primary" style="padding: 0.9rem 2rem; font-size: 1rem;">
+            <i class="fas fa-user-graduate"></i> Register as Student
+          </a>
+          <a href="/become-teacher" class="btn-secondary" style="padding: 0.9rem 2rem; font-size: 1rem;">
+            <i class="fas fa-chalkboard-teacher"></i> Teach with Us
+          </a>
+          <a href="/list-library" class="btn-secondary" style="padding: 0.9rem 2rem; font-size: 1rem;">
+            <i class="fas fa-building"></i> List Study Space
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. Comprehensive Master Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Governance -->
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; margin-bottom: 1rem;">
+          <img src="/assets/branding/zyzus-logo-64.png" alt="ZYZU'S" style="width: 2.25rem; height: 2.25rem; border-radius: 0.625rem; box-shadow: 0 4px 12px rgba(37,99,235,0.3); border: 1px solid rgba(96,165,250,0.3);">
+          <div style="display: flex; flex-direction: column; line-height: 1.1;">
+            <span style="font-size: 1.15rem; font-weight: 900; color: #ffffff; letter-spacing: -0.02em;">ZYZU'S</span>
+            <span style="font-size: 0.65rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em;">Tutors & Libraries</span>
+          </div>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+          ZYZU'S is Uttar Pradesh's premier education utility network integrating district-verified 1-on-1 home tuition and modern self-study libraries.
+        </p>
+        <div style="font-size: 0.8rem; color: var(--text-dim);">
+          <i class="fas fa-shield-alt" style="color: var(--primary);"></i> One Active Admin Per District Protocol
+        </div>
+      </div>
+
+      <!-- Col 2: Services & Search -->
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore Services</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors"><i class="fas fa-chevron-right"></i> Find Home Tutors</a></li>
+          <li><a href="/libraries"><i class="fas fa-chevron-right"></i> Find Study Libraries</a></li>
+          <li><a href="/become-teacher"><i class="fas fa-chevron-right"></i> Become a Teacher</a></li>
+          <li><a href="/list-library"><i class="fas fa-chevron-right"></i> List Your Library</a></li>
+          <li><a href="/pricing"><i class="fas fa-chevron-right"></i> Pricing & Packages</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Company & Information -->
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform Information</h4>
+        <ul class="footer-links">
+          <li><a href="/about"><i class="fas fa-chevron-right"></i> About ZYZU'S</a></li>
+          <li><a href="/how-it-works"><i class="fas fa-chevron-right"></i> How It Works</a></li>
+          <li><a href="/faq"><i class="fas fa-chevron-right"></i> Frequently Asked Questions</a></li>
+          <li><a href="/contact"><i class="fas fa-chevron-right"></i> Contact & Grievances</a></li>
+          <li><a href="/login"><i class="fas fa-chevron-right"></i> Unified Login</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Role Dashboards -->
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portal Gateways</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student"><i class="fas fa-user-graduate"></i> Student Portal</a></li>
+          <li><a href="/dashboard/teacher"><i class="fas fa-chalkboard-teacher"></i> Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner"><i class="fas fa-book-reader"></i> Library Owner Console</a></li>
+          <li><a href="/dashboard/district-admin"><i class="fas fa-landmark"></i> District Admin Console</a></li>
+          <li><a href="/dashboard/super-admin"><i class="fas fa-crown"></i> Super Admin Command</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: District Helplines -->
+      <div class="footer-col">
+        <h4><i class="fas fa-headset" style="color: var(--primary);"></i> District Helplines</h4>
+        <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;">
+          <p><strong style="color: #fff;">Ghazipur HQ:</strong> +91 548 222 4001</p>
+          <p><strong style="color: #fff;">Saidpur Office:</strong> +91 548 222 4002</p>
+          <p><strong style="color: #fff;">Varanasi Center:</strong> +91 542 233 4003</p>
+          <p><strong style="color: #fff;">Email:</strong> support@focuspoint.internal</p>
+          <p><strong style="color: #fff;">Hours:</strong> 8:00 AM - 8:00 PM IST</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S — Tutors & Libraries. All rights reserved.</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="/faq" style="color: var(--text-dim); text-decoration: none;">Security Guidelines</a>
+        <a href="/contact" style="color: var(--text-dim); text-decoration: none;">District Governance Policy</a>
+        <a href="/pricing" style="color: var(--text-dim); text-decoration: none;">Fee Protection</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/auth-common.js"></script>
+  <script>
+    function switchSearchTab(tab) {
+      const tutorBtn = document.getElementById('tab-btn-tutor');
+      const libBtn = document.getElementById('tab-btn-library');
+      const tutorBox = document.getElementById('tutor-search-box');
+      const libBox = document.getElementById('library-search-box');
+
+      if (tab === 'tutor') {
+        tutorBtn.classList.add('active');
+        libBtn.classList.remove('active');
+        tutorBox.style.display = 'block';
+        libBox.style.display = 'none';
+      } else {
+        libBtn.classList.add('active');
+        tutorBtn.classList.remove('active');
+        libBox.style.display = 'block';
+        tutorBox.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

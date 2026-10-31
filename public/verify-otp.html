@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify OTP | ZYZU'S — Tutors & Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/login" class="nav-link btn-outline">Back to Login</a>
+    </nav>
+  </header>
+
+  <div class="auth-container">
+    <div class="auth-card" style="text-align: center;">
+      <div class="card-accent-bar"></div>
+
+      <div class="card-header">
+        <div style="width: 56px; height: 56px; background: rgba(230, 92, 46, 0.15); border: 1px solid rgba(230, 92, 46, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--primary); font-size: 1.5rem;">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h2 class="card-title">Enter Verification Code</h2>
+        <p class="card-subtitle" id="otp-subtitle">We sent a 6-digit one-time code to your registered identifier</p>
+      </div>
+
+      <div id="alert-box" class="alert-box alert-danger" style="display: none; text-align: left;">
+        <i class="fas fa-exclamation-circle"></i>
+        <div id="alert-text"></div>
+      </div>
+
+      <div class="form-group" style="text-align: left; margin-bottom: 1.5rem;">
+        <label class="form-label" for="identifier">Email / Mobile</label>
+        <div class="input-wrapper">
+          <i class="fas fa-user input-icon"></i>
+          <input type="text" id="identifier" class="form-input" placeholder="Identifier" required>
+        </div>
+      </div>
+
+      <div class="otp-inputs">
+        <input type="text" maxlength="1" class="otp-box" inputmode="numeric" autofocus>
+        <input type="text" maxlength="1" class="otp-box" inputmode="numeric">
+        <input type="text" maxlength="1" class="otp-box" inputmode="numeric">
+        <input type="text" maxlength="1" class="otp-box" inputmode="numeric">
+        <input type="text" maxlength="1" class="otp-box" inputmode="numeric">
+        <input type="text" maxlength="1" class="otp-box" inputmode="numeric">
+      </div>
+
+      <button type="button" id="btn-verify" class="btn-primary" style="margin-top: 1.5rem;">
+        <div class="spinner"></div>
+        <span class="btn-text">Verify & Authenticate</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+
+      <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-dim);">
+        Didn't receive the code? <button type="button" id="btn-resend" style="background: none; border: none; color: var(--primary); cursor: pointer; font-weight: 600;">Resend OTP</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/auth-common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const boxes = document.querySelectorAll('.otp-box');
+      const idInput = document.getElementById('identifier');
+      const btnVerify = document.getElementById('btn-verify');
+      const btnResend = document.getElementById('btn-resend');
+      const alertBox = document.getElementById('alert-box');
+      const alertText = document.getElementById('alert-text');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlId = urlParams.get('identifier');
+      if (urlId) idInput.value = urlId;
+
+      // Auto-advance OTP boxes and handle paste
+      boxes.forEach((box, idx) => {
+        box.addEventListener('input', (e) => {
+          if (e.target.value.length === 1 && idx < boxes.length - 1) {
+            boxes[idx + 1].focus();
+          }
+        });
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && idx > 0) {
+            boxes[idx - 1].focus();
+          }
+        });
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').trim();
+          if (pasted.length === 6 && /^\d+$/.test(pasted)) {
+            boxes.forEach((b, i) => b.value = pasted[i]);
+            boxes[5].focus();
+          }
+        });
+      });
+
+      btnResend.addEventListener('click', async () => {
+        const identifier = idInput.value.trim();
+        if (!identifier) {
+          alertText.textContent = 'Please enter your email or mobile number first.';
+          alertBox.style.display = 'flex';
+          return;
+        }
+
+        btnResend.disabled = true;
+        btnResend.textContent = 'Resending...';
+
+        try {
+          const res = await fetch('/api/auth/request-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier, purpose: 'LOGIN' })
+          });
+          const data = await res.json();
+          if (data.success) {
+            showToast('New OTP dispatched!', 'success');
+            if (data.devOtp) {
+              boxes.forEach((box, i) => {
+                box.value = data.devOtp[i] || '';
+              });
+              showToast(`[Dev Mode] Auto-filled OTP: ${data.devOtp}`, 'info', 5000);
+            }
+            setTimeout(() => {
+              btnResend.disabled = false;
+              btnResend.textContent = 'Resend OTP';
+            }, 30000);
+          } else {
+            alertText.textContent = data.message || 'Failed to resend OTP.';
+            alertBox.style.display = 'flex';
+            btnResend.disabled = false;
+            btnResend.textContent = 'Resend OTP';
+          }
+        } catch (err) {
+          btnResend.disabled = false;
+          btnResend.textContent = 'Resend OTP';
+          alertText.textContent = 'Network error while resending OTP.';
+          alertBox.style.display = 'flex';
+        }
+      });
+
+      btnVerify.addEventListener('click', async () => {
+        const identifier = idInput.value.trim();
+        let code = '';
+        boxes.forEach(b => code += b.value);
+
+        if (!identifier || code.length !== 6) {
+          alertText.textContent = 'Please enter identifier and all 6 digits of the OTP.';
+          alertBox.style.display = 'flex';
+          return;
+        }
+
+        btnVerify.classList.add('loading');
+        btnVerify.disabled = true;
+
+        try {
+          const res = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier, otp_code: code, purpose: 'LOGIN' })
+          });
+          const data = await res.json();
+          btnVerify.classList.remove('loading');
+          btnVerify.disabled = false;
+
+          if (data.success) {
+            showToast('Authenticated successfully! Redirecting...', 'success');
+            if (data.token) localStorage.setItem('fp_token', data.token);
+            if (data.user) localStorage.setItem('fp_user', JSON.stringify(data.user));
+            setTimeout(() => {
+              window.location.href = data.redirectUrl || '/';
+            }, 600);
+          } else {
+            alertText.textContent = data.message || 'OTP verification failed.';
+            alertBox.style.display = 'flex';
+          }
+        } catch (err) {
+          btnVerify.classList.remove('loading');
+          btnVerify.disabled = false;
+          alertText.textContent = 'Network error. Please try again.';
+          alertBox.style.display = 'flex';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

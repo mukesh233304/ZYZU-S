@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>District Admin Console | ZYZU'S — Tutors & Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="/" class="brand-logo" style="margin-bottom: 0;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+      </div>
+
+      <div class="dash-sidebar-role">
+        <div class="role-avatar-chip" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">DA</div>
+        <div>
+          <div class="role-info-title" id="da-district-name">Ghazipur District</div>
+          <div class="role-info-sub">District Administrator</div>
+        </div>
+      </div>
+
+      <nav class="dash-sidebar-nav">
+        <div class="nav-section-label">District Control</div>
+        <a class="sidebar-nav-item active" data-tab="overview">
+          <i class="fas fa-chart-pie"></i> District Overview
+        </a>
+        <a class="sidebar-nav-item" data-tab="students">
+          <i class="fas fa-user-graduate"></i> Enrolled Students
+        </a>
+        <a class="sidebar-nav-item" data-tab="teachers">
+          <i class="fas fa-chalkboard-teacher"></i> Approved Teachers
+        </a>
+        <a class="sidebar-nav-item" data-tab="pending-teachers">
+          <i class="fas fa-user-clock"></i> Pending Teachers
+          <span class="sidebar-nav-badge" id="badge-pending-teachers" style="display:none;">0</span>
+        </a>
+        <a class="sidebar-nav-item" data-tab="libraries">
+          <i class="fas fa-book-reader"></i> Study Libraries
+        </a>
+        <a class="sidebar-nav-item" data-tab="pending-libraries">
+          <i class="fas fa-hourglass-start"></i> Pending Libraries
+          <span class="sidebar-nav-badge" id="badge-pending-libraries" style="display:none;">0</span>
+        </a>
+
+        <div class="nav-section-label">Operations & Matching</div>
+        <a class="sidebar-nav-item" data-tab="requests">
+          <i class="fas fa-hands-helping"></i> Tutor Requests
+        </a>
+        <a class="sidebar-nav-item" data-tab="assignments">
+          <i class="fas fa-link"></i> Active Assignments
+        </a>
+        <a class="sidebar-nav-item" data-tab="revenue">
+          <i class="fas fa-rupee-sign"></i> District Revenue
+        </a>
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-snippet-avatar"><i class="fas fa-user-shield"></i></div>
+          <div class="user-snippet-info">
+            <div class="user-snippet-name" id="footer-user-name">District Admin</div>
+            <div class="user-snippet-email" id="footer-user-email">...</div>
+          </div>
+        </div>
+        <button class="btn-icon-logout" title="Sign Out">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="drawer-backdrop"></div>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle-btn" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="topbar-title">District Administration</h1>
+            <div class="topbar-subtitle">Strictly scoped governance console for <strong id="topbar-district-title">Ghazipur</strong></div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="status-badge ACTIVE"><i class="fas fa-shield-alt"></i> DISTRICT GOVERNANCE</span>
+          <div class="topbar-district-chip">
+            <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+            <span>Jurisdiction: <strong id="header-jurisdiction">-</strong></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Area -->
+      <div class="dash-body">
+        
+        <!-- 1. TAB: OVERVIEW -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="stat-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="metric-card" style="--card-accent: #3b82f6;">
+              <div class="metric-icon-box"><i class="fas fa-user-graduate"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-students">-</span>
+                <span class="metric-label">Registered Students</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #10b981;">
+              <div class="metric-icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-teachers">-</span>
+                <span class="metric-label">Approved Teachers</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #f59e0b;">
+              <div class="metric-icon-box"><i class="fas fa-user-clock"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-pending-teachers">-</span>
+                <span class="metric-label">Pending Teachers</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #8b5cf6;">
+              <div class="metric-icon-box"><i class="fas fa-book-reader"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-libraries">-</span>
+                <span class="metric-label">Approved Libraries</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #ec4899;">
+              <div class="metric-icon-box"><i class="fas fa-hourglass-start"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-pending-libs">-</span>
+                <span class="metric-label">Pending Libraries</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #e65c2e;">
+              <div class="metric-icon-box"><i class="fas fa-hands-helping"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-requests">-</span>
+                <span class="metric-label">Tutor Requests</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #14b8a6;">
+              <div class="metric-icon-box"><i class="fas fa-link"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-assignments">-</span>
+                <span class="metric-label">Active Assignments</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #eab308;">
+              <div class="metric-icon-box"><i class="fas fa-rupee-sign"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="stat-da-revenue">-</span>
+                <span class="metric-label">District Revenue</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fast Action Queues -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem;">
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-user-check"></i> Pending Teacher Applications</h2>
+                <a href="#" onclick="DashCommon.switchTab('pending-teachers')" style="font-size: 0.8rem; color: var(--primary);">View Queue</a>
+              </div>
+              <div id="overview-pending-teachers-list">
+                <div class="skeleton skeleton-text"></div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title"><i class="fas fa-store"></i> Pending Library Verifications</h2>
+                <a href="#" onclick="DashCommon.switchTab('pending-libraries')" style="font-size: 0.8rem; color: var(--primary);">View Queue</a>
+              </div>
+              <div id="overview-pending-libs-list">
+                <div class="skeleton skeleton-text"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. TAB: STUDENTS -->
+        <section class="tab-pane" id="tab-students">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-user-graduate"></i> Enrolled Students in District</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>City / Area</th>
+                    <th>School & Standard</th>
+                    <th>Target Goals</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="da-students-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading students...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. TAB: TEACHERS -->
+        <section class="tab-pane" id="tab-teachers">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-chalkboard-teacher"></i> Verified & Approved Teachers</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Teacher Name</th>
+                    <th>Qualification</th>
+                    <th>Exp</th>
+                    <th>Subjects</th>
+                    <th>Mode</th>
+                    <th>Fee</th>
+                    <th>Visibility</th>
+                  </tr>
+                </thead>
+                <tbody id="da-teachers-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading teachers...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TAB: PENDING TEACHERS -->
+        <section class="tab-pane" id="tab-pending-teachers">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-user-clock"></i> Pending Teacher Approval Queue</h2>
+              <div style="font-size: 0.85rem; color: var(--warning);"><i class="fas fa-shield-alt"></i> Verification Required</div>
+            </div>
+            <div id="da-pending-teachers-container">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. TAB: LIBRARIES -->
+        <section class="tab-pane" id="tab-libraries">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-book-reader"></i> Active Study Libraries</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Library Name</th>
+                    <th>Owner Contact</th>
+                    <th>Address</th>
+                    <th>Total Desks</th>
+                    <th>Hours</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="da-libraries-table">
+                  <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading libraries...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. TAB: PENDING LIBRARIES -->
+        <section class="tab-pane" id="tab-pending-libraries">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-hourglass-start"></i> Pending Library Approvals</h2>
+            </div>
+            <div id="da-pending-libraries-container">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. TAB: TUTOR REQUESTS -->
+        <section class="tab-pane" id="tab-requests">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-hands-helping"></i> Student Inquiries & Matching Requests</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Contact</th>
+                    <th>Type</th>
+                    <th>Target Teacher/Hall</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="da-requests-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading requests...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. TAB: ACTIVE ASSIGNMENTS -->
+        <section class="tab-pane" id="tab-assignments">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-link"></i> Active Teacher-Student Pairings</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Teacher Name</th>
+                    <th>Teacher Mobile</th>
+                    <th>Student Name</th>
+                    <th>Student Mobile</th>
+                    <th>Subject</th>
+                    <th>Monthly Fee</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="da-assignments-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading assignments...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. TAB: REVENUE -->
+        <section class="tab-pane" id="tab-revenue">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-rupee-sign"></i> District Revenue & Volume Ledger</h2>
+              <div id="da-revenue-total-pill" style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹0 / month</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+              <div style="background: rgba(13,20,36,0.6); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid #e65c2e;">
+                <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">HOME TUTORING VOLUME</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-top: 0.25rem;" id="da-rev-tutor">₹0</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">Total monthly tuition fees generated in district</div>
+              </div>
+              <div style="background: rgba(13,20,36,0.6); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid #3b82f6;">
+                <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">LIBRARY SUBSCRIPTION VOLUME</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-top: 0.25rem;" id="da-rev-library">₹0</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">Total monthly library desk fees generated in district</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Review Teacher Modal -->
+  <div class="modal-overlay" id="modal-review-teacher">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-user-check" style="color: var(--primary);"></i> Review Teacher Credentials</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-review-teacher')">&times;</button>
+      </div>
+      <form id="review-teacher-form">
+        <input type="hidden" id="rev-teacher-id">
+        <div class="modal-body">
+          <div id="rev-teacher-summary" style="margin-bottom: 1.25rem;"></div>
+          <div class="form-group">
+            <label>Administrator Review Notes / Feedback</label>
+            <textarea id="rev-teacher-notes" rows="3" required placeholder="State verification details (e.g. In-person credentials verified, degree attested)..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="processTeacherAction('REJECT')" style="color: var(--danger); border-color: rgba(239,68,68,0.3);">
+            <i class="fas fa-times-circle"></i> Reject Application
+          </button>
+          <button type="button" class="btn-primary" onclick="processTeacherAction('APPROVE')">
+            <i class="fas fa-check-circle"></i> Approve & Make Public
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Review Library Modal -->
+  <div class="modal-overlay" id="modal-review-library">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-store" style="color: var(--primary);"></i> Review Library Application</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-review-library')">&times;</button>
+      </div>
+      <form id="review-library-form">
+        <input type="hidden" id="rev-library-id">
+        <div class="modal-body">
+          <div id="rev-library-summary" style="margin-bottom: 1.25rem;"></div>
+          <div class="form-group">
+            <label>Administrator Inspection Notes</label>
+            <textarea id="rev-library-notes" rows="3" required placeholder="State inspection details (e.g. Physical premises inspected, CCTV/AC verified)..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="processLibraryAction('REJECT')" style="color: var(--danger); border-color: rgba(239,68,68,0.3);">
+            <i class="fas fa-times-circle"></i> Reject Library
+          </button>
+          <button type="button" class="btn-primary" onclick="processLibraryAction('APPROVE')">
+            <i class="fas fa-check-circle"></i> Approve Library
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/js/dashboard-common.js"></script>
+  <script>
+    let pendingTeachersCache = [];
+    let pendingLibsCache = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = DashCommon.requireAuth(['DISTRICT_ADMIN', 'SUPER_ADMIN']);
+      if (!session) return;
+
+      DashCommon.initUI(session.user, 'District Admin');
+      loadOverview();
+      loadStudents();
+      loadTeachers();
+      loadPendingTeachers();
+      loadLibraries();
+      loadPendingLibraries();
+      loadRequests();
+      loadAssignments();
+      loadRevenue();
+    });
+
+    async function loadOverview() {
+      const res = await DashCommon.api('/api/district-admin/dashboard');
+      if (!res.success) return;
+
+      const d = res.district;
+      const ov = res.overview;
+
+      document.getElementById('da-district-name').textContent = `${d.name} District`;
+      document.getElementById('topbar-district-title').textContent = `${d.name} (${d.code})`;
+      document.getElementById('header-jurisdiction').textContent = `${d.name}, ${d.state}`;
+
+      document.getElementById('stat-da-students').textContent = ov.studentsCount;
+      document.getElementById('stat-da-teachers').textContent = ov.teachersCount;
+      document.getElementById('stat-da-pending-teachers').textContent = ov.pendingTeachersCount;
+      document.getElementById('stat-da-libraries').textContent = ov.librariesCount;
+      document.getElementById('stat-da-pending-libs').textContent = ov.pendingLibrariesCount;
+      document.getElementById('stat-da-requests').textContent = ov.tutorRequestsCount;
+      document.getElementById('stat-da-assignments').textContent = ov.activeAssignmentsCount;
+      document.getElementById('stat-da-revenue').textContent = `₹${ov.totalDistrictRevenue}`;
+
+      if (ov.pendingTeachersCount > 0) {
+        const badge = document.getElementById('badge-pending-teachers');
+        badge.textContent = ov.pendingTeachersCount;
+        badge.style.display = 'inline-block';
+      }
+      if (ov.pendingLibrariesCount > 0) {
+        const badge = document.getElementById('badge-pending-libraries');
+        badge.textContent = ov.pendingLibrariesCount;
+        badge.style.display = 'inline-block';
+      }
+    }
+
+    async function loadStudents() {
+      const res = await DashCommon.api('/api/district-admin/students');
+      const tbody = document.getElementById('da-students-table');
+      if (!res.success || !res.students || res.students.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No students registered in district.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.students.map(s => `
+        <tr>
+          <td><strong>${s.full_name}</strong></td>
+          <td style="color: var(--text-muted);">${s.email}</td>
+          <td>${s.mobile}</td>
+          <td>${s.city_area}</td>
+          <td>${s.school_college || '-'} &bull; ${s.grade_class || '-'}</td>
+          <td style="font-size: 0.8rem; color: var(--text-muted); max-width: 250px;">${s.target_goals || '-'}</td>
+          <td><span class="status-badge ${s.account_status}">${s.account_status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadTeachers() {
+      const res = await DashCommon.api('/api/district-admin/teachers');
+      const tbody = document.getElementById('da-teachers-table');
+      if (!res.success || !res.teachers || res.teachers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No approved teachers in district.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.teachers.map(t => `
+        <tr>
+          <td><strong>${t.full_name}</strong></td>
+          <td>${t.qualification}</td>
+          <td>${t.experience_years} yrs</td>
+          <td>${Array.isArray(t.subjects) ? t.subjects.join(', ') : t.subjects}</td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${t.teaching_mode}</span></td>
+          <td style="font-weight: 700;">₹${t.expected_fee}</td>
+          <td><span class="status-badge ${t.is_publicly_visible ? 'ACTIVE' : 'PENDING_APPROVAL'}">${t.is_publicly_visible ? 'Public' : 'Hidden'}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadPendingTeachers() {
+      const res = await DashCommon.api('/api/district-admin/pending-teachers');
+      const container = document.getElementById('da-pending-teachers-container');
+      const ovList = document.getElementById('overview-pending-teachers-list');
+
+      if (!res.success || !res.pendingTeachers || res.pendingTeachers.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-title">No Pending Teachers</div><div class="empty-state-desc">All teacher applications in your district have been reviewed!</div></div>';
+        ovList.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 1rem 0;">No pending applications in queue.</div>';
+        return;
+      }
+
+      pendingTeachersCache = res.pendingTeachers;
+
+      ovList.innerHTML = res.pendingTeachers.slice(0, 3).map(t => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">${t.full_name}</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">${t.qualification} &bull; ${t.experience_years} yrs exp</div>
+          </div>
+          <button class="btn-primary" style="padding: 0.3rem 0.7rem; font-size: 0.75rem;" onclick="openReviewTeacher('${t.id}')">Review</button>
+        </div>
+      `).join('');
+
+      container.innerHTML = res.pendingTeachers.map(t => `
+        <div style="background: rgba(13,20,36,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">${t.full_name}</h3>
+              <span class="status-badge PENDING_APPROVAL">PENDING APPROVAL</span>
+            </div>
+            <div style="color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-top: 0.2rem;">${Array.isArray(t.subjects) ? t.subjects.join(', ') : t.subjects}</div>
+            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.35rem;">
+              <i class="fas fa-graduation-cap"></i> ${t.qualification} &bull; ${t.experience_years} Years Experience
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">
+              <i class="fas fa-map-marker-alt"></i> ${t.address} &bull; <i class="fas fa-phone"></i> ${t.mobile}
+            </div>
+          </div>
+          <div>
+            <button class="btn-primary" onclick="openReviewTeacher('${t.id}')">
+              <i class="fas fa-clipboard-check"></i> Review & Action
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openReviewTeacher(id) {
+      const t = pendingTeachersCache.find(x => x.id === id);
+      if (!t) return;
+
+      document.getElementById('rev-teacher-id').value = id;
+      document.getElementById('rev-teacher-summary').innerHTML = `
+        <div style="background: rgba(255,255,255,0.04); padding: 1rem; border-radius: var(--radius-sm);">
+          <div style="font-size: 1.1rem; font-weight: 700;">${t.full_name}</div>
+          <div style="font-size: 0.85rem; color: var(--primary);">${t.qualification} &bull; ${t.experience_years} Years Experience</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+            Subjects: <strong>${Array.isArray(t.subjects) ? t.subjects.join(', ') : t.subjects}</strong><br>
+            Classes: <strong>${Array.isArray(t.classes) ? t.classes.join(', ') : t.classes}</strong><br>
+            Mode: <strong>${t.teaching_mode}</strong> &bull; Expected Fee: <strong>₹${t.expected_fee}</strong>
+          </div>
+        </div>
+      `;
+      DashCommon.openModal('modal-review-teacher');
+    }
+
+    async function processTeacherAction(action) {
+      const id = document.getElementById('rev-teacher-id').value;
+      const notes = document.getElementById('rev-teacher-notes').value;
+
+      const res = await DashCommon.api(`/api/district-admin/teachers/${id}/action`, {
+        method: 'POST',
+        body: JSON.stringify({ action, admin_notes: notes })
+      });
+
+      if (res.success) {
+        DashCommon.showToast(res.message, 'success');
+        DashCommon.closeModal('modal-review-teacher');
+        loadPendingTeachers();
+        loadTeachers();
+        loadOverview();
+      } else {
+        DashCommon.showToast(res.message || 'Action failed', 'error');
+      }
+    }
+
+    async function loadLibraries() {
+      const res = await DashCommon.api('/api/district-admin/libraries');
+      const tbody = document.getElementById('da-libraries-table');
+      if (!res.success || !res.libraries || res.libraries.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem;">No approved libraries in district.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.libraries.map(l => `
+        <tr>
+          <td><strong>${l.name}</strong></td>
+          <td>${l.owner_name || 'Owner'} (${l.owner_mobile})</td>
+          <td>${l.address}</td>
+          <td><strong>${l.total_seats}</strong> Desks</td>
+          <td>${l.operating_hours}</td>
+          <td><span class="status-badge ${l.status}">${l.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadPendingLibraries() {
+      const res = await DashCommon.api('/api/district-admin/pending-libraries');
+      const container = document.getElementById('da-pending-libraries-container');
+      const ovList = document.getElementById('overview-pending-libs-list');
+
+      if (!res.success || !res.pendingLibraries || res.pendingLibraries.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-title">No Pending Libraries</div><div class="empty-state-desc">All study library applications in district are cleared.</div></div>';
+        ovList.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 1rem 0;">No pending libraries in queue.</div>';
+        return;
+      }
+
+      pendingLibsCache = res.pendingLibraries;
+
+      ovList.innerHTML = res.pendingLibraries.slice(0, 3).map(l => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">${l.name}</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">${l.total_seats} Desks &bull; ${l.address}</div>
+          </div>
+          <button class="btn-primary" style="padding: 0.3rem 0.7rem; font-size: 0.75rem;" onclick="openReviewLibrary(${l.id})">Review</button>
+        </div>
+      `).join('');
+
+      container.innerHTML = res.pendingLibraries.map(l => `
+        <div style="background: rgba(13,20,36,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">${l.name}</h3>
+              <span class="status-badge PENDING_APPROVAL">PENDING APPROVAL</span>
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.35rem;">
+              <i class="fas fa-map-marker-alt"></i> ${l.address} &bull; Capacity: <strong>${l.total_seats}</strong> Desks
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">
+              Owner: <strong>${l.owner_name}</strong> &bull; <i class="fas fa-phone"></i> ${l.owner_mobile}
+            </div>
+          </div>
+          <div>
+            <button class="btn-primary" onclick="openReviewLibrary(${l.id})">
+              <i class="fas fa-clipboard-check"></i> Review & Action
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openReviewLibrary(id) {
+      const l = pendingLibsCache.find(x => x.id === id);
+      if (!l) return;
+
+      document.getElementById('rev-library-id').value = id;
+      document.getElementById('rev-library-summary').innerHTML = `
+        <div style="background: rgba(255,255,255,0.04); padding: 1rem; border-radius: var(--radius-sm);">
+          <div style="font-size: 1.1rem; font-weight: 700;">${l.name}</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">${l.address}</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+            Seats: <strong>${l.total_seats}</strong> &bull; Operating Hours: <strong>${l.operating_hours}</strong><br>
+            Rates: Morning: <strong>₹${l.morning_fee}</strong> | Full Day: <strong>₹${l.fullday_fee}</strong>
+          </div>
+        </div>
+      `;
+      DashCommon.openModal('modal-review-library');
+    }
+
+    async function processLibraryAction(action) {
+      const id = document.getElementById('rev-library-id').value;
+      const notes = document.getElementById('rev-library-notes').value;
+
+      const res = await DashCommon.api(`/api/district-admin/libraries/${id}/action`, {
+        method: 'POST',
+        body: JSON.stringify({ action, admin_notes: notes })
+      });
+
+      if (res.success) {
+        DashCommon.showToast(res.message, 'success');
+        DashCommon.closeModal('modal-review-library');
+        loadPendingLibraries();
+        loadLibraries();
+        loadOverview();
+      } else {
+        DashCommon.showToast(res.message || 'Action failed', 'error');
+      }
+    }
+
+    async function loadRequests() {
+      const res = await DashCommon.api('/api/district-admin/requests');
+      const tbody = document.getElementById('da-requests-table');
+      if (!res.success || !res.requests || res.requests.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No pending inquiries.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.requests.map(r => `
+        <tr>
+          <td>#${r.id}</td>
+          <td><strong>${r.student_name}</strong></td>
+          <td style="color: var(--text-muted);">${r.student_mobile}</td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${r.target_type}</span></td>
+          <td>${r.teacher_name || r.library_name || '-'}</td>
+          <td><span class="status-badge ${r.status}">${r.status}</span></td>
+          <td style="color: var(--text-muted); font-size: 0.8rem;">${new Date(r.created_at).toLocaleDateString()}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadAssignments() {
+      const res = await DashCommon.api('/api/district-admin/assignments');
+      const tbody = document.getElementById('da-assignments-table');
+      if (!res.success || !res.assignments || res.assignments.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No active assignments.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.assignments.map(a => `
+        <tr>
+          <td><strong>${a.teacher_name}</strong></td>
+          <td style="color: var(--text-muted);">${a.teacher_mobile}</td>
+          <td><strong>${a.student_name}</strong></td>
+          <td style="color: var(--text-muted);">${a.student_mobile}</td>
+          <td>${a.subject}</td>
+          <td style="font-weight: 700;">₹${a.monthly_fee}</td>
+          <td><span class="status-badge ${a.status}">${a.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadRevenue() {
+      const res = await DashCommon.api('/api/district-admin/revenue');
+      if (!res.success) return;
+
+      document.getElementById('da-revenue-total-pill').textContent = `₹${res.revenue.totalMonthly} / month`;
+      document.getElementById('da-rev-tutor').textContent = `₹${res.revenue.monthlyTutorVolume}`;
+      document.getElementById('da-rev-library').textContent = `₹${res.revenue.monthlyLibraryVolume}`;
+    }
+  </script>
+</body>
+</html>

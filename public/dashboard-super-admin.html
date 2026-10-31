@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Admin Global Console | ZYZU'S — Tutors & Libraries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <a href="/" class="brand-logo" style="margin-bottom: 0;">
+          <div class="brand-badge" style="background: #e65c2e;"><i class="fas fa-crown"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+      </div>
+
+      <div class="dash-sidebar-role">
+        <div class="role-avatar-chip" style="background: linear-gradient(135deg, #e65c2e 0%, #b91c1c 100%);">SA</div>
+        <div>
+          <div class="role-info-title">Platform Central</div>
+          <div class="role-info-sub">Super Administrator</div>
+        </div>
+      </div>
+
+      <nav class="dash-sidebar-nav">
+        <div class="nav-section-label">Executive Control</div>
+        <a class="sidebar-nav-item active" data-tab="overview">
+          <i class="fas fa-globe"></i> Global Overview
+        </a>
+        <a class="sidebar-nav-item" data-tab="districts">
+          <i class="fas fa-map-marked-alt"></i> Districts & Admins
+        </a>
+        <a class="sidebar-nav-item" data-tab="teachers">
+          <i class="fas fa-chalkboard-teacher"></i> Global Teachers
+        </a>
+        <a class="sidebar-nav-item" data-tab="libraries">
+          <i class="fas fa-book-reader"></i> Global Libraries
+        </a>
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-snippet-avatar"><i class="fas fa-crown"></i></div>
+          <div class="user-snippet-info">
+            <div class="user-snippet-name">Super Admin</div>
+            <div class="user-snippet-email" id="footer-user-email">superadmin@focuspoint.internal</div>
+          </div>
+        </div>
+        <button class="btn-icon-logout" title="Sign Out">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="drawer-backdrop"></div>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle-btn" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="topbar-title">Super Admin Master Command</h1>
+            <div class="topbar-subtitle">Platform-wide governance across all districts & operational verticals</div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="status-badge ACTIVE"><i class="fas fa-crown"></i> SUPER ADMIN</span>
+          <div class="topbar-district-chip">
+            <i class="fas fa-globe-asia" style="color: var(--primary);"></i>
+            <span>Jurisdiction: <strong>Platform Global</strong></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Area -->
+      <div class="dash-body">
+        
+        <!-- 1. TAB: OVERVIEW -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="stat-grid" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));">
+            <div class="metric-card" style="--card-accent: #3b82f6;">
+              <div class="metric-icon-box"><i class="fas fa-map-marked-alt"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-districts">-</span>
+                <span class="metric-label">Active Districts</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #10b981;">
+              <div class="metric-icon-box"><i class="fas fa-user-graduate"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-students">-</span>
+                <span class="metric-label">Total Students</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #e65c2e;">
+              <div class="metric-icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-teachers">-</span>
+                <span class="metric-label">Teachers (Active / Pend)</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #8b5cf6;">
+              <div class="metric-icon-box"><i class="fas fa-book-reader"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-libraries">-</span>
+                <span class="metric-label">Libraries (Active / Pend)</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #ec4899;">
+              <div class="metric-icon-box"><i class="fas fa-user-tie"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-owners">-</span>
+                <span class="metric-label">Library Owners</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #14b8a6;">
+              <div class="metric-icon-box"><i class="fas fa-hands-helping"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-bookings">-</span>
+                <span class="metric-label">Total Booking Requests</span>
+              </div>
+            </div>
+            <div class="metric-card" style="--card-accent: #eab308; grid-column: span 2;">
+              <div class="metric-icon-box"><i class="fas fa-rupee-sign"></i></div>
+              <div class="metric-data">
+                <span class="metric-value" id="sa-stat-revenue">-</span>
+                <span class="metric-label">Platform Gross Monthly Volume (Tuition + Library)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cross District Matrix Table -->
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-table"></i> Cross-District Operational Matrix</h2>
+              <button class="btn-primary" style="padding: 0.4rem 0.85rem; font-size: 0.825rem;" onclick="DashCommon.openModal('modal-create-da')">
+                <i class="fas fa-user-plus"></i> Assign District Admin
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>District</th>
+                    <th>Code</th>
+                    <th>Assigned Admin</th>
+                    <th>Students</th>
+                    <th>Active Tutors</th>
+                    <th>Pending Tutors</th>
+                    <th>Active Libraries</th>
+                  </tr>
+                </thead>
+                <tbody id="sa-matrix-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading district matrix...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. TAB: DISTRICTS & ADMINS -->
+        <section class="tab-pane" id="tab-districts">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-map-marked-alt"></i> Platform Districts & Single-Admin Governance</h2>
+              <button class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;" onclick="DashCommon.openModal('modal-create-da')">
+                <i class="fas fa-user-plus"></i> Create / Assign District Admin
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>District Name</th>
+                    <th>State</th>
+                    <th>District Code</th>
+                    <th>Admin Status</th>
+                    <th>Admin Email</th>
+                    <th>Admin Phone</th>
+                  </tr>
+                </thead>
+                <tbody id="sa-districts-table">
+                  <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading districts...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. TAB: GLOBAL TEACHERS -->
+        <section class="tab-pane" id="tab-teachers">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-chalkboard-teacher"></i> Platform Global Teachers Directory</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>District</th>
+                    <th>Qualification</th>
+                    <th>Experience</th>
+                    <th>Subjects</th>
+                    <th>Expected Fee</th>
+                    <th>Account Status</th>
+                  </tr>
+                </thead>
+                <tbody id="sa-teachers-table">
+                  <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading teachers...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. TAB: GLOBAL LIBRARIES -->
+        <section class="tab-pane" id="tab-libraries">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title"><i class="fas fa-book-reader"></i> Platform Global Study Libraries</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Library Name</th>
+                    <th>District</th>
+                    <th>Address</th>
+                    <th>Total Desks</th>
+                    <th>Owner Email</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="sa-libraries-table">
+                  <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading libraries...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Assign District Admin Modal -->
+  <div class="modal-overlay" id="modal-create-da">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-user-shield" style="color: var(--primary);"></i> Assign District Administrator</h3>
+        <button class="modal-close-btn" onclick="DashCommon.closeModal('modal-create-da')">&times;</button>
+      </div>
+      <form id="create-da-form">
+        <div class="modal-body">
+          <div class="alert-box alert-info" style="margin-bottom: 1rem;">
+            <i class="fas fa-info-circle"></i>
+            <div>Strict Constraint: Only ONE active administrator can be assigned per district.</div>
+          </div>
+          <div class="form-group">
+            <label>Select Target District</label>
+            <select id="da-district-select" required>
+              <option value="">Choose district...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Admin Email Address</label>
+            <input type="email" id="da-email" required placeholder="admin.district@focuspoint.internal">
+          </div>
+          <div class="form-group">
+            <label>Mobile Number (10 digits)</label>
+            <input type="tel" id="da-mobile" maxlength="10" required placeholder="9876500000">
+          </div>
+          <div class="form-group">
+            <label>Initial Secure Password</label>
+            <input type="password" id="da-password" required placeholder="Strong password (min 8 chars, 1 upper, 1 special)">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="DashCommon.closeModal('modal-create-da')">Cancel</button>
+          <button type="submit" class="btn-primary">Assign District Admin</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/js/dashboard-common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = DashCommon.requireAuth(['SUPER_ADMIN']);
+      if (!session) return;
+
+      DashCommon.initUI(session.user, 'Super Admin');
+      loadGlobalOverview();
+      loadDistricts();
+      loadTeachers();
+      loadLibraries();
+
+      // Hook DA form
+      document.getElementById('create-da-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          district_id: document.getElementById('da-district-select').value,
+          email: document.getElementById('da-email').value,
+          mobile: document.getElementById('da-mobile').value,
+          password: document.getElementById('da-password').value
+        };
+
+        const res = await DashCommon.api('/api/admin/district-admins', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+        if (res.success) {
+          DashCommon.showToast('District Admin successfully assigned!', 'success');
+          DashCommon.closeModal('modal-create-da');
+          document.getElementById('create-da-form').reset();
+          loadDistricts();
+          loadGlobalOverview();
+        } else {
+          DashCommon.showToast(res.message || 'Failed to create District Admin', 'error');
+        }
+      });
+    });
+
+    async function loadGlobalOverview() {
+      const res = await DashCommon.api('/api/super-admin/dashboard');
+      if (!res.success) return;
+
+      const g = res.globalOverview;
+      document.getElementById('sa-stat-districts').textContent = g.districtsCount;
+      document.getElementById('sa-stat-students').textContent = g.studentsCount;
+      document.getElementById('sa-stat-teachers').textContent = `${g.teachersActive} / ${g.teachersPending}`;
+      document.getElementById('sa-stat-libraries').textContent = `${g.librariesActive} / ${g.librariesPending}`;
+      document.getElementById('sa-stat-owners').textContent = g.libraryOwnersCount;
+      document.getElementById('sa-stat-bookings').textContent = g.bookingsCount;
+      document.getElementById('sa-stat-revenue').textContent = `₹${g.totalPlatformRevenue} / month`;
+
+      const tbody = document.getElementById('sa-matrix-table');
+      tbody.innerHTML = g.districtBreakdown.map(d => `
+        <tr>
+          <td><strong>${d.name}</strong></td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${d.code}</span></td>
+          <td>${d.admin_email ? `<span style="color: var(--success);"><i class="fas fa-check-circle"></i> ${d.admin_email}</span>` : '<span style="color: var(--danger);"><i class="fas fa-exclamation-circle"></i> Unassigned</span>'}</td>
+          <td><strong>${d.student_count}</strong></td>
+          <td><strong style="color: var(--success);">${d.teacher_count}</strong></td>
+          <td><span style="color: ${d.pending_teacher_count > 0 ? 'var(--warning)' : 'var(--text-dim)'};">${d.pending_teacher_count}</span></td>
+          <td><strong>${d.library_count}</strong></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadDistricts() {
+      const res = await DashCommon.api('/api/super-admin/districts');
+      const tbody = document.getElementById('sa-districts-table');
+      const select = document.getElementById('da-district-select');
+      select.innerHTML = '<option value="">Choose district...</option>';
+
+      if (!res.success || !res.districts || res.districts.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem;">No districts configured.</td></tr>';
+        return;
+      }
+
+      res.districts.forEach(d => {
+        select.innerHTML += `<option value="${d.id}">${d.name} (${d.code})</option>`;
+      });
+
+      tbody.innerHTML = res.districts.map(d => `
+        <tr>
+          <td><strong>${d.name}</strong></td>
+          <td>${d.state}</td>
+          <td><span class="topbar-district-chip" style="font-size: 0.75rem;">${d.code}</span></td>
+          <td><span class="status-badge ${d.admin_email ? 'ACTIVE' : 'PENDING_APPROVAL'}">${d.admin_email ? 'Assigned' : 'Vacant'}</span></td>
+          <td style="color: var(--text-muted);">${d.admin_email || '-'}</td>
+          <td style="color: var(--text-muted);">${d.admin_mobile || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadTeachers() {
+      const res = await DashCommon.api('/api/super-admin/teachers');
+      const tbody = document.getElementById('sa-teachers-table');
+      if (!res.success || !res.teachers || res.teachers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 2rem;">No teachers registered globally.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.teachers.map(t => `
+        <tr>
+          <td><strong>${t.full_name}</strong></td>
+          <td>${t.district_name || '-'}</td>
+          <td>${t.qualification}</td>
+          <td>${t.experience_years} yrs</td>
+          <td>${Array.isArray(t.subjects) ? t.subjects.join(', ') : t.subjects}</td>
+          <td style="font-weight: 700;">₹${t.expected_fee}</td>
+          <td><span class="status-badge ${t.account_status}">${t.account_status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadLibraries() {
+      const res = await DashCommon.api('/api/super-admin/libraries');
+      const tbody = document.getElementById('sa-libraries-table');
+      if (!res.success || !res.libraries || res.libraries.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem;">No study libraries registered globally.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = res.libraries.map(l => `
+        <tr>
+          <td><strong>${l.name}</strong></td>
+          <td>${l.district_name || '-'}</td>
+          <td style="color: var(--text-muted);">${l.address}</td>
+          <td><strong>${l.total_seats}</strong> Desks</td>
+          <td style="color: var(--text-muted);">${l.owner_email}</td>
+          <td><span class="status-badge ${l.status}">${l.status}</span></td>
+        </tr>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

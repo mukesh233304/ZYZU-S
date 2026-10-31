@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | ZYZU'S — Tutors & Libraries</title>
+  <meta name="description" content="Unified Login Portal for ZYZU'S Home Tutor & Library Booking Platform">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/register/student" class="nav-link">Student Sign Up</a>
+      <a href="/register/teacher" class="nav-link">Teacher Apply</a>
+      <a href="/register/library-owner" class="nav-link">Library Owner</a>
+    </nav>
+  </header>
+
+  <!-- Login Container -->
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="card-accent-bar"></div>
+
+      <div class="card-header">
+        <h2 class="card-title">Welcome Back</h2>
+        <p class="card-subtitle">Sign in to your ZYZU'S account</p>
+      </div>
+
+      <!-- Alert Box for Error / Status messages -->
+      <div id="login-alert" class="alert-box alert-danger" style="display: none;">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div id="login-alert-text"></div>
+      </div>
+
+      <!-- Unified Login Form -->
+      <form id="login-form" novalidate>
+        <!-- Identifier: Email OR Mobile -->
+        <div class="form-group">
+          <label class="form-label" for="identifier">
+            <span>Email Address or 10-Digit Mobile</span>
+          </label>
+          <div class="input-wrapper">
+            <i class="fas fa-user input-icon"></i>
+            <input
+              type="text"
+              id="identifier"
+              name="identifier"
+              class="form-input"
+              placeholder="e.g. rahul@example.com or 9876543210"
+              autocomplete="username"
+              required
+            >
+          </div>
+          <span class="field-error" id="identifier-error" style="display: none;"></span>
+        </div>
+
+        <!-- Password Mode -->
+        <div id="password-section">
+          <div class="form-group">
+            <div class="form-label">
+              <label for="password">Password</label>
+              <a href="/forgot-password" class="nav-link" style="font-size: 0.775rem; color: var(--primary);">Forgot Password?</a>
+            </div>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-input"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              >
+              <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="password-error" style="display: none;"></span>
+          </div>
+        </div>
+
+        <!-- OTP Mode (Configurable / Optional) -->
+        <div id="otp-section" style="display: none;">
+          <div class="form-group">
+            <label class="form-label" for="otp-code">6-Digit OTP Code</label>
+            <div class="input-wrapper">
+              <i class="fas fa-key input-icon"></i>
+              <input
+                type="text"
+                id="otp-code"
+                name="otp-code"
+                class="form-input"
+                placeholder="Enter 6-digit OTP code"
+                maxlength="6"
+                inputmode="numeric"
+              >
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.35rem;">
+              <span class="field-hint" id="otp-hint">OTP will be sent to your identifier</span>
+              <button type="button" id="btn-request-otp" class="btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">
+                Request OTP
+              </button>
+            </div>
+            <span class="field-error" id="otp-error" style="display: none;"></span>
+          </div>
+        </div>
+
+        <!-- Remember Me & Toggle Login Mode -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me" checked>
+            <span>Keep me logged in</span>
+          </label>
+          <button type="button" id="btn-toggle-mode" style="background: none; border: none; color: var(--primary); font-size: 0.8rem; font-weight: 600; cursor: pointer; text-decoration: underline;">
+            Use OTP Login
+          </button>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-submit-login" class="btn-primary">
+          <div class="spinner"></div>
+          <span class="btn-text">Sign In</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <!-- Registration Links -->
+      <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--bg-card-border); font-size: 0.875rem; color: var(--text-muted);">
+        Don't have an account yet?
+        <div style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="/register/student" style="color: var(--primary); font-weight: 600; text-decoration: none;">Student</a>
+          <span>•</span>
+          <a href="/register/teacher" style="color: var(--primary); font-weight: 600; text-decoration: none;">Teacher</a>
+          <span>•</span>
+          <a href="/register/library-owner" style="color: var(--primary); font-weight: 600; text-decoration: none;">Library Owner</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/auth-common.js"></script>
+  <script>
+    let isOtpMode = false;
+
+    const form = document.getElementById('login-form');
+    const identifierInput = document.getElementById('identifier');
+    const passwordInput = document.getElementById('password');
+    const otpInput = document.getElementById('otp-code');
+    const passwordSection = document.getElementById('password-section');
+    const otpSection = document.getElementById('otp-section');
+    const btnToggleMode = document.getElementById('btn-toggle-mode');
+    const btnRequestOtp = document.getElementById('btn-request-otp');
+    const btnSubmit = document.getElementById('btn-submit-login');
+    const alertBox = document.getElementById('login-alert');
+    const alertText = document.getElementById('login-alert-text');
+
+    // Toggle between Password and OTP modes
+    btnToggleMode.addEventListener('click', () => {
+      isOtpMode = !isOtpMode;
+      if (isOtpMode) {
+        passwordSection.style.display = 'none';
+        otpSection.style.display = 'block';
+        btnToggleMode.textContent = 'Use Password Login';
+        btnSubmit.querySelector('.btn-text').textContent = 'Verify OTP & Sign In';
+      } else {
+        passwordSection.style.display = 'block';
+        otpSection.style.display = 'none';
+        btnToggleMode.textContent = 'Use OTP Login';
+        btnSubmit.querySelector('.btn-text').textContent = 'Sign In';
+      }
+      hideAlert();
+    });
+
+    // Request OTP handler
+    btnRequestOtp.addEventListener('click', async () => {
+      const idVal = identifierInput.value.trim();
+      if (!idVal) {
+        showAlert('Please enter your email or mobile number first.');
+        identifierInput.focus();
+        return;
+      }
+
+      btnRequestOtp.disabled = true;
+      btnRequestOtp.textContent = 'Sending...';
+
+      try {
+        const res = await fetch('/api/auth/request-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier: idVal, purpose: 'LOGIN' })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showToast(data.message, 'success');
+          if (data.devOtp) {
+            otpInput.value = data.devOtp;
+            showToast(`[Dev Mode] Auto-filled OTP: ${data.devOtp}`, 'info', 6000);
+          }
+          btnRequestOtp.textContent = 'OTP Sent!';
+          setTimeout(() => {
+            btnRequestOtp.disabled = false;
+            btnRequestOtp.textContent = 'Resend OTP';
+          }, 30000);
+        } else {
+          showAlert(data.message);
+          btnRequestOtp.disabled = false;
+          btnRequestOtp.textContent = 'Request OTP';
+        }
+      } catch (err) {
+        showAlert('Network error while requesting OTP.');
+        btnRequestOtp.disabled = false;
+        btnRequestOtp.textContent = 'Request OTP';
+      }
+    });
+
+    // Form Submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideAlert();
+
+      const identifier = identifierInput.value.trim();
+      if (!identifier) {
+        showAlert('Please enter your email or mobile number.');
+        identifierInput.focus();
+        return;
+      }
+
+      btnSubmit.classList.add('loading');
+      btnSubmit.disabled = true;
+
+      try {
+        if (!isOtpMode) {
+          // Standard Password Login
+          const password = passwordInput.value;
+          if (!password) {
+            showAlert('Please enter your password.');
+            passwordInput.focus();
+            btnSubmit.classList.remove('loading');
+            btnSubmit.disabled = false;
+            return;
+          }
+
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier, password })
+          });
+
+          const data = await res.json();
+          btnSubmit.classList.remove('loading');
+          btnSubmit.disabled = false;
+
+          if (data.success) {
+            showToast('Login successful! Redirecting...', 'success');
+            if (data.token) localStorage.setItem('fp_token', data.token);
+            if (data.user) localStorage.setItem('fp_user', JSON.stringify(data.user));
+            setTimeout(() => {
+              window.location.href = data.redirectUrl || '/';
+            }, 600);
+          } else {
+            showAlert(data.message || 'Login failed.');
+          }
+        } else {
+          // OTP Login
+          const otp_code = otpInput.value.trim();
+          if (!otp_code) {
+            showAlert('Please enter the 6-digit OTP received.');
+            otpInput.focus();
+            btnSubmit.classList.remove('loading');
+            btnSubmit.disabled = false;
+            return;
+          }
+
+          const res = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier, otp_code, purpose: 'LOGIN' })
+          });
+
+          const data = await res.json();
+          btnSubmit.classList.remove('loading');
+          btnSubmit.disabled = false;
+
+          if (data.success) {
+            showToast('OTP verified successfully! Redirecting...', 'success');
+            if (data.token) localStorage.setItem('fp_token', data.token);
+            if (data.user) localStorage.setItem('fp_user', JSON.stringify(data.user));
+            setTimeout(() => {
+              window.location.href = data.redirectUrl || '/';
+            }, 600);
+          } else {
+            showAlert(data.message || 'OTP verification failed.');
+          }
+        }
+      } catch (err) {
+        btnSubmit.classList.remove('loading');
+        btnSubmit.disabled = false;
+        showAlert('Network or server error. Please try again.');
+      }
+    });
+
+    function showAlert(msg) {
+      alertText.textContent = msg;
+      alertBox.style.display = 'flex';
+    }
+
+    function hideAlert() {
+      alertBox.style.display = 'none';
+      alertText.textContent = '';
+    }
+  </script>
+</body>
+</html>

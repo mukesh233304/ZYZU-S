@@ -1,0 +1,75 @@
+import { Invoice, PaymentTransaction } from '../../types';
+
+export const MOCK_INVOICES: Invoice[] = [
+  {
+    id: 'inv-9001',
+    invoiceNumber: 'FP-INV-2026-089',
+    userId: 'usr-student-aryan',
+    userName: 'Aryan Singh',
+    type: 'TUTOR_FEE',
+    referenceId: 'req-101',
+    description: 'Monthly Home Tuition Fee - Dr. Rajesh Sharma (Physics & Maths)',
+    amount: 3500,
+    paidAmount: 3500,
+    balanceAmount: 0,
+    dueDate: '2026-09-05',
+    paidDate: '2026-09-03',
+    status: 'PAID',
+  },
+  {
+    id: 'inv-9002',
+    invoiceNumber: 'FP-INV-2026-094',
+    userId: 'usr-student-aryan',
+    userName: 'Aryan Singh',
+    type: 'LIBRARY_FEE',
+    referenceId: 'bk-5001',
+    description: 'Monthly Library Seat Subscription - Morning Shift (Seat 03)',
+    amount: 499,
+    paidAmount: 499,
+    balanceAmount: 0,
+    dueDate: '2026-09-01',
+    paidDate: '2026-08-30',
+    status: 'PAID',
+  },
+  {
+    id: 'inv-9003',
+    invoiceNumber: 'FP-INV-2026-102',
+    userId: 'usr-student-aryan',
+    userName: 'Aryan Singh',
+    type: 'TUTOR_FEE',
+    referenceId: 'req-101',
+    description: 'Advance Lab Notes & Mock Test Assessment Series (October)',
+    amount: 500,
+    paidAmount: 0,
+    balanceAmount: 500,
+    dueDate: '2026-09-25',
+    status: 'PENDING',
+  }
+];
+
+export const MOCK_PAYMENTS: PaymentTransaction[] = [
+  {
+    id: 'tx-8001',
+    invoiceId: 'inv-9001',
+    userId: 'usr-student-aryan',
+    userName: 'Aryan Singh',
+    districtId: 'dist-gzp',
+    amount: 3500,
+    paymentMethod: 'UPI',
+    transactionReference: 'UPI/260903/FP9928129',
+    status: 'SUCCESS',
+    timestamp: '2026-09-03T11:20:00Z',
+  },
+  {
+    id: 'tx-8002',
+    invoiceId: 'inv-9002',
+    userId: 'usr-student-aryan',
+    userName: 'Aryan Singh',
+    districtId: 'dist-gzp',
+    amount: 499,
+    paymentMethod: 'UPI',
+    transactionReference: 'UPI/260830/FP3310028',
+    status: 'SUCCESS',
+    timestamp: '2026-08-30T10:35:00Z',
+  }
+];

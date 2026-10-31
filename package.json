@@ -1,0 +1,34 @@
+{
+  "name": "focuspoint-platform",
+  "version": "1.0.0",
+  "description": "FOCUSPOINT Home Tutor + Library Booking Platform - Phase 1 Production Auth & Registration",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "/opt/homebrew/bin/node src/server.js",
+    "dev": "/opt/homebrew/bin/node --watch src/server.js",
+    "seed": "/opt/homebrew/bin/node src/scripts/seed.js",
+    "test": "/opt/homebrew/bin/node ./node_modules/vitest/vitest.mjs run --pool=forks --fileParallelism=false",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:preview": "npm --prefix frontend run preview"
+  },
+  "dependencies": {
+    "@insforge/sdk": "^1.5.2",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0",
+    "vitest": "^3.0.7"
+  }
+}

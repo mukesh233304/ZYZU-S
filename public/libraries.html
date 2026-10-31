@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Discover Study Libraries & Reading Rooms | ZYZU'S Uttar Pradesh</title>
+  <meta name="description" content="Find quiet, air-conditioned study libraries with high-speed Wi-Fi, power backup, and dedicated reading desks in Ghazipur, Saidpur, Varanasi and across UP.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    :root {
+      --primary: #e65c2e;
+      --primary-hover: #d04d22;
+      --bg-base: #0a0f1d;
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, #172138 0%, #0a0f1d 80%);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation */
+    .explore-nav {
+      background: rgba(10, 15, 29, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--bg-card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .explore-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary) 0%, #ff8359 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(230, 92, 46, 0.35);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-item {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: #fff;
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .discovery-hero {
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .discovery-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .discovery-hero h1 span {
+      background: linear-gradient(135deg, var(--primary) 0%, #ff8359 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .discovery-hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    /* Search Bar */
+    .search-bar-wrap {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid rgba(230, 92, 46, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(230, 92, 46, 0.15);
+      border-radius: 16px;
+      padding: 0.6rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-input-group {
+      flex: 1 1 240px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .search-input-group i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .search-input-group input, .search-input-group select {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 0.95rem;
+      width: 100%;
+      outline: none;
+    }
+
+    .search-input-group select option {
+      background: #111827;
+      color: #fff;
+    }
+
+    .search-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--bg-card-border);
+    }
+
+    .btn-search {
+      background: linear-gradient(135deg, var(--primary) 0%, #d04d22 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.85rem 1.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-search:hover {
+      box-shadow: 0 4px 18px rgba(230, 92, 46, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .discovery-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .filter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      position: sticky;
+      top: 85px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--bg-card-border);
+    }
+
+    .filter-title {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-reset {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .filter-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .filter-select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 10px;
+      color: #fff;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .filter-select option {
+      background: #111827;
+    }
+
+    .filter-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 0.45rem;
+      cursor: pointer;
+    }
+
+    .filter-checkbox-label input {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Library Cards */
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .library-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .library-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(230, 92, 46, 0.4);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.5), 0 0 20px rgba(230, 92, 46, 0.12);
+    }
+
+    .library-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .library-badge-seats {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .library-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .library-address {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .amenities-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .amenity-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      font-size: 0.725rem;
+      color: #cbd5e1;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .shifts-table-wrap {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .shift-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 0.25rem 0;
+      color: #94a3b8;
+    }
+
+    .shift-row strong {
+      color: #fff;
+    }
+
+    .library-footer {
+      border-top: 1px solid var(--bg-card-border);
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .library-pricing {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .library-pricing small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Modal Styling */
+    .explore-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .explore-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-dialog {
+      background: #111827;
+      border: 1px solid var(--bg-card-border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 860px) {
+      .discovery-container {
+        grid-template-columns: 1fr;
+      }
+      .filter-card {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="explore-nav">
+    <a href="/" class="explore-brand">
+      <div class="brand-icon"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+    </a>
+    <nav class="nav-menu">
+      <a href="/tutors" class="nav-item"><i class="fas fa-chalkboard-teacher"></i> Find Tutors</a>
+      <a href="/libraries" class="nav-item active"><i class="fas fa-book-reader"></i> Study Libraries</a>
+      <a href="/login" class="btn-primary" id="btn-auth-nav" style="padding: 0.45rem 1.25rem; font-size: 0.85rem;">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="discovery-hero">
+    <h1>Quiet, Air-Conditioned <span>Study Libraries</span></h1>
+    <p>Discover silent reading rooms with ergonomic desks, 100% power backup, and high-speed Wi-Fi across Ghazipur, Saidpur, and UP.</p>
+
+    <div class="search-bar-wrap">
+      <div class="search-input-group">
+        <i class="fas fa-search"></i>
+        <input type="text" id="input-search" placeholder="Search by library name or road/area...">
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-input-group" style="flex: 0 1 200px;">
+        <i class="fas fa-map-marker-alt"></i>
+        <select id="select-district">
+          <option value="">All UP Districts</option>
+        </select>
+      </div>
+      <button class="btn-search" onclick="LibraryApp.applyFilters()">
+        <i class="fas fa-arrow-right"></i> Search
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="discovery-container">
+    <!-- Filter Sidebar -->
+    <aside class="filter-card">
+      <div class="filter-header">
+        <div class="filter-title"><i class="fas fa-sliders-h" style="color: var(--primary);"></i> Filters</div>
+        <button class="filter-reset" onclick="LibraryApp.resetFilters()">Reset</button>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Key Amenities</label>
+        <div id="amenity-checkboxes">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Max Shift Fee: <span id="fee-val-display" style="color: #fff;">Any</span></label>
+        <input type="range" id="filter-fee" min="400" max="2000" step="100" value="2000" style="width: 100%; accent-color: var(--primary);" oninput="LibraryApp.onFeeInput(this.value)">
+      </div>
+    </aside>
+
+    <!-- Results Area -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.2rem; font-weight: 700;" id="results-count-heading">Active Study Libraries</h2>
+        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-bolt" style="color: #f59e0b;"></i> Real-Time Desk Tracking</span>
+      </div>
+
+      <div id="library-grid" class="library-grid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Visual Seat Matrix Modal -->
+  <div class="explore-modal" id="modal-seats-layout">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="LibraryApp.closeModals()"><i class="fas fa-times"></i></button>
+      <div id="modal-seats-content">Loading layout...</div>
+    </div>
+  </div>
+
+  <!-- Reserve Desk Modal -->
+  <div class="explore-modal" id="modal-reserve-desk">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="LibraryApp.closeModals()"><i class="fas fa-times"></i></button>
+      <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem;"><i class="fas fa-chair" style="color: var(--primary);"></i> Reserve Study Desk</h2>
+      <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;" id="reserve-modal-subtitle">Submit seat allocation inquiry.</p>
+
+      <form id="form-reserve-desk" onsubmit="LibraryApp.submitReservation(event)">
+        <input type="hidden" id="reserve-lib-id">
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.35rem; display: block;">Preferred Study Shift *</label>
+          <select id="reserve-shift-select" class="filter-select" required onchange="LibraryApp.updateShiftPrice()">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.35rem; display: block;">Preferred Desk Number (Optional)</label>
+          <select id="reserve-seat-select" class="filter-select">
+            <option value="">Auto-Assign Best Available Desk</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.35rem; display: block;">Target Start Date</label>
+          <input type="date" id="reserve-start-date" class="filter-select">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="form-label" style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.35rem; display: block;">Notes / Queries</label>
+          <textarea id="reserve-message" class="filter-select" rows="2" placeholder="e.g. Preparing for UPSC / NEET, need silent corner desk..."></textarea>
+        </div>
+
+        <div id="reserve-auth-notice" style="display: none; background: rgba(230, 92, 46, 0.12); border: 1px solid rgba(230, 92, 46, 0.3); padding: 0.85rem; border-radius: 10px; margin-bottom: 1.25rem; font-size: 0.85rem;">
+          <i class="fas fa-info-circle" style="color: var(--primary);"></i> You must be signed in as a Student to reserve a desk.
+          <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+            <a href="/login" class="btn-sm-primary" style="text-decoration: none;">Sign In</a>
+            <a href="/register/student" class="btn-sm-outline" style="text-decoration: none;">Register Free</a>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btn-submit-reserve" style="width: 100%;">
+          <span>Confirm Desk Reservation Request</span> <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/auth-common.js"></script>
+  <script>
+    const LibraryApp = {
+      meta: null,
+      currentLibraries: [],
+      activeFilters: {
+        district_id: '',
+        search: '',
+        amenity: '',
+        max_fee: ''
+      },
+
+      async init() {
+        this.checkAuthSnippet();
+        await this.loadMetadata();
+        await this.loadLibraries();
+
+        document.getElementById('input-search').addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') this.applyFilters();
+        });
+      },
+
+      checkAuthSnippet() {
+        const user = AuthCommon.getCurrentUser();
+        const navBtn = document.getElementById('btn-auth-nav');
+        if (user && user.role) {
+          navBtn.innerHTML = `<i class="fas fa-th-large"></i> ${user.role} Portal`;
+          navBtn.href = `/dashboard/${user.role.toLowerCase().replace('_', '-')}`;
+        }
+      },
+
+      async loadMetadata() {
+        try {
+          const res = await fetch('/api/public/search-meta');
+          const data = await res.json();
+          if (data.success) {
+            this.meta = data;
+            const distSelect = document.getElementById('select-district');
+            data.districts.forEach(d => {
+              const opt = document.createElement('option');
+              opt.value = d.id;
+              opt.textContent = `${d.name} (${d.code})`;
+              distSelect.appendChild(opt);
+            });
+
+            const amenityContainer = document.getElementById('amenity-checkboxes');
+            data.amenities.slice(0, 6).forEach(a => {
+              const label = document.createElement('label');
+              label.className = 'filter-checkbox-label';
+              label.innerHTML = `<input type="checkbox" name="amenity-chk" value="${a.split(' ')[0]}" onchange="LibraryApp.onAmenityCheck(this)"> ${a}`;
+              amenityContainer.appendChild(label);
+            });
+          }
+        } catch (e) {
+          console.error('Failed to load metadata', e);
+        }
+      },
+
+      onAmenityCheck(chk) {
+        document.querySelectorAll('input[name="amenity-chk"]').forEach(c => { if (c !== chk) c.checked = false; });
+        this.activeFilters.amenity = chk.checked ? chk.value : '';
+        this.loadLibraries();
+      },
+
+      onFeeInput(val) {
+        document.getElementById('fee-val-display').textContent = val >= 2000 ? 'Any' : `₹${val}/mo`;
+        this.activeFilters.max_fee = val >= 2000 ? '' : val;
+        this.loadLibraries();
+      },
+
+      applyFilters() {
+        this.activeFilters.search = document.getElementById('input-search').value.trim();
+        this.activeFilters.district_id = document.getElementById('select-district').value;
+        this.loadLibraries();
+      },
+
+      resetFilters() {
+        document.getElementById('input-search').value = '';
+        document.getElementById('select-district').value = '';
+        document.getElementById('filter-fee').value = 2000;
+        document.getElementById('fee-val-display').textContent = 'Any';
+        document.querySelectorAll('input[name="amenity-chk"]').forEach(c => c.checked = false);
+
+        this.activeFilters = {
+          district_id: '',
+          search: '',
+          amenity: '',
+          max_fee: ''
+        };
+        this.loadLibraries();
+      },
+
+      async loadLibraries() {
+        const grid = document.getElementById('library-grid');
+        grid.innerHTML = '<div class="skeleton" style="height: 260px; border-radius: 16px;"></div>'.repeat(3);
+
+        const params = new URLSearchParams();
+        if (this.activeFilters.district_id) params.set('district_id', this.activeFilters.district_id);
+        if (this.activeFilters.search) params.set('search', this.activeFilters.search);
+        if (this.activeFilters.amenity) params.set('amenity', this.activeFilters.amenity);
+        if (this.activeFilters.max_fee) params.set('max_fee', this.activeFilters.max_fee);
+
+        try {
+          const res = await fetch(`/api/public/libraries?${params.toString()}`);
+          const data = await res.json();
+
+          if (data.success) {
+            this.currentLibraries = data.libraries;
+            document.getElementById('results-count-heading').textContent = `Active Study Libraries (${data.count})`;
+
+            if (data.libraries.length === 0) {
+              grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;">
+                  <i class="fas fa-book-open" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                  <h3>No Study Libraries Found</h3>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">Try adjusting your district or amenity filters.</p>
+                  <button class="btn-primary" style="width: auto; margin-top: 1rem;" onclick="LibraryApp.resetFilters()">Clear Filters</button>
+                </div>
+              `;
+              return;
+            }
+
+            grid.innerHTML = data.libraries.map(lib => `
+              <div class="library-card">
+                <div>
+                  <div class="library-card-header">
+                    <span class="library-badge-seats">
+                      <i class="fas fa-chair"></i> ${lib.availableSeats} Available / ${lib.totalSeats} Desks
+                    </span>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);"><i class="fas fa-clock"></i> ${lib.operatingHours}</span>
+                  </div>
+
+                  <h3 class="library-name">${lib.name}</h3>
+                  <div class="library-address">
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+                    <span>${lib.address} (${lib.districtName})</span>
+                  </div>
+
+                  <div class="amenities-chips">
+                    ${(lib.amenities || []).slice(0, 4).map(a => `<span class="amenity-chip"><i class="fas fa-check"></i> ${a}</span>`).join('')}
+                    ${lib.amenities && lib.amenities.length > 4 ? `<span class="amenity-chip">+${lib.amenities.length - 4} more</span>` : ''}
+                  </div>
+
+                  <div class="shifts-table-wrap">
+                    <div style="font-size: 0.725rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem;">
+                      Study Shift Options & Fees
+                    </div>
+                    ${(lib.shifts && lib.shifts.length > 0) ? lib.shifts.map(s => `
+                      <div class="shift-row">
+                        <span>${s.name} (${s.start_time} - ${s.end_time})</span>
+                        <strong>₹${s.fee}/mo</strong>
+                      </div>
+                    `).join('') : `
+                      <div class="shift-row"><span>Morning Shift</span><strong>₹${lib.fees.morning}/mo</strong></div>
+                      <div class="shift-row"><span>Full Day Shift</span><strong>₹${lib.fees.fullday}/mo</strong></div>
+                    `}
+                  </div>
+                </div>
+
+                <div class="library-footer">
+                  <div>
+                    <div class="library-pricing">From ₹${lib.fees.morning} <small>/mo</small></div>
+                  </div>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn-sm-outline" onclick="LibraryApp.openSeatsLayout(${lib.id})">
+                      <i class="fas fa-border-all"></i> Seat Matrix
+                    </button>
+                    <button class="btn-sm-primary" onclick="LibraryApp.openReserveDesk(${lib.id})">
+                      <span>Reserve</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          }
+        } catch (e) {
+          grid.innerHTML = '<div style="color: #ef4444; padding: 2rem;">Failed to load libraries.</div>';
+        }
+      },
+
+      async openSeatsLayout(libId) {
+        const modal = document.getElementById('modal-seats-layout');
+        const content = document.getElementById('modal-seats-content');
+        modal.classList.add('active');
+        content.innerHTML = '<div class="skeleton" style="height: 240px;"></div>';
+
+        try {
+          const res = await fetch(`/api/public/libraries/${libId}`);
+          const data = await res.json();
+          if (data.success) {
+            const lib = data.library;
+            content.innerHTML = `
+              <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;">${lib.name} — Visual Desk Grid</h2>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Live floor layout showing real-time desk availability.</p>
+
+              <div style="display: flex; gap: 1rem; font-size: 0.8rem; margin-bottom: 1.25rem;">
+                <span style="display: flex; align-items: center; gap: 0.35rem;"><span style="width: 12px; height: 12px; background: #10b981; border-radius: 3px;"></span> Available (${lib.availableSeats})</span>
+                <span style="display: flex; align-items: center; gap: 0.35rem;"><span style="width: 12px; height: 12px; background: #3b82f6; border-radius: 3px;"></span> Occupied (${lib.occupiedSeats})</span>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(48px, 1fr)); gap: 0.5rem; max-height: 320px; overflow-y: auto; padding: 0.5rem; background: rgba(0,0,0,0.3); border-radius: 12px;">
+                ${lib.seats.map(s => `
+                  <div style="
+                    aspect-ratio: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    border-radius: 8px;
+                    border: 1px solid ${s.status === 'AVAILABLE' ? '#10b981' : '#3b82f6'};
+                    background: ${s.status === 'AVAILABLE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(59, 130, 246, 0.2)'};
+                    color: ${s.status === 'AVAILABLE' ? '#34d399' : '#93c5fd'};
+                  " title="Desk ${s.seat_number}: ${s.status}">
+                    ${s.seat_number}
+                  </div>
+                `).join('')}
+              </div>
+
+              <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button class="btn-primary" style="width: auto; padding: 0.65rem 1.5rem;" onclick="LibraryApp.closeModals(); LibraryApp.openReserveDesk(${lib.id})">
+                  <span>Reserve an Available Desk</span> <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            `;
+          }
+        } catch (e) {
+          content.innerHTML = '<div style="color: #ef4444;">Failed to load seat grid.</div>';
+        }
+      },
+
+      async openReserveDesk(libId) {
+        const modal = document.getElementById('modal-reserve-desk');
+        modal.classList.add('active');
+        document.getElementById('reserve-lib-id').value = libId;
+
+        const user = AuthCommon.getCurrentUser();
+        const authNotice = document.getElementById('reserve-auth-notice');
+        const submitBtn = document.getElementById('btn-submit-reserve');
+
+        if (!user || user.role !== 'STUDENT') {
+          authNotice.style.display = 'block';
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.5';
+        } else {
+          authNotice.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+
+        // Fetch library shifts and available seats
+        try {
+          const res = await fetch(`/api/public/libraries/${libId}`);
+          const data = await res.json();
+          if (data.success) {
+            const lib = data.library;
+            document.getElementById('reserve-modal-subtitle').textContent = `Study space reservation at ${lib.name}`;
+
+            // Populate shifts
+            const shiftSelect = document.getElementById('reserve-shift-select');
+            shiftSelect.innerHTML = '';
+            if (lib.shifts && lib.shifts.length > 0) {
+              lib.shifts.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = `${s.name} (${s.start_time} - ${s.end_time}) — ₹${s.fee}/mo`;
+                opt.dataset.name = s.name;
+                opt.dataset.fee = s.fee;
+                shiftSelect.appendChild(opt);
+              });
+            } else {
+              const opt1 = document.createElement('option');
+              opt1.value = 'morning';
+              opt1.textContent = `Morning Shift (6:00 AM - 12:00 PM) — ₹${lib.fees.morning}/mo`;
+              shiftSelect.appendChild(opt1);
+            }
+
+            // Populate available seats
+            const seatSelect = document.getElementById('reserve-seat-select');
+            seatSelect.innerHTML = '<option value="">Auto-Assign Best Available Desk</option>';
+            const avail = (lib.seats || []).filter(s => s.status === 'AVAILABLE');
+            avail.forEach(s => {
+              const opt = document.createElement('option');
+              opt.value = s.id;
+              opt.textContent = `Desk ${s.seat_number} (Available)`;
+              seatSelect.appendChild(opt);
+            });
+          }
+        } catch (e) {
+          console.error('Error opening reserve dialog', e);
+        }
+      },
+
+      async submitReservation(e) {
+        e.preventDefault();
+        const user = AuthCommon.getCurrentUser();
+        if (!user || user.role !== 'STUDENT') {
+          alert('Please sign in as a student to reserve a desk.');
+          return;
+        }
+
+        const libId = document.getElementById('reserve-lib-id').value;
+        const shiftSelect = document.getElementById('reserve-shift-select');
+        const shiftId = shiftSelect.value;
+        const shiftText = shiftSelect.options[shiftSelect.selectedIndex] ? shiftSelect.options[shiftSelect.selectedIndex].text : 'Study Shift';
+        const seatId = document.getElementById('reserve-seat-select').value;
+        const startDate = document.getElementById('reserve-start-date').value;
+        const message = document.getElementById('reserve-message').value.trim();
+
+        const btn = document.getElementById('btn-submit-reserve');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+        try {
+          const res = await fetch('/api/student/bookings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${AuthCommon.getToken()}`
+            },
+            body: JSON.stringify({
+              target_type: 'LIBRARY',
+              library_id: parseInt(libId, 10),
+              subject_or_shift: shiftText,
+              shift_id: parseInt(shiftId, 10) || null,
+              preferred_seat_id: parseInt(seatId, 10) || null,
+              start_date: startDate || null,
+              message
+            })
+          });
+
+          const data = await res.json();
+          if (data.success) {
+            alert('🎉 Study desk reservation request submitted! The library operator has been notified.');
+            LibraryApp.closeModals();
+            window.location.href = '/dashboard/student';
+          } else {
+            alert(`Error: ${data.message || 'Failed to submit reservation'}`);
+          }
+        } catch (err) {
+          alert('Network error submitting reservation. Please try again.');
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Confirm Desk Reservation Request</span> <i class="fas fa-paper-plane"></i>';
+        }
+      },
+
+      closeModals() {
+        document.querySelectorAll('.explore-modal').forEach(m => m.classList.remove('active'));
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => LibraryApp.init());
+  </script>
+</body>
+</html>

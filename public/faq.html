@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Frequently Asked Questions | ZYZU'S Platform</title>
+  <meta name="description" content="Find answers to common questions about home tutoring, study library seat passes, district admin verification, and payments on ZYZU'S.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    .faq-hero {
+      max-width: 900px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .faq-search-box {
+      max-width: 650px;
+      margin: 0 auto 3rem;
+      position: relative;
+    }
+    .faq-search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-full);
+      padding: 1rem 1.5rem 1rem 3rem;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .faq-search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .faq-category {
+      max-width: 850px;
+      margin: 0 auto 3rem;
+    }
+    .faq-cat-title {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--bg-card-border);
+      padding-bottom: 0.75rem;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-question i {
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-question i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 1.5rem 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.925rem;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+      <span class="brand-tag">Platform</span>
+    </a>
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: var(--primary); font-weight: 700; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+    <section class="faq-hero">
+      <div class="brand-tag" style="background: rgba(230,92,46,0.15); color: var(--primary); padding: 0.35rem 1rem; border-radius: 9999px; display: inline-block; font-weight: 700; margin-bottom: 1rem;">
+        HELP & KNOWLEDGE BASE
+      </div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem;">
+        Frequently Asked Questions
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">
+        Everything you need to know about our home tutoring allotments, study space bookings, verification standards, and district governance.
+      </p>
+
+      <div class="faq-search-box">
+        <i class="fas fa-search" style="position: absolute; left: 1.25rem; top: 1.2rem; color: var(--text-dim);"></i>
+        <input type="text" id="faq-search" class="faq-search-input" placeholder="Type keywords: e.g. attendance, refund, district admin, walk-in" onkeyup="filterFaqs()">
+      </div>
+    </section>
+
+    <!-- Category 1: Students & Parents -->
+    <div class="faq-category">
+      <h2 class="faq-cat-title"><i class="fas fa-user-graduate" style="color: var(--primary);"></i> Students & Parents</h2>
+
+      <div class="faq-item open">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How does ZYZU'S ensure the tutor sent to my home is trustworthy?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Every tutor on ZYZU'S undergoes rigorous 4-step district verification: government ID (Aadhaar / Passport) authentication, university graduation degree verification, physical address verification, and approval by your official District Administrator.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I request a change if the tutor does not match my learning pace?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes! If you are not completely satisfied after the first introductory session, your District Administrator will reassign another qualified educator from your district at no extra charge, or issue a refund of unused tuition fees.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I book a desk in a self-study library?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          You can browse affiliated libraries in your district on the Find Library page, select your preferred shift (Morning, Evening, 24/7) and desk from the interactive matrix, and book instantly. Your digital pass will be generated immediately in your Student Portal.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I track my daily classes and tuition fees?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Your Student Dashboard features a real-time Attendance and Fees tracker. Whenever your teacher completes a class, they mark attendance (Present, Absent, Late, Leave) and topic notes. You can view payment receipts and upcoming due dates directly.
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 2: Teachers -->
+    <div class="faq-category">
+      <h2 class="faq-cat-title"><i class="fas fa-chalkboard-teacher" style="color: #3b82f6;"></i> Home Tutors</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How are students allotted to me as a teacher?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          On ZYZU'S, student requests are received and reviewed by your <strong>District Administrator</strong>. The District Admin matches students to you based on your verified subject expertise, location, and schedule availability. You only see students officially allotted to you on your Teacher Portal.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>When and how do I receive my monthly earnings?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Tuition fees are secured in escrow when the student enrolls. As you mark attendance for completed sessions on your Teacher Portal, earnings are calculated automatically and disbursed directly to your registered bank account via RTGS/UPI at the start of each month.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What documents do I need to submit to get approved?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          You must upload: (1) A valid government photo ID (Aadhaar, PAN, Voter ID), (2) Marksheets or degree certificate of your highest qualification, and (3) Bank account details. Your District Admin reviews these before approving your account.
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3: Library Owners -->
+    <div class="faq-category">
+      <h2 class="faq-cat-title"><i class="fas fa-book-reader" style="color: #10b981;"></i> Library Owners</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I add walk-in students who do not have a ZYZU'S app account?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <strong>Yes, absolutely!</strong> The Library Owner Console includes a dedicated <strong>Manual Student Ledger</strong>. You can enter offline walk-in students with their name, phone, assigned desk, shift, and monthly fee without requiring them to download or register on the app.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the interactive desk matrix work?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Your dashboard provides a visual seat grid representing your library layout. Desks change color in real-time based on status (Green for Vacant, Red for Occupied, Blue for App Reserved) across different shifts (Morning, Afternoon, Evening, Night).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How are monthly fee dues tracked?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          The system monitors renewal dates for both app bookings and manually added students. You get instant alerts for pending dues, overdue accounts, and can generate printable fee receipts with one click.
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 4: District Administration -->
+    <div class="faq-category">
+      <h2 class="faq-cat-title"><i class="fas fa-landmark" style="color: #f59e0b;"></i> District Governance</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is the role of a District Administrator?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          The District Admin is the dedicated operational overseer of their specific district. They verify local teacher credentials, inspect study libraries, process student tutor inquiries, pair teachers with learners, and resolve any local disputes.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Why is there strictly ONE active District Admin per district?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          This invariant eliminates administrative conflicts, ensures clear accountability for safety and quality within that geographic jurisdiction, and guarantees consistent communication with local parents, schools, and library proprietors.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          ZYZU'S answers your questions with transparency and clarity.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors">Find Home Tutors</a></li>
+          <li><a href="/libraries">Find Study Libraries</a></li>
+          <li><a href="/become-teacher">Become a Teacher</a></li>
+          <li><a href="/list-library">List Your Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About ZYZU'S</a></li>
+          <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing Plans</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student">Student Portal</a></li>
+          <li><a href="/dashboard/teacher">Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner">Library Owner</a></li>
+          <li><a href="/dashboard/district-admin">District Admin</a></li>
+          <li><a href="/dashboard/super-admin">Super Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      item.classList.toggle('open');
+    }
+
+    function filterFaqs() {
+      const query = document.getElementById('faq-search').value.toLowerCase();
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

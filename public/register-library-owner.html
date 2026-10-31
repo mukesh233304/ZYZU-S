@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Owner Registration | ZYZU'S — Tutors & Libraries</title>
+  <meta name="description" content="Register as a Study Space / Library Owner on ZYZU'S">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/login" class="nav-link btn-outline">Sign In</a>
+    </nav>
+  </header>
+
+  <!-- Container -->
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="card-accent-bar"></div>
+
+      <!-- Role Tabs -->
+      <div class="role-tabs">
+        <a href="/register/student" class="role-tab">
+          <i class="fas fa-user-graduate"></i> Student
+        </a>
+        <a href="/register/teacher" class="role-tab">
+          <i class="fas fa-chalkboard-teacher"></i> Teacher
+        </a>
+        <a href="/register/library-owner" class="role-tab active">
+          <i class="fas fa-book-reader"></i> Library Owner
+        </a>
+      </div>
+
+      <div class="card-header">
+        <h2 class="card-title">Library Owner Account</h2>
+        <p class="card-subtitle">Register to manage reading rooms, study libraries, and student seat bookings.</p>
+      </div>
+
+      <div class="alert-box alert-warning">
+        <i class="fas fa-info-circle"></i>
+        <div>
+          <strong>Notice:</strong> Library Owner accounts are set to <code>PENDING_APPROVAL</code> upon registration. Library space listing will be unlocked once approved by District Administration.
+        </div>
+      </div>
+
+      <div id="reg-alert" class="alert-box alert-danger" style="display: none;">
+        <i class="fas fa-exclamation-circle"></i>
+        <div id="reg-alert-text"></div>
+      </div>
+
+      <form id="library-owner-form" novalidate>
+        <!-- Owner Name -->
+        <div class="form-group">
+          <label class="form-label" for="owner_name">Owner Full Name *</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user input-icon"></i>
+            <input type="text" id="owner_name" name="owner_name" class="form-input" placeholder="e.g. Anand Prakash" required>
+          </div>
+          <span class="field-error" id="err-owner_name"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address *</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="email" name="email" class="form-input" placeholder="e.g. anand@library.com" required>
+          </div>
+          <span class="field-error" id="err-email"></span>
+        </div>
+
+        <!-- Mobile -->
+        <div class="form-group">
+          <label class="form-label" for="mobile">10-Digit Mobile Number *</label>
+          <div class="input-wrapper">
+            <i class="fas fa-phone input-icon"></i>
+            <input type="tel" id="mobile" name="mobile" class="form-input" placeholder="e.g. 9876543212" maxlength="10" required>
+          </div>
+          <span class="field-error" id="err-mobile"></span>
+        </div>
+
+        <!-- District -->
+        <div class="form-group">
+          <label class="form-label" for="district_id">District *</label>
+          <select id="district_id" name="district_id" class="form-select" required>
+            <option value="">Loading districts...</option>
+          </select>
+          <span class="field-error" id="err-district_id"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+          <label class="form-label" for="address">Operating Address / Head Office *</label>
+          <textarea id="address" name="address" rows="2" class="form-textarea" placeholder="Street, landmark, town" required></textarea>
+          <span class="field-error" id="err-address"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="password">Password *</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" name="password" class="form-input" placeholder="Min 8 chars, mixed case & numbers" required>
+            <button type="button" class="password-toggle" aria-label="Toggle password"><i class="fas fa-eye"></i></button>
+          </div>
+          <div class="password-meter"><div id="pwd-meter-bar" class="meter-bar"></div></div>
+          <span class="field-error" id="err-password"></span>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label class="form-label" for="confirm_password">Confirm Password *</label>
+          <div class="input-wrapper">
+            <i class="fas fa-check-double input-icon"></i>
+            <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Repeat password" required>
+            <button type="button" class="password-toggle" aria-label="Toggle password"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="field-error" id="err-confirm_password"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="margin-top: 1.5rem;">
+          <button type="submit" id="btn-submit" class="btn-primary">
+            <div class="spinner"></div>
+            <span class="btn-text">Register Library Owner Account</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.75rem; font-size: 0.875rem; color: var(--text-muted);">
+        Already registered? <a href="/login" style="color: var(--primary); font-weight: 600; text-decoration: none;">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/auth-common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDistricts('district_id');
+      setupPasswordMeter('password', 'pwd-meter-bar');
+
+      const form = document.getElementById('library-owner-form');
+      const btnSubmit = document.getElementById('btn-submit');
+      const alertBox = document.getElementById('reg-alert');
+      const alertText = document.getElementById('reg-alert-text');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        if (payload.password !== payload.confirm_password) {
+          showFieldError('confirm_password', 'Passwords do not match');
+          return;
+        }
+
+        btnSubmit.classList.add('loading');
+        btnSubmit.disabled = true;
+
+        try {
+          const res = await fetch('/api/auth/register/library-owner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+          btnSubmit.classList.remove('loading');
+          btnSubmit.disabled = false;
+
+          if (res.status === 201 && data.success) {
+            showToast('Library Owner registered successfully! Redirecting...', 'success');
+            if (data.token) localStorage.setItem('fp_token', data.token);
+            if (data.user) localStorage.setItem('fp_user', JSON.stringify(data.user));
+            setTimeout(() => {
+              window.location.href = data.redirectUrl || '/dashboard/library-owner';
+            }, 600);
+          } else if (res.status === 409 && data.field) {
+            showFieldError(data.field, data.message);
+            showGeneralError(data.message);
+          } else if (data.errors) {
+            for (const [fName, fMsg] of Object.entries(data.errors)) {
+              showFieldError(fName, fMsg);
+            }
+            showGeneralError('Please fix the highlighted errors.');
+          } else {
+            showGeneralError(data.message || 'Registration failed.');
+          }
+        } catch (err) {
+          btnSubmit.classList.remove('loading');
+          btnSubmit.disabled = false;
+          showGeneralError('Network error. Please try again.');
+        }
+      });
+
+      function clearErrors() {
+        document.querySelectorAll('.field-error').forEach(el => {
+          el.textContent = '';
+          el.style.display = 'none';
+        });
+        document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
+          el.classList.remove('is-invalid');
+        });
+        alertBox.style.display = 'none';
+      }
+
+      function showFieldError(fieldName, msg) {
+        const errEl = document.getElementById(`err-${fieldName}`);
+        const inputEl = document.getElementById(fieldName);
+        if (errEl) {
+          errEl.textContent = msg;
+          errEl.style.display = 'block';
+        }
+        if (inputEl) {
+          inputEl.classList.add('is-invalid');
+        }
+      }
+
+      function showGeneralError(msg) {
+        alertText.textContent = msg;
+        alertBox.style.display = 'flex';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>How It Works | ZYZU'S Platform</title>
+  <meta name="description" content="Detailed step-by-step workflows for students, teachers, library owners, and district administrators on ZYZU'S.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    .flow-hero {
+      max-width: 950px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .role-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .role-tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-muted);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+    .role-tab-btn.active {
+      background: rgba(230, 92, 46, 0.18);
+      color: var(--primary);
+      border-color: rgba(230, 92, 46, 0.4);
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+    .timeline-wrap {
+      max-width: 850px;
+      margin: 0 auto 4rem;
+      position: relative;
+    }
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    .timeline-card:hover {
+      border-color: rgba(230, 92, 46, 0.4);
+      transform: translateX(4px);
+    }
+    .timeline-number {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--primary) 0%, #d04d20 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px var(--primary-glow);
+    }
+    .timeline-content h3 {
+      color: #fff;
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-content p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .role-section {
+      display: none;
+    }
+    .role-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="auth-nav">
+    <a href="/" class="brand-logo">
+      <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+      <span>ZYZU'S</span>
+      <span class="brand-tag">Platform</span>
+    </a>
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+      <a href="/about" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">About</a>
+      <a href="/tutors" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-chalkboard-teacher" style="color: var(--primary);"></i> Find Tutor</a>
+      <a href="/libraries" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;"><i class="fas fa-book-reader" style="color: var(--primary);"></i> Find Library</a>
+      <a href="/become-teacher" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Become a Teacher</a>
+      <a href="/list-library" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">List Your Library</a>
+      <a href="/how-it-works" class="nav-link" style="color: var(--primary); font-weight: 700; text-decoration: none;">How It Works</a>
+      <a href="/pricing" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Pricing</a>
+      <a href="/faq" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">FAQ</a>
+      <a href="/contact" class="nav-link" style="color: #cbd5e1; font-weight: 600; text-decoration: none;">Contact</a>
+      <a href="/login" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"><i class="fas fa-sign-in-alt"></i> Unified Login</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+    <section class="flow-hero">
+      <div class="brand-tag" style="background: rgba(230,92,46,0.15); color: var(--primary); padding: 0.35rem 1rem; border-radius: 9999px; display: inline-block; font-weight: 700; margin-bottom: 1rem;">
+        TRANSPARENT SYSTEM ARCHITECTURE
+      </div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 1.25rem;">
+        How ZYZU'S Operates
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; max-width: 700px; margin: 0 auto 2.5rem;">
+        Explore the end-to-end operational lifecycle for students, educators, study spaces, and district governance.
+      </p>
+
+      <div class="role-tabs">
+        <button class="role-tab-btn active" onclick="switchRole('student')">
+          <i class="fas fa-user-graduate"></i> For Students & Parents
+        </button>
+        <button class="role-tab-btn" onclick="switchRole('teacher')">
+          <i class="fas fa-chalkboard-teacher"></i> For Teachers
+        </button>
+        <button class="role-tab-btn" onclick="switchRole('library')">
+          <i class="fas fa-book-reader"></i> For Library Owners
+        </button>
+        <button class="role-tab-btn" onclick="switchRole('admin')">
+          <i class="fas fa-landmark"></i> District Governance
+        </button>
+      </div>
+    </section>
+
+    <!-- Role 1: Student Flow -->
+    <div id="role-student" class="role-section active timeline-wrap">
+      <div class="timeline-card">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <h3>Discover & Submit Tutor Request</h3>
+          <p>Browse verified teachers in your district or submit an open learning inquiry stating your subject, grade, locality, days, and budget. <strong>The request is securely routed to your District Administrator.</strong></p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <h3>District Admin Official Allotment</h3>
+          <p>Your District Admin analyzes the learning requirements, matches a background-verified educator in your locality, and makes the formal teacher assignment.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <h3>1-on-1 Classes with Attendance Tracking</h3>
+          <p>Tuition begins at your home. The teacher records digital attendance for each session. You can view attendance stats (Present, Absent, Late, Leave) and topic notes in your Student Portal.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <h3>Book Self-Study Library Desks</h3>
+          <p>Whenever you need distraction-free quiet study, choose an affiliated library, select your preferred shift (Morning, Evening, 24/7) and desk number, and generate your instant digital desk pass.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 2: Teacher Flow -->
+    <div id="role-teacher" class="role-section timeline-wrap">
+      <div class="timeline-card">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <h3>Create Profile & Submit Credentials</h3>
+          <p>Register on the ZYZU'S Teacher Portal. Specify your academic qualifications, subjects, classes, preferred service radius, and expected hourly rates.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <h3>District Verification & Compliance</h3>
+          <p>Your District Administrator inspects your government ID and degree certificates. Once verified, your status changes to <strong>Approved</strong> with an official badge.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <h3>Receive Allotted Students</h3>
+          <p>You only receive student assignments officially paired by your District Admin. You do not have to filter through unsolicited inquiries or compete in chaotic bidding wars.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <h3>Log Attendance & Receive Guaranteed Payouts</h3>
+          <p>Log student attendance after every class. Payouts are automatically aggregated and disbursed directly into your bank account every month.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 3: Library Owner Flow -->
+    <div id="role-library" class="role-section timeline-wrap">
+      <div class="timeline-card">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <h3>Register Study Space & Amenities</h3>
+          <p>Enter your library name, address, total desk capacity, shift schedules, and amenities (Air Conditioning, High-Speed Wi-Fi, Generator Power Backup, RO Water).</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <h3>District Verification Audit</h3>
+          <p>The District Admin validates your facility safety, amenities, and location before activating your listing on the student discovery marketplace.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <h3>Manage Both App & Walk-In Students</h3>
+          <p>Receive digital seat reservations from ZYZU'S students and use the <strong>Manual Student Ledger</strong> to record walk-in students without requiring an app account.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <h3>Visual Desk Matrix & Automated Dues</h3>
+          <p>Track seat occupancy across all shifts on the interactive floor plan. The platform automatically flags pending monthly dues and generates receipts.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 4: District Admin Flow -->
+    <div id="role-admin" class="role-section timeline-wrap">
+      <div class="timeline-card">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <h3>Sole District Operational Authority</h3>
+          <p>Strict governance ensures that each district has exactly <strong>one active District Administrator</strong> assigned by the Super Admin, preventing conflicting jurisdictions.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <h3>Vetting Teachers & Facilities</h3>
+          <p>The District Admin examines all teacher applications, reviews uploaded documents, and audits libraries within their specific district boundaries.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <h3>Tutor Matching & Assignment Engine</h3>
+          <p>Student tutor requests arrive directly at the District Admin console. The Admin evaluates learner needs, searches suitable local educators, and executes the formal pairing.</p>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <h3>Quality Monitoring & Grievance Resolution</h3>
+          <p>Monitors tuition attendance compliance, tracks fee escrows, resolves parent or teacher queries, and issues disciplinary suspensions when necessary.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-badge"><i class="fas fa-graduation-cap"></i></div>
+          <span>ZYZU'S</span>
+        </a>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          ZYZU'S operates with clear role separations and district administration quality assurance.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-compass" style="color: var(--primary);"></i> Explore</h4>
+        <ul class="footer-links">
+          <li><a href="/tutors">Find Home Tutors</a></li>
+          <li><a href="/libraries">Find Study Libraries</a></li>
+          <li><a href="/become-teacher">Become a Teacher</a></li>
+          <li><a href="/list-library">List Your Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-info-circle" style="color: var(--primary);"></i> Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/about">About ZYZU'S</a></li>
+          <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing Plans</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><i class="fas fa-user-lock" style="color: var(--primary);"></i> Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/dashboard/student">Student Portal</a></li>
+          <li><a href="/dashboard/teacher">Teacher Portal</a></li>
+          <li><a href="/dashboard/library-owner">Library Owner</a></li>
+          <li><a href="/dashboard/district-admin">District Admin</a></li>
+          <li><a href="/dashboard/super-admin">Super Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 ZYZU'S Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    function switchRole(role) {
+      document.querySelectorAll('.role-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.role-section').forEach(sec => sec.classList.remove('active'));
+
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+      const target = document.getElementById('role-' + role);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

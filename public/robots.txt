@@ -1,0 +1,20 @@
+# ZYZU'S — Tutors & Libraries (https://zyzus.com)
+# Robots.txt for Search Engines & Social Media Crawlers
+
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /assets/branding/
+Allow: /favicon.ico
+Allow: /favicon-*.png
+Allow: /apple-touch-icon.png
+Allow: /android-chrome-*.png
+Allow: /og-image.jpg
+
+# Restrict authenticated portal command routes
+Disallow: /super-admin/
+Disallow: /district-admin/
+Disallow: /operator/
+
+# Sitemap location
+Sitemap: https://zyzus.com/sitemap.xml
