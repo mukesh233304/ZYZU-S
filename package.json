@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
-    "start": "/opt/homebrew/bin/node src/server.js",
+    "dev:all": "node scripts/dev-all.js",
+    "start": "node src/server.js",
     "dev": "/opt/homebrew/bin/node --watch src/server.js",
     "seed": "/opt/homebrew/bin/node src/scripts/seed.js",
     "test": "/opt/homebrew/bin/node ./node_modules/vitest/vitest.mjs run --pool=forks --fileParallelism=false",
